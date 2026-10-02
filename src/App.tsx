@@ -5,6 +5,9 @@ import { EngineBrief } from './components/EngineBrief';
 import { CanonicalLedger } from './components/CanonicalLedger';
 import { DisputeResolution } from './components/DisputeResolution';
 import { TransparencyRegistry } from './components/TransparencyRegistry';
+import { FactChecksAndVelocity } from './components/FactChecksAndVelocity';
+import { CredibilityAndInsights } from './components/CredibilityAndInsights';
+import { ReaderDeskAndFeeds } from './components/ReaderDeskAndFeeds';
 import { SearchResultsModal, SearchResultsData } from './components/SearchResultsModal';
 
 export function App() {
@@ -78,7 +81,10 @@ export function App() {
             }}
           />
         )}
+        {activeTab === 'factchecks' && <FactChecksAndVelocity />}
+        {activeTab === 'credibility' && <CredibilityAndInsights />}
         {activeTab === 'disputes' && <DisputeResolution />}
+        {activeTab === 'readerdesk' && <ReaderDeskAndFeeds />}
         {activeTab === 'transparency' && <TransparencyRegistry />}
       </main>
 

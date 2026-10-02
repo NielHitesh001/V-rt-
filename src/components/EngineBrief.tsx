@@ -1,16 +1,24 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Clock,
   ExternalLink,
   Copy,
   Check,
   Calendar,
-  Building2,
-  FileText
+  GitBranch,
+  UserCheck,
+  Clock,
+  ChevronRight,
+  Network
 } from 'lucide-react';
 import { Brief } from '../types';
 import { EVENTS } from '../data/goldData';
 import { generateEventBrief } from '../data/corroboration';
+import {
+  CLAIM_EVOLUTIONS,
+  SYNDICATION_TRACES,
+  NARRATIVE_NODES,
+  STAKEHOLDER_RECORDS
+} from '../data/enhancementsData';
 
 interface EngineBriefProps {
   initialEventId?: string;
@@ -21,6 +29,7 @@ export const EngineBrief: React.FC<EngineBriefProps> = ({ initialEventId = 'even
   const [selectedEventId, setSelectedEventId] = useState<string>(initialEventId);
   const [brief, setBrief] = useState<Brief | null>(null);
   const [copied, setCopied] = useState(false);
+  const [activeTab, setActiveTab] = useState<'report' | 'evolution' | 'syndication' | 'narrative' | 'stakeholders'>('report');
 
   useEffect(() => {
     try {
@@ -52,14 +61,6 @@ export const EngineBrief: React.FC<EngineBriefProps> = ({ initialEventId = 'even
             ...brief.timeline.map((t) => `- ${t.timestamp_str}: ${t.description}`),
             ''
           ]
-        : []),
-      ...(brief.disputed_points.length > 0
-        ? [
-            'REPORTED PERSPECTIVES & CONFLICTING ACCOUNTS:',
-            ...brief.disputed_points.map(
-              (dp) => `${dp.topic}:\n` + dp.claims.map((c) => `  * ${c.attribution_speaker || 'Position'}: "${c.text}"`).join('\n')
-            )
-          ]
         : [])
     ];
     navigator.clipboard.writeText(textLines.join('\n'));
@@ -68,6 +69,10 @@ export const EngineBrief: React.FC<EngineBriefProps> = ({ initialEventId = 'even
   };
 
   const currentEvent = EVENTS.find((e) => e.id === selectedEventId) || EVENTS[0];
+  const matchingEvolutions = CLAIM_EVOLUTIONS;
+  const matchingSyndications = SYNDICATION_TRACES.filter((s) => s.event_id === selectedEventId);
+  const matchingNarratives = NARRATIVE_NODES.filter((n) => n.event_id === selectedEventId);
+  const matchingStakeholders = STAKEHOLDER_RECORDS.filter((s) => s.event_id === selectedEventId);
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto font-sans">
@@ -129,142 +134,278 @@ export const EngineBrief: React.FC<EngineBriefProps> = ({ initialEventId = 'even
             <span className="text-stone-300">|</span>
             <span>Corroborated across independent records</span>
           </div>
+
+          {/* Dossier Tabs (Items 4, 8, 10, 11) */}
+          <div className="pt-2 flex items-center space-x-1 border-t border-stone-200 text-xs font-sans overflow-x-auto">
+            {[
+              { id: 'report', label: 'News Report' },
+              { id: 'evolution', label: 'Claim Evolution Timeline' },
+              { id: 'syndication', label: 'Syndication Origin' },
+              { id: 'narrative', label: 'Narrative Reconstruction' },
+              { id: 'stakeholders', label: 'Stakeholder Statements' }
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as any)}
+                className={`px-3 py-1.5 rounded transition cursor-pointer whitespace-nowrap text-xs ${
+                  activeTab === tab.id
+                    ? 'bg-stone-900 text-stone-100 font-semibold shadow-2xs'
+                    : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/50'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </header>
 
-        {/* Article Body */}
-        <div className="p-6 sm:p-8 space-y-8">
-          {/* Synthesized Executive Summary */}
-          <section className="space-y-3">
-            <h3 className="font-serif-editorial font-bold text-stone-900 text-xl border-b border-stone-200 pb-2">
-              Executive News Summary
-            </h3>
-            <div className="font-serif-prose text-stone-900 text-base leading-relaxed space-y-3 text-justify">
-              <p>
-                {brief.core_facts.length > 0 && brief.core_facts[0].text}
-              </p>
-              {brief.core_facts.length > 1 && (
-                <p>
-                  {brief.core_facts.slice(1, 3).map((f) => f.text).join(' ')}
-                </p>
-              )}
-            </div>
-          </section>
-
-          {/* Key Verified Facts Section */}
-          <section className="space-y-4">
-            <div className="flex items-center justify-between border-b border-stone-200 pb-2">
-              <h3 className="font-serif-editorial font-bold text-stone-900 text-xl">
-                Verified Factual Developments
+        {/* Tab 1: Standard Clean News Report */}
+        {activeTab === 'report' && (
+          <div className="p-6 sm:p-8 space-y-8">
+            <section className="space-y-3">
+              <h3 className="font-serif-editorial font-bold text-stone-900 text-xl border-b border-stone-200 pb-2">
+                Executive News Summary
               </h3>
-              <span className="text-xs font-serif text-stone-500">
-                {brief.core_facts.length} Verified Propositions
-              </span>
-            </div>
+              <div className="font-serif-prose text-stone-900 text-base leading-relaxed space-y-3 text-justify">
+                <p>{brief.core_facts.length > 0 && brief.core_facts[0].text}</p>
+                {brief.core_facts.length > 1 && (
+                  <p>{brief.core_facts.slice(1, 3).map((f) => f.text).join(' ')}</p>
+                )}
+              </div>
+            </section>
 
-            <div className="space-y-3">
-              {brief.core_facts.map((fact, idx) => (
-                <div
-                  key={fact.claim_id}
-                  className="p-4 rounded border border-stone-200 bg-[#fdfcf9] space-y-2"
-                >
-                  <div className="flex items-start space-x-3">
-                    <span className="font-serif font-bold text-stone-400 text-sm mt-0.5">
-                      {idx + 1}.
-                    </span>
-                    <div className="space-y-1.5 flex-1">
-                      <p className="font-serif-prose text-sm text-stone-900 leading-relaxed font-medium">
-                        {fact.text}
-                      </p>
+            <section className="space-y-4">
+              <div className="flex items-center justify-between border-b border-stone-200 pb-2">
+                <h3 className="font-serif-editorial font-bold text-stone-900 text-xl">
+                  Verified Factual Developments
+                </h3>
+                <span className="text-xs font-serif text-stone-500">
+                  {brief.core_facts.length} Verified Propositions
+                </span>
+              </div>
 
-                      <div className="text-xs font-serif text-stone-500 flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-stone-100">
-                        <div className="flex items-center space-x-2">
-                          {fact.attribution_speaker && (
-                            <span>Attributed by <strong>{fact.attribution_speaker}</strong></span>
+              <div className="space-y-3">
+                {brief.core_facts.map((fact, idx) => (
+                  <div
+                    key={fact.claim_id}
+                    className="p-4 rounded border border-stone-200 bg-[#fdfcf9] space-y-2"
+                  >
+                    <div className="flex items-start space-x-3">
+                      <span className="font-serif font-bold text-stone-400 text-sm mt-0.5">
+                        {idx + 1}.
+                      </span>
+                      <div className="space-y-1.5 flex-1">
+                        <p className="font-serif-prose text-sm text-stone-900 leading-relaxed font-medium">
+                          {fact.text}
+                        </p>
+
+                        <div className="text-xs font-serif text-stone-500 flex flex-wrap items-center justify-between gap-2 pt-1 border-t border-stone-100">
+                          <div className="flex items-center space-x-2">
+                            {fact.attribution_speaker && (
+                              <span>Attributed by <strong>{fact.attribution_speaker}</strong></span>
+                            )}
+                            {fact.attribution_speaker && <span>·</span>}
+                            <span>Source: {fact.supporting_source_ids.join(', ')}</span>
+                          </div>
+
+                          {fact.item_urls.length > 0 && (
+                            <a
+                              href={fact.item_urls[0]}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="hover:text-stone-900 underline flex items-center space-x-1"
+                            >
+                              <span>Read Original Dispatch</span>
+                              <ExternalLink className="w-3 h-3 text-stone-400" />
+                            </a>
                           )}
-                          {fact.attribution_speaker && <span>·</span>}
-                          <span>Source: {fact.supporting_source_ids.join(', ')}</span>
                         </div>
-
-                        {fact.item_urls.length > 0 && (
-                          <a
-                            href={fact.item_urls[0]}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="hover:text-stone-900 underline flex items-center space-x-1"
-                          >
-                            <span>Read Original Dispatch</span>
-                            <ExternalLink className="w-3 h-3 text-stone-400" />
-                          </a>
-                        )}
                       </div>
                     </div>
+                  </div>
+                ))}
+              </div>
+            </section>
+          </div>
+        )}
+
+        {/* Tab 2: Interactive Claim Evolution (Item 4) */}
+        {activeTab === 'evolution' && (
+          <div className="p-6 sm:p-8 space-y-6">
+            <div className="border-b border-stone-200 pb-2">
+              <h3 className="font-serif-editorial font-bold text-stone-900 text-xl flex items-center space-x-2">
+                <GitBranch className="w-5 h-5 text-stone-700" />
+                <span>Interactive Claim Evolution & Framing Shift Timeline</span>
+              </h3>
+              <p className="text-xs font-serif text-stone-600">
+                Visual timeline tracking when claims first broke, wire syndication variants, and eventual factual consensus
+              </p>
+            </div>
+
+            <div className="space-y-6">
+              {matchingEvolutions.map((evo) => (
+                <div key={evo.claim_id} className="p-5 bg-[#fdfcf9] border border-stone-300 rounded-lg space-y-4">
+                  <div className="flex items-center justify-between text-xs font-serif text-stone-500 border-b border-stone-200 pb-2">
+                    <span className="font-bold text-stone-900 text-sm">{evo.topic}</span>
+                    <span>First Reported: {new Date(evo.origin_time).toLocaleString()}</span>
+                  </div>
+
+                  <div className="relative pl-6 space-y-4 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-stone-300">
+                    {evo.milestones.map((m, mIdx) => (
+                      <div key={mIdx} className="relative text-xs">
+                        <div className="absolute -left-6 top-1 w-2.5 h-2.5 rounded-full bg-stone-900 border-2 border-white"></div>
+                        <div className="p-3 bg-white border border-stone-200 rounded space-y-1">
+                          <div className="flex items-center justify-between font-serif text-stone-500 text-[11px]">
+                            <span className="font-semibold text-stone-800 uppercase">{m.framing_type}</span>
+                            <span>{new Date(m.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} · {m.source_id}</span>
+                          </div>
+                          <p className="font-serif-prose text-stone-900 text-xs sm:text-sm">
+                            "{m.wording}"
+                          </p>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}
             </div>
-          </section>
+          </div>
+        )}
 
-          {/* Chronology Section */}
-          {brief.timeline.length > 0 && (
-            <section className="space-y-4">
-              <h3 className="font-serif-editorial font-bold text-stone-900 text-xl border-b border-stone-200 pb-2">
-                Chronology of Events
+        {/* Tab 3: Syndication Source Tracing (Item 8) */}
+        {activeTab === 'syndication' && (
+          <div className="p-6 sm:p-8 space-y-6">
+            <div className="border-b border-stone-200 pb-2">
+              <h3 className="font-serif-editorial font-bold text-stone-900 text-xl flex items-center space-x-2">
+                <Network className="w-5 h-5 text-stone-700" />
+                <span>Syndication Chain & Newsroom Attribution</span>
               </h3>
+              <p className="text-xs font-serif text-stone-600">
+                Explicitly distinguishes original investigative reporting from wire redistribution and regional republication
+              </p>
+            </div>
 
-              <div className="relative pl-6 space-y-4 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-stone-300">
-                {brief.timeline.map((entry, idx) => (
-                  <div key={idx} className="relative text-xs">
-                    <div className="absolute -left-6 top-1.5 w-2.5 h-2.5 rounded-full bg-stone-900 border-2 border-white"></div>
-                    <div className="bg-[#fdfcf9] border border-stone-200 p-3.5 rounded space-y-1">
-                      <div className="flex items-center justify-between font-serif text-stone-600">
-                        <span className="font-bold text-stone-900">{entry.timestamp_str}</span>
-                        <span className="text-[11px]">Reported by {entry.source_ids.join(', ')}</span>
-                      </div>
-                      <p className="font-serif-prose text-stone-900 text-sm leading-relaxed">{entry.description}</p>
-                    </div>
+            <div className="space-y-4">
+              {(matchingSyndications.length > 0 ? matchingSyndications : SYNDICATION_TRACES).map((syn) => (
+                <div key={syn.claim_id} className="p-5 bg-[#fdfcf9] border border-stone-300 rounded-lg space-y-4">
+                  <div className="flex items-center justify-between text-xs font-serif text-stone-700 border-b border-stone-200 pb-2">
+                    <span>
+                      Original Breaking Newsroom: <strong>{syn.first_reporting_newsroom}</strong>
+                    </span>
+                    <span>First Published: {new Date(syn.first_published_time).toLocaleDateString()}</span>
                   </div>
-                ))}
-              </div>
-            </section>
-          )}
 
-          {/* Reported Perspectives & Contested Accounts */}
-          {brief.disputed_points.length > 0 && (
-            <section className="space-y-4">
-              <h3 className="font-serif-editorial font-bold text-stone-900 text-xl border-b border-stone-200 pb-2">
-                Reported Perspectives & Conflicting Accounts
-              </h3>
-
-              <div className="space-y-4">
-                {brief.disputed_points.map((dp, i) => (
-                  <div key={i} className="p-4 bg-stone-50 border border-stone-300 rounded space-y-3">
-                    <div>
-                      <h4 className="font-serif-editorial font-bold text-stone-900 text-base">
-                        {dp.topic}
-                      </h4>
-                      <p className="text-xs font-serif text-stone-600 mt-0.5">
-                        {dp.explanation}
-                      </p>
-                    </div>
-
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
-                      {dp.claims.map((c, ci) => (
-                        <div key={ci} className="p-3 bg-white border border-stone-200 rounded space-y-1.5">
-                          <div className="font-serif font-bold text-stone-900 text-xs">
-                            {c.attribution_speaker || 'Reported Position'}
+                  <div className="space-y-2">
+                    {syn.syndication_path.map((pathItem) => (
+                      <div
+                        key={pathItem.step}
+                        className="p-3 bg-white border border-stone-200 rounded flex items-start space-x-3 text-xs font-serif"
+                      >
+                        <span className="px-2 py-0.5 bg-stone-100 border border-stone-200 rounded font-mono font-bold text-stone-800">
+                          Step {pathItem.step}
+                        </span>
+                        <div className="space-y-0.5 flex-1">
+                          <div className="flex items-center justify-between text-stone-500">
+                            <span className="font-bold text-stone-900 uppercase">{pathItem.role}</span>
+                            <span>{pathItem.source_id} · {new Date(pathItem.timestamp).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</span>
                           </div>
-                          <p className="font-serif-prose text-stone-800 text-xs sm:text-sm leading-relaxed">
-                            "{c.text}"
+                          <p className="text-stone-800 font-serif-prose">
+                            Headline: "{pathItem.headline_used}"
                           </p>
                         </div>
-                      ))}
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Tab 4: Event Narrative Reconstruction (Item 10) */}
+        {activeTab === 'narrative' && (
+          <div className="p-6 sm:p-8 space-y-6">
+            <div className="border-b border-stone-200 pb-2">
+              <h3 className="font-serif-editorial font-bold text-stone-900 text-xl flex items-center space-x-2">
+                <Clock className="w-5 h-5 text-stone-700" />
+                <span>Canonical Narrative Reconstruction</span>
+              </h3>
+              <p className="text-xs font-serif text-stone-600">
+                Chronological master narrative anchoring verified physical milestones with explicit uncertainty gaps flagged
+              </p>
+            </div>
+
+            <div className="relative pl-6 space-y-4 before:absolute before:left-2 before:top-2 before:bottom-2 before:w-0.5 before:bg-stone-300">
+              {(matchingNarratives.length > 0 ? matchingNarratives : NARRATIVE_NODES).map((node) => (
+                <div key={node.id} className="relative text-xs">
+                  <div className="absolute -left-6 top-1.5 w-2.5 h-2.5 rounded-full bg-stone-900 border-2 border-white"></div>
+                  <div className="p-4 bg-[#fdfcf9] border border-stone-200 rounded-lg space-y-2">
+                    <div className="flex items-center justify-between font-serif text-stone-500">
+                      <span className="font-bold text-stone-900">{new Date(node.datetime_iso).toLocaleString()}</span>
+                      <span>Verified by {node.corroborated_sources.join(', ')}</span>
+                    </div>
+
+                    <p className="font-serif-prose text-stone-900 text-sm leading-relaxed">
+                      {node.verified_statement}
+                    </p>
+
+                    {node.uncertainty_gap_warning && (
+                      <div className="p-2.5 bg-stone-50 border border-stone-300 rounded text-stone-700 text-xs font-serif">
+                        <strong className="text-stone-900">Uncertainty Gap:</strong> {node.uncertainty_gap_warning}
+                      </div>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {/* Tab 5: Stakeholder Claim Tracking (Item 11) */}
+        {activeTab === 'stakeholders' && (
+          <div className="p-6 sm:p-8 space-y-6">
+            <div className="border-b border-stone-200 pb-2">
+              <h3 className="font-serif-editorial font-bold text-stone-900 text-xl flex items-center space-x-2">
+                <UserCheck className="w-5 h-5 text-stone-700" />
+                <span>Stakeholder Statement Consistency Tracker</span>
+              </h3>
+              <p className="text-xs font-serif text-stone-600">
+                Audits public assertions by key officials, political leaders, and institutional spokespersons across time
+              </p>
+            </div>
+
+            <div className="space-y-4">
+              {(matchingStakeholders.length > 0 ? matchingStakeholders : STAKEHOLDER_RECORDS).map((sh) => (
+                <div key={sh.id} className="p-5 bg-[#fdfcf9] border border-stone-300 rounded-lg space-y-4">
+                  <div className="flex flex-wrap items-center justify-between text-xs font-serif border-b border-stone-200 pb-2 gap-2">
+                    <div>
+                      <h4 className="font-serif-editorial font-bold text-stone-900 text-base">{sh.person_or_org}</h4>
+                      <p className="text-stone-500">{sh.role_title}</p>
+                    </div>
+                    <div className="text-right">
+                      <span className="font-bold text-stone-800">{sh.consistency_rating}</span>
+                      <p className="text-[11px] text-stone-500">{sh.total_statements} Public Statements Recorded</p>
                     </div>
                   </div>
-                ))}
-              </div>
-            </section>
-          )}
-        </div>
+
+                  <div className="space-y-2">
+                    {sh.statement_history.map((stmt, sIdx) => (
+                      <div key={sIdx} className="p-3 bg-white border border-stone-200 rounded text-xs space-y-1">
+                        <div className="flex items-center justify-between text-stone-500 font-serif">
+                          <span>{stmt.date} · {stmt.context}</span>
+                          <span className="font-mono text-[10px]">{stmt.source_id}</span>
+                        </div>
+                        <p className="font-serif-prose text-stone-900 text-xs sm:text-sm italic">
+                          "{stmt.statement}"
+                        </p>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
 
         {/* Footer info */}
         <footer className="px-6 sm:px-8 py-4 bg-[#f5f2eb] border-t border-stone-200 text-xs font-serif text-stone-600 flex flex-wrap items-center justify-between gap-2">

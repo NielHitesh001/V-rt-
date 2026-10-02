@@ -6,7 +6,23 @@ import { SOURCES, DIVERSITY_RULES } from './src/data/sourcesData';
 import { RAW_ITEMS, PASSAGES, CLAIMS, EVENTS } from './src/data/goldData';
 import { generateEventBrief } from './src/data/corroboration';
 import { neutralizeClaimText } from './src/data/neutralizer';
-import { Item, Passage, Claim } from './src/types';
+import {
+  SOURCE_CREDIBILITIES,
+  FACT_CHECK_RECORDS,
+  BREAKING_VELOCITIES,
+  CLAIM_EVOLUTIONS,
+  INITIAL_READER_ANNOTATIONS,
+  BIAS_GLOSSARY_ENTRIES,
+  RETRACTION_RECORDS,
+  SYNDICATION_TRACES,
+  MULTILINGUAL_CLAIMS,
+  NARRATIVE_NODES,
+  STAKEHOLDER_RECORDS,
+  GEOGRAPHIC_LOCATIONS,
+  INITIAL_DIGESTS,
+  SOURCE_QUALITY_REPORTS
+} from './src/data/enhancementsData';
+import { Item, Passage, Claim, ReaderAnnotation } from './src/types';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -21,6 +37,7 @@ async function startServer() {
   const dynamicItems: Item[] = [...RAW_ITEMS];
   const dynamicPassages: Passage[] = [...PASSAGES];
   const dynamicClaims: Claim[] = [...CLAIMS];
+  const dynamicAnnotations: ReaderAnnotation[] = [...INITIAL_READER_ANNOTATIONS];
 
   // API Routes
   app.get('/api/health', (req, res) => {
@@ -217,6 +234,150 @@ async function startServer() {
       passages: newPassages,
       claims: newClaims
     });
+  });
+
+  // 1. Source Credibility Scoring
+  app.get('/api/credibility', (req, res) => {
+    res.json(SOURCE_CREDIBILITIES);
+  });
+
+  // 2. Fact-Check Integration
+  app.get('/api/factchecks', (req, res) => {
+    res.json(FACT_CHECK_RECORDS);
+  });
+
+  // 3. Breaking News Velocity Detection
+  app.get('/api/velocity', (req, res) => {
+    res.json(BREAKING_VELOCITIES);
+  });
+
+  // 4. Interactive Claim Evolution
+  app.get('/api/claims/evolution', (req, res) => {
+    res.json(CLAIM_EVOLUTIONS);
+  });
+
+  // 5. Reader Annotations (Crowdsourced Verification)
+  app.get('/api/annotations', (req, res) => {
+    res.json(dynamicAnnotations);
+  });
+
+  app.post('/api/annotations', (req, res) => {
+    const { claim_id, event_id, user_handle, confidence, stance, note, reference_link } = req.body;
+    if (!claim_id || !note) {
+      return res.status(400).json({ error: 'Claim ID and note are required' });
+    }
+    const newAnnotation: ReaderAnnotation = {
+      id: `ra-${Date.now()}`,
+      claim_id,
+      event_id: event_id || 'event-key-bridge-01',
+      user_handle: user_handle || 'VerifiedReader',
+      confidence: confidence || 'high',
+      stance: stance || 'corroborating',
+      note: note.trim(),
+      reference_link: reference_link ? reference_link.trim() : undefined,
+      created_at: new Date().toISOString(),
+      agreement_count: 1
+    };
+    dynamicAnnotations.unshift(newAnnotation);
+    res.json(newAnnotation);
+  });
+
+  // 6. Bias Marker Glossary
+  app.get('/api/glossary', (req, res) => {
+    res.json(BIAS_GLOSSARY_ENTRIES);
+  });
+
+  // 7. Retraction Tracking & Cascading Updates
+  app.get('/api/retractions', (req, res) => {
+    res.json(RETRACTION_RECORDS);
+  });
+
+  // 8. Syndication Source Tracing
+  app.get('/api/syndication', (req, res) => {
+    res.json(SYNDICATION_TRACES);
+  });
+
+  // 9. Multilingual Support
+  app.get('/api/multilingual', (req, res) => {
+    res.json(MULTILINGUAL_CLAIMS);
+  });
+
+  // 10. Event Narrative Reconstruction
+  app.get('/api/narrative/:id', (req, res) => {
+    const eventId = req.params.id;
+    const nodes = NARRATIVE_NODES.filter((n) => n.event_id === eventId);
+    res.json(nodes.length > 0 ? nodes : NARRATIVE_NODES);
+  });
+
+  // 11. Stakeholder Claim Tracking
+  app.get('/api/stakeholders', (req, res) => {
+    res.json(STAKEHOLDER_RECORDS);
+  });
+
+  // 12. Geographic Claim Mapping
+  app.get('/api/geomapping', (req, res) => {
+    res.json(GEOGRAPHIC_LOCATIONS);
+  });
+
+  // 13. News Digest Generation
+  app.get('/api/digest', (req, res) => {
+    res.json(INITIAL_DIGESTS);
+  });
+
+  // 14. Programmatic JSON API & Feed Export
+  app.get('/api/v1/claims', (req, res) => {
+    const { source, event, limit } = req.query;
+    let filtered = dynamicClaims;
+    if (source && typeof source === 'string') {
+      filtered = filtered.filter((c) => c.item_id.includes(source));
+    }
+    const max = limit ? parseInt(limit as string, 10) : 50;
+    res.json({
+      status: 'success',
+      total: filtered.length,
+      claims: filtered.slice(0, max)
+    });
+  });
+
+  app.get('/api/v1/events/:id/export.json', (req, res) => {
+    const eventId = req.params.id;
+    try {
+      const brief = generateEventBrief(eventId);
+      res.setHeader('Content-Type', 'application/json');
+      res.setHeader('Content-Disposition', `attachment; filename="${eventId}-export.json"`);
+      res.json(brief);
+    } catch {
+      res.status(404).json({ error: 'Event not found' });
+    }
+  });
+
+  app.get('/api/v1/events/:id/feed.xml', (req, res) => {
+    const eventId = req.params.id;
+    const evt = EVENTS.find((e) => e.id === eventId) || EVENTS[0];
+    const xml = `<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>TrueNews Factual Feed - ${evt.label}</title>
+    <link>http://localhost:3000</link>
+    <description>${evt.neutral_headline}</description>
+    <language>en-us</language>
+    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
+    <item>
+      <title>${evt.neutral_headline}</title>
+      <link>http://localhost:3000/events/${evt.id}</link>
+      <guid>${evt.id}</guid>
+      <pubDate>${new Date().toUTCString()}</pubDate>
+      <description>Extractive verified news brief from TrueNews canonical ledger.</description>
+    </item>
+  </channel>
+</rss>`;
+    res.setHeader('Content-Type', 'application/xml');
+    res.send(xml);
+  });
+
+  // 15. Source Quality Reports
+  app.get('/api/source-quality', (req, res) => {
+    res.json(SOURCE_QUALITY_REPORTS);
   });
 
   // Benchmark metrics

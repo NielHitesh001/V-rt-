@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { Newspaper, ShieldCheck, BookOpen, Scale, Database, Search, X, ArrowRight, Tag } from 'lucide-react';
+import { Newspaper, ShieldCheck, BookOpen, Scale, Database, Search, X, ArrowRight, Tag, Zap, Users } from 'lucide-react';
 import { EVENTS } from '../data/goldData';
 
 interface HeaderProps {
@@ -16,10 +16,12 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
 
   const navItems = [
     { id: 'veracity', label: 'Front Page', icon: Newspaper },
-    { id: 'engine', label: 'Verified Reports', icon: ShieldCheck },
+    { id: 'engine', label: 'Verified Reports & Dossiers', icon: ShieldCheck },
     { id: 'ledger', label: 'All Stories', icon: BookOpen },
+    { id: 'factchecks', label: 'Fact-Checks & Velocity', icon: Zap },
+    { id: 'credibility', label: 'Credibility & Insights', icon: Database },
     { id: 'disputes', label: 'Perspectives', icon: Scale },
-    { id: 'transparency', label: 'Sources & Standards', icon: Database },
+    { id: 'readerdesk', label: 'Reader Desk & API', icon: Users },
   ];
 
   // Live quick match results as user types
