@@ -1,0 +1,7 @@
+{
+  "name": "TrueNews - Raw News Extraction & Corroboration Ledger",
+  "description": "An open, verifiable, zero-recurring-cost news extraction and corroboration tool that collects coverage of events from diverse sources, extracts atomic factual claims with dual-layer attribution, neutralizes loaded wording, clusters equivalent claims into an event ledger, detects disputes, and presents transparent briefs.",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
