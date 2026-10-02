@@ -53,6 +53,54 @@ RULES: List[Dict[str, str]] = [
         "category": "Emotional Framing",
         "rationale": "Substituted hyperbolic disorder term with standard operational descriptor"
     },
+    {
+        "pattern": r"\bbrazen\s+",
+        "replacement": "",
+        "category": "Emotional Framing",
+        "rationale": "Removed moral judgment adjective"
+    },
+    {
+        "pattern": r"\bcowardly\s+",
+        "replacement": "",
+        "category": "Emotional Framing",
+        "rationale": "Removed character judgment adjective"
+    },
+    {
+        "pattern": r"\bshamefully\s+",
+        "replacement": "",
+        "category": "Emotional Framing",
+        "rationale": "Removed subjective judgment adverb"
+    },
+    {
+        "pattern": r"\bunprovoked\s+",
+        "replacement": "",
+        "category": "Emotional Framing",
+        "rationale": "Removed subjective motive assertion"
+    },
+    {
+        "pattern": r"\bcontroversial\s+",
+        "replacement": "",
+        "category": "Emotional Framing",
+        "rationale": "Removed polemical editorial framing label"
+    },
+    {
+        "pattern": r"\boutrage\b",
+        "replacement": "criticism",
+        "category": "Emotional Framing",
+        "rationale": "Substituted emotional reaction label with descriptive term"
+    },
+    {
+        "pattern": r"\bfury\b",
+        "replacement": "disapproval",
+        "category": "Emotional Framing",
+        "rationale": "Replaced sensationalized indignation term with measured descriptor"
+    },
+    {
+        "pattern": r"\bshocking\s+",
+        "replacement": "",
+        "category": "Emotional Framing",
+        "rationale": "Removed sensationalizing adjective"
+    },
 
     # --- 2. Hedging & Certainty Imputation ---
     {
@@ -79,6 +127,12 @@ RULES: List[Dict[str, str]] = [
         "category": "Certainty / Hedging",
         "rationale": "Removed subjective certainty adverb"
     },
+    {
+        "pattern": r"\bpurportedly\s+",
+        "replacement": "reportedly ",
+        "category": "Certainty / Hedging",
+        "rationale": "Substituted skeptical framing with standard reportorial attribution"
+    },
 
     # --- 3. Loaded Labels & Scare Quotes ---
     {
@@ -88,13 +142,31 @@ RULES: List[Dict[str, str]] = [
         "rationale": "Removed delegitimizing scare quotes and 'so-called' prefix"
     },
     {
+        "pattern": r"\bso-called\s+",
+        "replacement": "",
+        "category": "Loaded Label / Scare Quotes",
+        "rationale": "Removed delegitimizing 'so-called' prefix"
+    },
+    {
         "pattern": r"\bregime\b",
         "replacement": "government",
         "category": "Loaded Label",
         "rationale": "Replaced pejorative institutional label with standard neutral noun"
     },
+    {
+        "pattern": r"\bcronies\b",
+        "replacement": "associates",
+        "category": "Loaded Label",
+        "rationale": "Replaced disparaging pejorative with factual term"
+    },
+    {
+        "pattern": r"\bpropaganda\b",
+        "replacement": "statements",
+        "category": "Loaded Label",
+        "rationale": "Substituted loaded dismissive label with neutral noun"
+    },
 
-    # --- 4. Charged Verbs ---
+    # --- 4. Charged Verbs & Attribution ---
     {
         "pattern": r"\bdeliberately\s+rammed\b",
         "replacement": "collided with",
@@ -114,10 +186,34 @@ RULES: List[Dict[str, str]] = [
         "rationale": "Replaced sensationalized conflict verb with standard reportorial verb"
     },
     {
+        "pattern": r"\bblasted\b",
+        "replacement": "criticized",
+        "category": "Charged Verb",
+        "rationale": "Replaced aggressive vernacular verb with objective reportorial verb"
+    },
+    {
+        "pattern": r"\blashed\s+out\s+at\b",
+        "replacement": "criticized",
+        "category": "Charged Verb",
+        "rationale": "Replaced emotive attack verb with factual criticism verb"
+    },
+    {
+        "pattern": r"\bdenounced\b",
+        "replacement": "criticized",
+        "category": "Charged Verb",
+        "rationale": "Replaced loaded moral condemnation verb with standard reportorial verb"
+    },
+    {
         "pattern": r"\bdesecrate\b",
         "replacement": "damage",
         "category": "Charged Verb",
         "rationale": "Replaced loaded moral term with plain descriptive verb"
+    },
+    {
+        "pattern": r"\bscrambled\s+to\b",
+        "replacement": "attempted to",
+        "category": "Charged Verb",
+        "rationale": "Substituted chaotic framing with neutral action verb"
     },
 
     # --- 5. Intensifiers & Hyperbole ---
@@ -172,7 +268,7 @@ def neutralize_claim(claim: str) -> str:
         result = re.sub(rule["pattern"], rule["replacement"], result, flags=re.IGNORECASE)
 
     # Clean up accidental double spaces or dangling punctuation
-    result = re.sub(r'\s+', ' ', result).strip()
+    result = re.sub(r'\s+([,.!?;:])', r'\1', re.sub(r'\s+', ' ', result)).strip()
     return result
 
 def neutralize_with_changes(text: str) -> Dict[str, Any]:
@@ -192,7 +288,7 @@ def neutralize_with_changes(text: str) -> Dict[str, Any]:
                 })
             current = re.sub(rule["pattern"], rule["replacement"], current, flags=re.IGNORECASE)
 
-    current = re.sub(r'\s+', ' ', current).strip()
+    current = re.sub(r'\s+([,.!?;:])', r'\1', re.sub(r'\s+', ' ', current)).strip()
 
     # Detect weak vs neutral attribution markers without stripping them
     detected_weak_attribution = [

@@ -16,6 +16,10 @@ import { JournalistToolsAndAdoption } from './components/JournalistToolsAndAdopt
 import { ForensicsAndDisinfo } from './components/ForensicsAndDisinfo';
 import { AccessibleNarrative } from './components/AccessibleNarrative';
 import { PipelineOperations } from './components/PipelineOperations';
+import { ClaimComparison } from './components/ClaimComparison';
+import { SourceCredibilityCard } from './components/SourceCredibilityCard';
+import { CorroborationReasoning } from './components/CorroborationReasoning';
+import { SystemHealthCard } from './components/SystemHealthCard';
 
 export function App() {
   const [activeTab, setActiveTab] = useState<string>('veracity');
@@ -74,6 +78,14 @@ export function App() {
             onNavigateToBrief={handleNavigateToBrief}
             onNavigateToLedger={handleNavigateToLedger}
           />
+        )}
+        {activeTab === 'verification-lab' && (
+          <div className="space-y-10">
+            <SystemHealthCard />
+            <ClaimComparison />
+            <CorroborationReasoning />
+            <SourceCredibilityCard />
+          </div>
         )}
         {activeTab === 'engine' && (
           <EngineBrief

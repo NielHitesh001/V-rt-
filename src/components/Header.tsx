@@ -17,7 +17,8 @@ import {
   History,
   ShieldAlert,
   Volume2,
-  Terminal
+  Terminal,
+  Activity
 } from 'lucide-react';
 import { EVENTS } from '../data/goldData';
 
@@ -35,6 +36,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
 
   const navItems = [
     { id: 'veracity', label: 'Front Page', icon: Newspaper },
+    { id: 'verification-lab', label: 'Verification Lab & Improvements', icon: Activity },
     { id: 'engine', label: 'Verified Reports & Dossiers', icon: ShieldCheck },
     { id: 'ledger', label: 'All Stories', icon: BookOpen },
     { id: 'pipeline', label: 'Python M0–M9 Bridge', icon: Terminal },
@@ -238,9 +240,12 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
 
           {/* Quick Date Stamp */}
           <div className="hidden lg:flex items-center space-x-2 text-xs font-serif text-stone-600 shrink-0">
-            <span>Friday, October 2, 2026</span>
+            <span className="flex items-center gap-1.5 font-medium text-stone-800">
+              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+              Saturday, October 3, 2026
+            </span>
             <span>·</span>
-            <span>Est. 2024</span>
+            <span className="text-stone-500">Live Edition</span>
           </div>
         </div>
 

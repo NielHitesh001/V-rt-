@@ -27,9 +27,11 @@ STOP_WORDS = {
 CONCEPT_MAP = {
     # Maritime & Collision
     "vessel": "concept_vessel", "ship": "concept_vessel", "cargo": "concept_vessel", "boat": "concept_vessel", "tanker": "concept_vessel", "tankers": "concept_vessel",
-    "collided": "concept_impact", "struck": "concept_impact", "rammed": "concept_impact", "hit": "concept_impact", "crash": "concept_impact", "collision": "concept_impact",
+    "collided": "concept_impact", "struck": "concept_impact", "rammed": "concept_impact", "hit": "concept_impact", "crash": "concept_impact", "collision": "concept_impact", "impact": "concept_impact",
     "bridge": "concept_bridge", "structure": "concept_bridge", "overpass": "concept_bridge",
     "1:28": "concept_early_hours", "am": "concept_early_hours", "morning": "concept_early_hours", "early": "concept_early_hours", "dawn": "concept_early_hours",
+    "prior": "concept_before", "before": "concept_before",
+    "blackout": "concept_power_loss", "blackouts": "concept_power_loss", "power": "concept_power_loss",
     # Aviation incident
     "co-pilot": "concept_copilot", "copilot": "concept_copilot",
     "stabbed": "concept_assault", "attack": "concept_assault", "assault": "concept_assault",
