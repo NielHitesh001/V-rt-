@@ -1,0 +1,55 @@
+version: '3.9'
+
+services:
+  # Python backend (M0-M9 modules)
+  python-backend:
+    build:
+      context: backend/python
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/shared:/shared
+    environment:
+      - PYTHONUNBUFFERED=1
+    networks:
+      - truenews
+
+  # Node.js REST API (wrapper around Python)
+  api:
+    build:
+      context: backend/api
+      dockerfile: Dockerfile
+    depends_on:
+      - python-backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PYTHON_SERVICE=python-backend
+    networks:
+      - truenews
+
+  # React Frontend
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    ports:
+      - "5173:5173"
+    depends_on:
+      - api
+    environment:
+      - VITE_API_URL=http://api:3000
+    networks:
+      - truenews
+
+  # SQLite (shared data layer)
+  database:
+    image: keinos/sqlite3:latest
+    volumes:
+      - ./backend/shared/db:/data
+    networks:
+      - truenews
+
+networks:
+  truenews:
+    driver: bridge

@@ -1,13 +1,24 @@
 {
-  "name": "true-news",
-  "version": "1.0.0",
+  "name": "truenews-core",
+  "version": "2.0.0",
+  "description": "Unified TrueNews platform - Merged React UI and Python M0-M9 engine",
   "private": true,
   "type": "module",
+  "workspaces": [
+    "frontend",
+    "backend/api"
+  ],
   "scripts": {
     "dev": "tsx server.ts",
     "build": "vite build",
     "lint": "tsc --noEmit",
-    "start": "tsx server.ts"
+    "start": "tsx server.ts",
+    "test": "npm run test:api && npm run test:python",
+    "test:api": "cd backend/api && npm run test",
+    "test:python": "python3 -m unittest discover -s backend/python/tests -p 'test_*.py'",
+    "bench": "python3 backend/python/scripts/evaluate_all.py",
+    "install:all": "npm install && cd backend/python && pip install -r requirements.txt || true",
+    "docker:up": "docker-compose up"
   },
   "dependencies": {
     "express": "^4.21.2",

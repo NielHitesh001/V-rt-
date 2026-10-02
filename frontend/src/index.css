@@ -1,0 +1,47 @@
+@import "tailwindcss";
+
+@layer base {
+  body {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #fbf9f5;
+    color: #1c1917;
+  }
+
+  h1, h2, h3, .font-serif-editorial {
+    font-family: 'Newsreader', 'Playfair Display', Georgia, serif;
+  }
+
+  .font-serif-masthead {
+    font-family: 'Cinzel', 'Newsreader', 'Playfair Display', Georgia, serif;
+    letter-spacing: -0.02em;
+  }
+
+  .font-serif-prose {
+    font-family: 'Source Serif 4', Georgia, serif;
+  }
+
+  code, pre, .font-mono {
+    font-family: 'JetBrains Mono', monospace;
+  }
+}
+
+/* Editorial Newspaper Double Rules */
+.border-double-editorial {
+  border-bottom: 3px double #d6d1c4;
+}
+
+.border-double-top-editorial {
+  border-top: 3px double #d6d1c4;
+}
+
+/* Drop Cap for front-page lead article */
+.newspaper-dropcap::first-letter {
+  font-family: 'Newsreader', Georgia, serif;
+  float: left;
+  font-size: 3.5rem;
+  line-height: 0.8;
+  margin-top: 0.15rem;
+  margin-right: 0.5rem;
+  font-weight: 700;
+  color: #1c1917;
+}
