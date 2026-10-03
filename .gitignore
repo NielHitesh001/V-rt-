@@ -1,32 +1,8 @@
-# Environment variables & secrets
-.env
-.env.local
-.env.*.local
-
-# Node & dependencies
 node_modules/
-dist/
 build/
-.npm/
-
-# Python
-__pycache__/
-*.py[cod]
-.venv/
-*.egg-info/
-
-# Data & runtime
-/data/
-*.db
-*.sqlite3
-
-# IDE / OS
+dist/
+coverage/
 .DS_Store
-.idea/
-.vscode/
-*.swp
-
-# Test / coverage
-.pytest_cache/
-.coverage
-htmlcov/
+*.log
+.env*
+!.env.example
