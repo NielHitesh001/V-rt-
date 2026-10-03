@@ -3,33 +3,24 @@ import {
   INITIAL_DIGESTS,
   INITIAL_READER_ANNOTATIONS
 } from '../data/enhancementsData';
-import { EVENTS } from '../data/goldData';
 import { ReaderAnnotation } from '../types';
-import { Mail, Code2, Users, Send, Check, Copy, ExternalLink, Rss, Layers, Filter, Download } from 'lucide-react';
+import { Mail, Users, Send, Check, MessageSquare, BookOpen, Clock } from 'lucide-react';
 
 export const ReaderDeskAndFeeds: React.FC = () => {
-  const [activeTab, setActiveTab] = useState<'digest' | 'api' | 'community'>('digest');
+  const [activeTab, setActiveTab] = useState<'digest' | 'community'>('digest');
 
-  // Reader annotation form & filter state
+  // Reader letter submission state
   const [annotations, setAnnotations] = useState<ReaderAnnotation[]>(INITIAL_READER_ANNOTATIONS);
   const [userHandle, setUserHandle] = useState('');
   const [noteText, setNoteText] = useState('');
   const [stance, setStance] = useState<'corroborating' | 'questioning' | 'contextualizing'>('corroborating');
-  const [confidence, setConfidence] = useState<'high' | 'moderate' | 'low'>('high');
-  const [refLink, setRefLink] = useState('');
   const [filterStance, setFilterStance] = useState<string>('all');
   const [submitted, setSubmitted] = useState(false);
 
-  // Digest category state
+  // Newsletter subscription state
   const [subscribedCategory, setSubscribedCategory] = useState<string>('all');
   const [subscribedEmail, setSubscribedEmail] = useState('');
   const [subscribedNotice, setSubscribedNotice] = useState(false);
-
-  // API Tester & Export Generator state
-  const [selectedExportEventId, setSelectedExportEventId] = useState<string>('event-key-bridge-01');
-  const [apiEndpoint, setApiEndpoint] = useState('/api/v1/claims');
-  const [apiResponse, setApiResponse] = useState<string>('Click "Execute Query" to inspect live response payload');
-  const [copiedCurl, setCopiedCurl] = useState(false);
 
   const handleAddAnnotation = (e: React.FormEvent) => {
     e.preventDefault();
@@ -39,53 +30,28 @@ export const ReaderDeskAndFeeds: React.FC = () => {
       id: `ra-${Date.now()}`,
       claim_id: 'claim-gold-art-001-0',
       event_id: 'event-key-bridge-01',
-      user_handle: userHandle.trim() || 'VerifiedReader',
-      confidence,
+      user_handle: userHandle.trim() || 'Reader Correspondent',
+      confidence: 'high',
       stance,
       note: noteText.trim(),
-      reference_link: refLink.trim() || undefined,
       created_at: new Date().toISOString(),
       agreement_count: 1
     };
 
     setAnnotations([newNote, ...annotations]);
     setNoteText('');
-    setRefLink('');
     setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 3000);
-  };
-
-  const handleUpvote = (id: string) => {
-    setAnnotations(
-      annotations.map((a) =>
-        a.id === id ? { ...a, agreement_count: a.agreement_count + 1 } : a
-      )
-    );
-  };
-
-  const handleRunApi = async (endpoint: string) => {
-    setApiEndpoint(endpoint);
-    try {
-      const res = await fetch(endpoint);
-      const data = await res.json();
-      setApiResponse(JSON.stringify(data, null, 2));
-    } catch {
-      setApiResponse('Error fetching endpoint');
-    }
-  };
-
-  const handleCopyCurl = (cmd: string) => {
-    navigator.clipboard.writeText(cmd);
-    setCopiedCurl(true);
-    setTimeout(() => setCopiedCurl(false), 2000);
+    setTimeout(() => setSubmitted(false), 4000);
   };
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
     if (!subscribedEmail.trim()) return;
     setSubscribedNotice(true);
-    setTimeout(() => setSubscribedNotice(false), 3500);
-    setSubscribedEmail('');
+    setTimeout(() => {
+      setSubscribedEmail('');
+      setSubscribedNotice(false);
+    }, 4000);
   };
 
   const filteredAnnotations = annotations.filter(
@@ -94,449 +60,233 @@ export const ReaderDeskAndFeeds: React.FC = () => {
 
   return (
     <div className="space-y-8 max-w-6xl mx-auto font-sans">
-      {/* Header */}
+      {/* Header Banner */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-stone-300 gap-3">
         <div>
           <div className="text-[11px] font-mono uppercase tracking-widest text-stone-500 font-semibold">
-            The Veracity Archive · Reader Operations & Syndication
+            Public Correspondence & Editions
           </div>
           <h1 className="text-2xl sm:text-3xl font-serif-editorial font-bold text-stone-900">
-            News Digests, API Feeds & Reader Verification Desk
+            Reader Desk & Subscriptions
           </h1>
         </div>
-
-        {/* Section Tabs */}
-        <div className="flex items-center space-x-1 p-1 bg-stone-200/70 rounded border border-stone-300 text-xs">
-          {[
-            { id: 'digest', label: 'News Digest & Briefs' },
-            { id: 'api', label: 'API & Export Feeds' },
-            { id: 'community', label: 'Reader Annotations' }
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id as any)}
-              className={`px-3 py-1.5 rounded transition cursor-pointer text-xs ${
-                activeTab === tab.id
-                  ? 'bg-white text-stone-900 shadow-2xs font-semibold'
-                  : 'text-stone-600 hover:text-stone-900'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+        <div className="flex items-center space-x-2 text-xs font-serif text-stone-600">
+          <span>Letters to the Editor · Daily Morning Edition</span>
         </div>
       </div>
 
-      {/* 1. News Digest & What Changed Since Yesterday (Item 13) */}
+      {/* Navigation Sub-Tabs */}
+      <div className="flex items-center space-x-2 border-b border-stone-200">
+        <button
+          onClick={() => setActiveTab('digest')}
+          className={`flex items-center space-x-2 px-4 py-2 border-b-2 font-serif text-sm transition cursor-pointer ${
+            activeTab === 'digest'
+              ? 'border-stone-900 text-stone-900 font-bold'
+              : 'border-transparent text-stone-500 hover:text-stone-800'
+          }`}
+        >
+          <Mail className="w-4 h-4" />
+          <span>Morning & Evening Editions</span>
+        </button>
+        <button
+          onClick={() => setActiveTab('community')}
+          className={`flex items-center space-x-2 px-4 py-2 border-b-2 font-serif text-sm transition cursor-pointer ${
+            activeTab === 'community'
+              ? 'border-stone-900 text-stone-900 font-bold'
+              : 'border-transparent text-stone-500 hover:text-stone-800'
+          }`}
+        >
+          <Users className="w-4 h-4" />
+          <span>Letters to the Editor ({annotations.length})</span>
+        </button>
+      </div>
+
+      {/* Sub-Tab 1: Newspaper Digests & Subscriptions */}
       {activeTab === 'digest' && (
         <div className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-stone-200 pb-2 gap-3">
-            <div>
-              <h2 className="font-serif-editorial font-bold text-stone-900 text-xl flex items-center space-x-2">
-                <Mail className="w-5 h-5 text-stone-700" />
-                <span>Automated Daily & Weekly Veracity Digest</span>
+          <div className="bg-[#f5f2eb] border border-stone-300 rounded-lg p-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-6">
+            <div className="space-y-1 max-w-xl">
+              <h2 className="font-serif-editorial font-bold text-xl text-stone-900">
+                Receive The Daily Veracity Morning Dispatch
               </h2>
-              <p className="text-xs font-serif text-stone-600">
-                Curated factual summaries with explicit "What changed in this story since yesterday?" diffs
+              <p className="text-xs text-stone-700 leading-relaxed font-serif-prose">
+                Direct, objective news delivery delivered at 06:00 UTC. Every claim is cross-grounded in primary records before publication.
               </p>
             </div>
-
-            {/* Category Filter */}
-            <div className="flex items-center space-x-1 p-1 bg-stone-200/70 rounded border border-stone-300 text-xs overflow-x-auto">
-              {[
-                { id: 'all', label: 'All Topics' },
-                { id: 'infrastructure', label: 'Infrastructure' },
-                { id: 'economy', label: 'Economy' },
-                { id: 'labor', label: 'Labor Relations' }
-              ].map((cat) => (
-                <button
-                  key={cat.id}
-                  onClick={() => setSubscribedCategory(cat.id)}
-                  className={`px-2.5 py-1 rounded transition cursor-pointer text-xs whitespace-nowrap ${
-                    subscribedCategory === cat.id
-                      ? 'bg-white text-stone-900 shadow-2xs font-semibold'
-                      : 'text-stone-600 hover:text-stone-900'
-                  }`}
-                >
-                  {cat.label}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Subscription Banner */}
-          <div className="p-4 bg-white border border-stone-300 rounded-lg shadow-xs flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-            <div className="space-y-0.5">
-              <span className="font-serif font-bold text-stone-900 text-sm block">
-                Subscribe to Daily Verified Diff Ledger
-              </span>
-              <p className="text-xs font-serif text-stone-600">
-                Receive the morning broadsheet dispatch with zero spin and checkable provenance.
-              </p>
-            </div>
-
-            <form onSubmit={handleSubscribe} className="flex gap-2 w-full sm:w-auto">
+            <form onSubmit={handleSubscribe} className="flex flex-col sm:flex-row gap-2 w-full md:w-auto">
               <input
                 type="email"
+                placeholder="reader@newspaper.org"
                 value={subscribedEmail}
                 onChange={(e) => setSubscribedEmail(e.target.value)}
-                placeholder="your.email@organization.org"
-                className="px-3 py-1.5 text-xs font-serif bg-[#fdfcf9] border border-stone-300 rounded focus:outline-none focus:border-stone-500 w-full sm:w-64"
+                className="px-3 py-2 bg-white border border-stone-300 rounded text-xs focus:outline-hidden focus:ring-1 focus:ring-stone-400 w-full sm:w-64"
                 required
               />
               <button
                 type="submit"
-                className="px-4 py-1.5 bg-stone-900 hover:bg-stone-800 text-stone-100 rounded text-xs font-semibold transition cursor-pointer shrink-0"
+                className="px-4 py-2 bg-stone-900 hover:bg-stone-800 text-white rounded text-xs font-serif font-semibold cursor-pointer whitespace-nowrap transition"
               >
-                Subscribe
+                Subscribe Free
               </button>
             </form>
           </div>
 
           {subscribedNotice && (
-            <div className="p-3 bg-stone-100 border border-stone-300 rounded text-xs font-serif text-stone-800 text-center">
-              Verification subscription confirmed. Daily digests will be delivered at 06:00 UTC.
+            <div className="p-3 bg-stone-100 border border-stone-300 rounded text-stone-800 text-xs font-serif flex items-center space-x-2">
+              <Check className="w-4 h-4 text-[#475e3c]" />
+              <span>Subscription confirmed. Tomorrow morning&apos;s edition will be delivered to your inbox.</span>
             </div>
           )}
 
-          <div className="bg-white border border-stone-300 rounded-lg shadow-xs overflow-hidden">
-            {INITIAL_DIGESTS.map((digest) => (
-              <div key={digest.id} className="p-6 sm:p-8 space-y-6">
-                <div className="flex flex-wrap items-center justify-between pb-3 border-b border-stone-200 text-xs font-serif text-stone-500 gap-2">
-                  <span className="font-bold text-stone-900">{digest.edition_date}</span>
-                  <span className="uppercase tracking-wider">{digest.period}</span>
-                </div>
-
-                <div className="space-y-2">
-                  <div className="text-[10px] font-mono uppercase text-stone-500 font-semibold tracking-wider">
-                    Lead Editorial Overview
+          {/* Published Editions Archive */}
+          <div className="space-y-4">
+            <h3 className="font-serif-editorial font-bold text-lg text-stone-900 border-b border-stone-200 pb-2">
+              Recent Published Dispatches
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {INITIAL_DIGESTS.map((digest) => (
+                <div key={digest.id} className="p-4 bg-white border border-stone-300 rounded-lg shadow-2xs space-y-3">
+                  <div className="flex items-center justify-between text-xs text-stone-500 font-mono">
+                    <span className="uppercase">{digest.frequency} Edition</span>
+                    <span className="flex items-center gap-1 font-serif">
+                      <Clock className="w-3 h-3 text-stone-400" />
+                      {digest.delivery_time}
+                    </span>
                   </div>
-                  <h3 className="font-serif-editorial font-bold text-stone-900 text-2xl leading-tight">
-                    {digest.lead_story}
-                  </h3>
+                  <h4 className="font-serif-editorial font-bold text-stone-900 text-base">
+                    {digest.title}
+                  </h4>
+                  <p className="text-xs text-stone-700 leading-relaxed font-serif-prose">
+                    {digest.summary}
+                  </p>
+                  <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-xs font-serif text-stone-600">
+                    <span>{digest.events_included.length} Stories Included</span>
+                    <span className="text-stone-800 font-medium">Delivered · Archival Record</span>
+                  </div>
                 </div>
-
-                <div className="space-y-6 pt-2 divide-y divide-stone-200">
-                  {digest.stories.map((story) => (
-                    <div key={story.event_id} className="pt-4 first:pt-0 space-y-3">
-                      <h4 className="font-serif-editorial font-bold text-stone-900 text-lg leading-snug">
-                        {story.headline}
-                      </h4>
-                      <p className="font-serif-prose text-stone-700 text-sm leading-relaxed">
-                        {story.summary}
-                      </p>
-
-                      <div className="p-3 bg-[#fdfcf9] border border-stone-200 rounded space-y-1.5 text-xs font-serif">
-                        <span className="font-semibold text-stone-900 block">
-                          Verified Updates Since Yesterday:
-                        </span>
-                        <ul className="list-disc list-inside space-y-1 text-stone-700">
-                          {story.changes_since_yesterday.map((ch, i) => (
-                            <li key={i}>{ch}</li>
-                          ))}
-                        </ul>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      )}
-
-      {/* 2. API & Export Options (Item 14) */}
-      {activeTab === 'api' && (
-        <div className="space-y-6">
-          <div className="border-b border-stone-200 pb-2">
-            <h2 className="font-serif-editorial font-bold text-stone-900 text-xl flex items-center space-x-2">
-              <Code2 className="w-5 h-5 text-stone-700" />
-              <span>Developer API, JSON Export & RSS Syndication</span>
-            </h2>
-            <p className="text-xs font-serif text-stone-600">
-              Clean programmatic access to verified factual claims, machine-readable brief exports, and RSS feeds
-            </p>
-          </div>
-
-          {/* Export Generator Selector */}
-          <div className="p-4 bg-white border border-stone-300 rounded-lg shadow-xs space-y-3 text-xs font-sans">
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-              <div>
-                <span className="font-bold text-stone-900 block">Standalone Machine-Readable Event Brief</span>
-                <span className="font-serif text-stone-500">Select any event to download JSON dossier or subscribe via RSS:</span>
-              </div>
-
-              <div className="flex items-center space-x-2">
-                <select
-                  value={selectedExportEventId}
-                  onChange={(e) => setSelectedExportEventId(e.target.value)}
-                  className="px-3 py-1.5 text-xs font-serif bg-[#fdfcf9] border border-stone-300 rounded"
-                >
-                  {EVENTS.map((e) => (
-                    <option key={e.id} value={e.id}>
-                      {e.label}
-                    </option>
-                  ))}
-                </select>
-
-                <a
-                  href={`/api/v1/events/${selectedExportEventId}/export.json`}
-                  download={`${selectedExportEventId}-export.json`}
-                  className="px-3 py-1.5 bg-stone-900 text-stone-100 hover:bg-stone-800 rounded font-semibold transition flex items-center space-x-1"
-                >
-                  <Download className="w-3.5 h-3.5" />
-                  <span>Download JSON</span>
-                </a>
-
-                <a
-                  href={`/api/v1/events/${selectedExportEventId}/feed.xml`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="px-3 py-1.5 bg-stone-100 border border-stone-300 hover:bg-stone-200 text-stone-800 rounded font-semibold transition flex items-center space-x-1"
-                >
-                  <Rss className="w-3.5 h-3.5 text-[#5c4a2c]" />
-                  <span>RSS</span>
-                </a>
-              </div>
-            </div>
-          </div>
-
-          {/* Quick Endpoints Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-xs font-sans">
-            <div className="p-4 bg-white border border-stone-300 rounded-lg shadow-xs space-y-3 flex flex-col justify-between">
-              <div className="space-y-1">
-                <span className="font-mono text-stone-500 font-bold block">GET /api/v1/claims</span>
-                <p className="font-serif text-stone-700">
-                  Query all atomic verified propositions with attribution metadata.
-                </p>
-              </div>
-              <button
-                onClick={() => handleRunApi('/api/v1/claims')}
-                className="px-3 py-1.5 bg-stone-900 text-stone-100 hover:bg-stone-800 rounded font-semibold transition cursor-pointer"
-              >
-                Inspect Claims API
-              </button>
-            </div>
-
-            <div className="p-4 bg-white border border-stone-300 rounded-lg shadow-xs space-y-3 flex flex-col justify-between">
-              <div className="space-y-1">
-                <span className="font-mono text-stone-500 font-bold block">GET /api/credibility</span>
-                <p className="font-serif text-stone-700">
-                  Historical accuracy ratings and error flags for all newsrooms.
-                </p>
-              </div>
-              <button
-                onClick={() => handleRunApi('/api/credibility')}
-                className="px-3 py-1.5 bg-stone-900 text-stone-100 hover:bg-stone-800 rounded font-semibold transition cursor-pointer"
-              >
-                Inspect Credibility API
-              </button>
-            </div>
-
-            <div className="p-4 bg-white border border-stone-300 rounded-lg shadow-xs space-y-3 flex flex-col justify-between">
-              <div className="space-y-1">
-                <span className="font-mono text-stone-500 font-bold block">GET /api/velocity</span>
-                <p className="font-serif text-stone-700">
-                  Real-time breaking volume spikes and consensus progression.
-                </p>
-              </div>
-              <button
-                onClick={() => handleRunApi('/api/velocity')}
-                className="px-3 py-1.5 bg-stone-900 text-stone-100 hover:bg-stone-800 rounded font-semibold transition cursor-pointer"
-              >
-                Inspect Velocity API
-              </button>
-            </div>
-          </div>
-
-          {/* Interactive Console */}
-          <div className="bg-stone-900 text-stone-100 rounded-lg p-5 shadow-md font-mono text-xs space-y-3">
-            <div className="flex items-center justify-between border-b border-stone-700 pb-2 text-[11px] text-stone-400">
-              <span>ENDPOINT: {apiEndpoint}</span>
-              <button
-                onClick={() => handleCopyCurl(`curl -s http://localhost:3000${apiEndpoint}`)}
-                className="hover:text-stone-200 flex items-center space-x-1 cursor-pointer"
-              >
-                {copiedCurl ? <Check className="w-3 h-3 text-[#34482c] font-bold" /> : <Copy className="w-3 h-3" />}
-                <span>{copiedCurl ? 'Copied cURL' : 'Copy cURL'}</span>
-              </button>
-            </div>
-            <pre className="overflow-x-auto p-2 bg-stone-950 rounded text-stone-300 max-h-72 leading-relaxed text-[11px]">
-              {apiResponse}
-            </pre>
-          </div>
-        </div>
-      )}
-
-      {/* 3. Reader Annotations & Crowdsourced Verification (Item 5) */}
-      {activeTab === 'community' && (
-        <div className="space-y-6">
-          <div className="flex flex-col sm:flex-row sm:items-center justify-between border-b border-stone-200 pb-2 gap-3">
-            <div>
-              <h2 className="font-serif-editorial font-bold text-stone-900 text-xl flex items-center space-x-2">
-                <Users className="w-5 h-5 text-stone-700" />
-                <span>Reader Annotations & Informed Community Verification</span>
-              </h2>
-              <p className="text-xs font-serif text-stone-600">
-                Allows readers and domain experts to submit factual notes, reference documentation, and flag nuance on claims
-              </p>
-            </div>
-
-            {/* Filter by Stance */}
-            <div className="flex items-center space-x-1 p-1 bg-stone-200/70 rounded border border-stone-300 text-xs">
-              {['all', 'corroborating', 'questioning', 'contextualizing'].map((st) => (
-                <button
-                  key={st}
-                  onClick={() => setFilterStance(st)}
-                  className={`px-2.5 py-1 rounded transition cursor-pointer text-xs capitalize whitespace-nowrap ${
-                    filterStance === st
-                      ? 'bg-white text-stone-900 shadow-2xs font-semibold'
-                      : 'text-stone-600 hover:text-stone-900'
-                  }`}
-                >
-                  {st}
-                </button>
               ))}
             </div>
           </div>
+        </div>
+      )}
 
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
-            {/* Form Column */}
-            <div className="lg:col-span-5 bg-white border border-stone-300 rounded-lg p-5 shadow-xs space-y-4">
+      {/* Sub-Tab 2: Letters to the Editor */}
+      {activeTab === 'community' && (
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
+          {/* Left: Submit a Letter (5 cols) */}
+          <div className="lg:col-span-5 bg-white border border-stone-300 rounded-lg p-5 shadow-2xs space-y-4">
+            <div>
               <h3 className="font-serif-editorial font-bold text-stone-900 text-base">
-                Contribute Reader Context or Flag
+                Submit a Letter to the Editor
               </h3>
-
-              <form onSubmit={handleAddAnnotation} className="space-y-3 text-xs font-sans">
-                <div>
-                  <label className="font-serif text-stone-700 block mb-1">Your Handle / Affiliation</label>
-                  <input
-                    type="text"
-                    value={userHandle}
-                    onChange={(e) => setUserHandle(e.target.value)}
-                    placeholder="e.g. MaritimeSpecialist, LegalAnalyst"
-                    className="w-full p-2 bg-[#fdfcf9] border border-stone-300 rounded focus:outline-none focus:border-stone-500"
-                  />
-                </div>
-
-                <div className="grid grid-cols-2 gap-2">
-                  <div>
-                    <label className="font-serif text-stone-700 block mb-1">Stance</label>
-                    <select
-                      value={stance}
-                      onChange={(e) => setStance(e.target.value as any)}
-                      className="w-full p-2 bg-[#fdfcf9] border border-stone-300 rounded focus:outline-none focus:border-stone-500"
-                    >
-                      <option value="corroborating">Corroborating Evidence</option>
-                      <option value="questioning">Questioning Nuance</option>
-                      <option value="contextualizing">Additional Context</option>
-                    </select>
-                  </div>
-
-                  <div>
-                    <label className="font-serif text-stone-700 block mb-1">Confidence</label>
-                    <select
-                      value={confidence}
-                      onChange={(e) => setConfidence(e.target.value as any)}
-                      className="w-full p-2 bg-[#fdfcf9] border border-stone-300 rounded focus:outline-none focus:border-stone-500"
-                    >
-                      <option value="high">High (Direct Document)</option>
-                      <option value="moderate">Moderate</option>
-                      <option value="low">Low (Anecdotal)</option>
-                    </select>
-                  </div>
-                </div>
-
-                <div>
-                  <label className="font-serif text-stone-700 block mb-1">Factual Note / Observation</label>
-                  <textarea
-                    value={noteText}
-                    onChange={(e) => setNoteText(e.target.value)}
-                    rows={4}
-                    placeholder="Provide specific document reference, regulatory filing, or clarification..."
-                    className="w-full p-2.5 bg-[#fdfcf9] border border-stone-300 rounded focus:outline-none focus:border-stone-500 font-serif-prose text-xs"
-                    required
-                  />
-                </div>
-
-                <div>
-                  <label className="font-serif text-stone-700 block mb-1">Primary Reference Link (Optional)</label>
-                  <input
-                    type="url"
-                    value={refLink}
-                    onChange={(e) => setRefLink(e.target.value)}
-                    placeholder="https://..."
-                    className="w-full p-2 bg-[#fdfcf9] border border-stone-300 rounded focus:outline-none focus:border-stone-500 font-mono text-[11px]"
-                  />
-                </div>
-
-                <button
-                  type="submit"
-                  className="w-full py-2 bg-stone-900 hover:bg-stone-800 text-stone-100 rounded font-semibold transition cursor-pointer flex items-center justify-center space-x-1"
-                >
-                  <Send className="w-3.5 h-3.5" />
-                  <span>Submit Reader Annotation</span>
-                </button>
-
-                {submitted && (
-                  <div className="p-2 bg-stone-100 border border-stone-300 rounded text-center text-stone-800 font-serif text-xs">
-                    Thank you. Annotation recorded into verified community ledger.
-                  </div>
-                )}
-              </form>
+              <p className="text-xs text-stone-600 font-serif-prose mt-1">
+                Share verified factual context, regional perspectives, or official corroboration regarding current reports.
+              </p>
             </div>
 
-            {/* List Column */}
-            <div className="lg:col-span-7 space-y-3">
-              <h3 className="font-serif-editorial font-bold text-stone-900 text-base border-b border-stone-200 pb-2">
-                Audited Community Contributions ({filteredAnnotations.length})
+            <form onSubmit={handleAddAnnotation} className="space-y-3 text-xs">
+              <div>
+                <label className="block text-stone-700 font-serif font-medium mb-1">
+                  Your Name or Attribution
+                </label>
+                <input
+                  type="text"
+                  placeholder="e.g. Elena Rostova, Marine Engineer"
+                  value={userHandle}
+                  onChange={(e) => setUserHandle(e.target.value)}
+                  className="w-full p-2 bg-[#fdfcf9] border border-stone-300 rounded text-xs"
+                />
+              </div>
+
+              <div>
+                <label className="block text-stone-700 font-serif font-medium mb-1">
+                  Perspective or Context Type
+                </label>
+                <select
+                  value={stance}
+                  onChange={(e) => setStance(e.target.value as any)}
+                  className="w-full p-2 bg-[#fdfcf9] border border-stone-300 rounded text-xs"
+                >
+                  <option value="corroborating">Corroborating Primary Evidence</option>
+                  <option value="contextualizing">Additional Context & Background</option>
+                  <option value="questioning">Factual Question or Clarification</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-stone-700 font-serif font-medium mb-1">
+                  Commentary or Letter Body
+                </label>
+                <textarea
+                  rows={4}
+                  placeholder="State the verifiable facts, public records, or documentation..."
+                  value={noteText}
+                  onChange={(e) => setNoteText(e.target.value)}
+                  className="w-full p-2 bg-[#fdfcf9] border border-stone-300 rounded text-xs font-serif-prose"
+                  required
+                />
+              </div>
+
+              <button
+                type="submit"
+                className="w-full py-2 bg-stone-900 hover:bg-stone-800 text-white rounded font-serif font-semibold transition cursor-pointer flex items-center justify-center space-x-1"
+              >
+                <Send className="w-3.5 h-3.5" />
+                <span>Submit Letter</span>
+              </button>
+
+              {submitted && (
+                <div className="p-2 bg-stone-100 border border-stone-300 rounded text-stone-800 text-xs font-serif text-center">
+                  Your letter has been recorded for editorial review.
+                </div>
+              )}
+            </form>
+          </div>
+
+          {/* Right: Published Reader Letters (7 cols) */}
+          <div className="lg:col-span-7 space-y-4">
+            <div className="flex items-center justify-between pb-2 border-b border-stone-200">
+              <h3 className="font-serif-editorial font-bold text-stone-900 text-base">
+                Published Correspondence
               </h3>
-
-              <div className="space-y-3">
-                {filteredAnnotations.map((ann) => (
-                  <div
-                    key={ann.id}
-                    className="bg-white border border-stone-300 rounded-lg p-4 shadow-xs space-y-2 text-xs font-serif"
+              <div className="flex items-center space-x-1 text-xs">
+                {['all', 'corroborating', 'contextualizing'].map((s) => (
+                  <button
+                    key={s}
+                    onClick={() => setFilterStance(s)}
+                    className={`px-2.5 py-1 rounded capitalize font-serif transition ${
+                      filterStance === s
+                        ? 'bg-stone-900 text-white font-semibold'
+                        : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+                    }`}
                   >
-                    <div className="flex items-center justify-between text-stone-500 border-b border-stone-200 pb-1.5">
-                      <div className="flex items-center space-x-2">
-                        <span className="font-bold text-stone-900">{ann.user_handle}</span>
-                        <span>·</span>
-                        <span className="capitalize">{ann.stance}</span>
-                        <span>({ann.confidence} confidence)</span>
-                      </div>
-                      <span className="text-[11px] font-mono">{new Date(ann.created_at).toLocaleDateString()}</span>
-                    </div>
-
-                    <p className="font-serif-prose text-stone-800 leading-relaxed text-sm">
-                      {ann.note}
-                    </p>
-
-                    <div className="flex items-center justify-between pt-1 text-[11px] text-stone-500">
-                      {ann.reference_link ? (
-                        <a
-                          href={ann.reference_link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-stone-800 hover:underline flex items-center space-x-1"
-                        >
-                          <span>Verified Source Link</span>
-                          <ExternalLink className="w-3 h-3" />
-                        </a>
-                      ) : (
-                        <span>Verified Community Reviewer</span>
-                      )}
-
-                      <button
-                        onClick={() => handleUpvote(ann.id)}
-                        className="px-2 py-0.5 bg-stone-100 hover:bg-stone-200 text-stone-800 rounded border border-stone-200 transition cursor-pointer font-sans"
-                      >
-                        Agreed ({ann.agreement_count})
-                      </button>
-                    </div>
-                  </div>
+                    {s}
+                  </button>
                 ))}
               </div>
+            </div>
+
+            <div className="space-y-3">
+              {filteredAnnotations.map((item) => (
+                <div key={item.id} className="p-4 bg-white border border-stone-300 rounded-lg shadow-2xs space-y-2">
+                  <div className="flex items-center justify-between text-xs">
+                    <span className="font-serif font-bold text-stone-900 flex items-center gap-1.5">
+                      <MessageSquare className="w-3.5 h-3.5 text-stone-400" />
+                      {item.user_handle}
+                    </span>
+                    <span className="text-[10px] uppercase font-mono px-2 py-0.5 rounded bg-stone-100 text-stone-600 border border-stone-200">
+                      {item.stance}
+                    </span>
+                  </div>
+                  <p className="text-xs text-stone-700 leading-relaxed font-serif-prose">
+                    &ldquo;{item.note}&rdquo;
+                  </p>
+                  <div className="text-[11px] text-stone-400 font-serif pt-1 flex items-center justify-between border-t border-stone-100">
+                    <span>{new Date(item.created_at).toLocaleDateString()}</span>
+                    <span className="text-stone-500">Verified Submission</span>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -544,3 +294,5 @@ export const ReaderDeskAndFeeds: React.FC = () => {
     </div>
   );
 };
+
+export default ReaderDeskAndFeeds;

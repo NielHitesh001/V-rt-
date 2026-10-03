@@ -3,23 +3,8 @@ import { Header } from './components/Header';
 import { DailyVeracity } from './components/DailyVeracity';
 import { EngineBrief } from './components/EngineBrief';
 import { CanonicalLedger } from './components/CanonicalLedger';
-import { DisputeResolution } from './components/DisputeResolution';
-import { TransparencyRegistry } from './components/TransparencyRegistry';
-import { FactChecksAndVelocity } from './components/FactChecksAndVelocity';
-import { CredibilityAndInsights } from './components/CredibilityAndInsights';
 import { ReaderDeskAndFeeds } from './components/ReaderDeskAndFeeds';
 import { SearchResultsModal, SearchResultsData } from './components/SearchResultsModal';
-import { AccountabilityAndWatermarks } from './components/AccountabilityAndWatermarks';
-import { ScaleAndResilience } from './components/ScaleAndResilience';
-import { InstitutionalTrust } from './components/InstitutionalTrust';
-import { JournalistToolsAndAdoption } from './components/JournalistToolsAndAdoption';
-import { ForensicsAndDisinfo } from './components/ForensicsAndDisinfo';
-import { AccessibleNarrative } from './components/AccessibleNarrative';
-import { PipelineOperations } from './components/PipelineOperations';
-import { ClaimComparison } from './components/ClaimComparison';
-import { SourceCredibilityCard } from './components/SourceCredibilityCard';
-import { CorroborationReasoning } from './components/CorroborationReasoning';
-import { SystemHealthCard } from './components/SystemHealthCard';
 
 export function App() {
   const [activeTab, setActiveTab] = useState<string>('veracity');
@@ -79,14 +64,6 @@ export function App() {
             onNavigateToLedger={handleNavigateToLedger}
           />
         )}
-        {activeTab === 'verification-lab' && (
-          <div className="space-y-10">
-            <SystemHealthCard />
-            <ClaimComparison />
-            <CorroborationReasoning />
-            <SourceCredibilityCard />
-          </div>
-        )}
         {activeTab === 'engine' && (
           <EngineBrief
             initialEventId={selectedEventId}
@@ -100,21 +77,10 @@ export function App() {
             }}
           />
         )}
-        {activeTab === 'pipeline' && <PipelineOperations />}
-        {activeTab === 'accountability' && <AccountabilityAndWatermarks />}
-        {activeTab === 'resilience' && <ScaleAndResilience />}
-        {activeTab === 'trust' && <InstitutionalTrust />}
-        {activeTab === 'journalism' && <JournalistToolsAndAdoption />}
-        {activeTab === 'forensics' && <ForensicsAndDisinfo />}
-        {activeTab === 'accessible' && <AccessibleNarrative />}
-        {activeTab === 'factchecks' && <FactChecksAndVelocity />}
-        {activeTab === 'credibility' && <CredibilityAndInsights />}
-        {activeTab === 'disputes' && <DisputeResolution />}
         {activeTab === 'readerdesk' && <ReaderDeskAndFeeds />}
-        {activeTab === 'transparency' && <TransparencyRegistry />}
       </main>
 
-      {/* Global Clean Archival Search Modal */}
+      {/* Clean Archival Search Modal */}
       <SearchResultsModal
         isOpen={isSearchOpen}
         onClose={() => setIsSearchOpen(false)}
@@ -132,14 +98,14 @@ export function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left">
             <div className="font-serif-masthead font-bold text-stone-900 text-sm">
-              THE DAILY VERACITY · Vārtā Archive
+              THE DAILY VERACITY · VĀRTĀ Archive
             </div>
             <div className="font-serif text-stone-500">
-              Clean, Objective News Delivery · All Neutralization & Corroboration Performed in Background
+              The Non-Partisan Factual Record of World Affairs · Independent Global Press
             </div>
           </div>
           <div className="font-serif text-xs text-stone-500 text-center sm:text-right">
-            Verified Global News Service · Est. 2024
+            Verified Press · Est. 2024
           </div>
         </div>
       </footer>

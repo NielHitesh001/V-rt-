@@ -1,24 +1,13 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Newspaper,
-  ShieldCheck,
+  FileText,
   BookOpen,
-  Scale,
-  Database,
   Search,
   X,
   ArrowRight,
   Tag,
-  Zap,
-  Users,
-  Fingerprint,
-  Radio,
-  Building,
-  History,
-  ShieldAlert,
-  Volume2,
-  Terminal,
-  Activity
+  Mail
 } from 'lucide-react';
 import { EVENTS } from '../data/goldData';
 
@@ -36,20 +25,9 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
 
   const navItems = [
     { id: 'veracity', label: 'Front Page', icon: Newspaper },
-    { id: 'verification-lab', label: 'Verification Lab & Improvements', icon: Activity },
-    { id: 'engine', label: 'Verified Reports & Dossiers', icon: ShieldCheck },
+    { id: 'engine', label: 'Verified Reports', icon: FileText },
     { id: 'ledger', label: 'All Stories', icon: BookOpen },
-    { id: 'pipeline', label: 'Python M0–M9 Bridge', icon: Terminal },
-    { id: 'accountability', label: 'T1: Accountability & Watermarks', icon: Fingerprint },
-    { id: 'resilience', label: 'T2: Detection & Scale', icon: Radio },
-    { id: 'trust', label: 'T3: Newsroom Trust & Pledges', icon: Building },
-    { id: 'journalism', label: 'T4: Journalist Tools & Embeds', icon: History },
-    { id: 'forensics', label: 'T5: Disinfo & Forensics', icon: ShieldAlert },
-    { id: 'accessible', label: 'T6: Accessible & Audio', icon: Volume2 },
-    { id: 'factchecks', label: 'Fact-Checks & Velocity', icon: Zap },
-    { id: 'credibility', label: 'Credibility & Insights', icon: Database },
-    { id: 'disputes', label: 'Perspectives', icon: Scale },
-    { id: 'readerdesk', label: 'Reader Desk & API', icon: Users },
+    { id: 'readerdesk', label: 'Reader Desk', icon: Mail },
   ];
 
   // Live quick match results as user types
@@ -103,7 +81,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
               onClick={() => setActiveTab('veracity')}
               className="font-serif-masthead text-2xl font-black tracking-tight text-stone-900 hover:text-stone-700 transition text-left cursor-pointer"
             >
-              Vārtā
+              VĀRTĀ
             </button>
             <span className="text-stone-300">|</span>
             <span className="text-xs font-serif italic text-stone-600 hidden md:inline">
@@ -111,7 +89,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
             </span>
           </div>
 
-          {/* Clean Newspaper Search Bar Component */}
+          {/* Clean Newspaper Search Bar */}
           <div ref={searchContainerRef} className="relative flex-1 max-w-lg mx-auto sm:mx-6 w-full">
             <form onSubmit={handleSubmit} className="relative flex items-center">
               <Search className="w-4 h-4 text-stone-400 absolute left-3 pointer-events-none" />
@@ -124,7 +102,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
                 }}
                 onFocus={() => setIsFocused(true)}
                 placeholder="Search topics, events, keywords (e.g. Key Bridge, Port Strike, ECB)..."
-                className="w-full pl-9 pr-20 py-1.5 text-xs font-serif bg-white border border-stone-300 rounded shadow-2xs placeholder-stone-400 text-stone-900 focus:outline-none focus:border-stone-500 focus:ring-1 focus:ring-stone-400 transition"
+                className="w-full pl-9 pr-20 py-1.5 text-xs font-serif bg-white border border-stone-300 rounded shadow-2xs placeholder-stone-400 text-stone-900 focus:outline-hidden focus:border-stone-500 focus:ring-1 focus:ring-stone-400 transition"
               />
               {searchQuery && (
                 <button
@@ -182,13 +160,13 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
                       className="w-full px-3 py-2 text-center text-xs font-semibold text-stone-800 bg-stone-50 hover:bg-stone-100 transition flex items-center justify-center space-x-1.5 cursor-pointer"
                     >
                       <Search className="w-3 h-3 text-stone-600" />
-                      <span>Search full archive for "{searchQuery}"</span>
+                      <span>Search full archive for &quot;{searchQuery}&quot;</span>
                     </button>
                   </div>
                 ) : trimmed.length > 0 ? (
                   <div className="p-3 text-center space-y-2">
                     <p className="text-stone-600 font-serif">
-                      No direct title match for "{searchQuery}".
+                      No direct title match for &quot;{searchQuery}&quot;.
                     </p>
                     <button
                       type="button"
@@ -238,10 +216,10 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
             )}
           </div>
 
-          {/* Quick Date Stamp */}
+          {/* Date Stamp */}
           <div className="hidden lg:flex items-center space-x-2 text-xs font-serif text-stone-600 shrink-0">
             <span className="flex items-center gap-1.5 font-medium text-stone-800">
-              <span className="w-2 h-2 rounded-full bg-[#54684a] animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-[#54684a]"></span>
               Saturday, October 3, 2026
             </span>
             <span>·</span>
@@ -249,8 +227,8 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
           </div>
         </div>
 
-        {/* Clean Typographic Navigation Links */}
-        <div className="flex space-x-1 sm:space-x-2 overflow-x-auto py-2 scrollbar-none text-xs">
+        {/* Clean Broadsheet Navigation Tabs */}
+        <div className="flex space-x-1 sm:space-x-3 overflow-x-auto py-2.5 scrollbar-none text-xs">
           {navItems.map((item) => {
             const isActive = activeTab === item.id;
             const Icon = item.icon;
@@ -258,10 +236,10 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
               <button
                 key={item.id}
                 onClick={() => setActiveTab(item.id)}
-                className={`flex items-center space-x-1.5 px-3 py-1.5 rounded font-sans transition-all whitespace-nowrap cursor-pointer ${
+                className={`flex items-center space-x-1.5 px-3.5 py-1.5 rounded transition whitespace-nowrap cursor-pointer font-serif ${
                   isActive
-                    ? 'bg-stone-900 text-stone-100 font-semibold shadow-xs'
-                    : 'text-stone-600 hover:text-stone-900 hover:bg-stone-200/50'
+                    ? 'bg-stone-900 text-stone-100 font-bold shadow-2xs'
+                    : 'text-stone-600 hover:text-stone-950 hover:bg-stone-200/50'
                 }`}
               >
                 <Icon className={`w-3.5 h-3.5 ${isActive ? 'text-stone-100' : 'text-stone-500'}`} />
@@ -274,3 +252,5 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
     </header>
   );
 };
+
+export default Header;
