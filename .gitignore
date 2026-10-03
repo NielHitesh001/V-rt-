@@ -6,3 +6,7 @@ coverage/
 *.log
 .env*
 !.env.example
+-e 
+bun.lock
+/public/export/
+backend/python/src/newsx/__pycache__/
