@@ -126,37 +126,37 @@ export const SystemHealthCard: React.FC = () => {
   return (
     <div className="space-y-6 font-sans">
       {/* Live System Health Banner */}
-      <div className="bg-stone-900 text-stone-100 p-6 rounded-lg shadow-sm border border-stone-800">
+      <div className="bg-[#fdfcf9] text-stone-900 p-6 rounded-lg shadow-2xs border border-stone-300">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-[#54684a]/20 border border-[#cfdec6] flex items-center justify-center text-[#34482c] font-bold">
+            <div className="w-10 h-10 rounded-full bg-[#eff3ec] border border-[#cfdec6] flex items-center justify-center text-[#34482c]">
               <Activity className="w-5 h-5 animate-pulse" />
             </div>
             <div>
               <div className="flex items-center gap-2">
-                <h3 className="text-xl font-serif font-bold text-stone-100">Live System Health & Metrics</h3>
+                <h3 className="text-xl font-serif font-bold text-stone-900">Live System Health & Metrics</h3>
                 <span className="text-[11px] bg-[#eff3ec] text-[#34482c] font-mono px-2 py-0.5 rounded border border-[#cfdec6] uppercase font-semibold">
                   ALL SYSTEMS NOMINAL
                 </span>
               </div>
-              <p className="text-stone-400 text-xs mt-0.5">
+              <p className="text-stone-500 text-xs mt-0.5 font-serif-prose">
                 Monitoring continuous ingestion, SQLite claim storage, neutralization invariants, and embedding corroboration.
               </p>
             </div>
           </div>
 
           <div className="flex items-center gap-3 self-end sm:self-center">
-            <div className="text-right text-xs text-stone-400">
+            <div className="text-right text-xs text-stone-500">
               <div>Last Synced: {lastRefreshed.toLocaleTimeString()}</div>
-              <div className="font-mono text-[10px] text-stone-500">Uptime: {Math.floor(m.uptimeSeconds / 60)}m {m.uptimeSeconds % 60}s</div>
+              <div className="font-mono text-[10px] text-stone-400">Uptime: {Math.floor(m.uptimeSeconds / 60)}m {m.uptimeSeconds % 60}s</div>
             </div>
             <button
               onClick={fetchMetrics}
               disabled={isRefreshing}
-              className="p-2 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 border border-stone-700 cursor-pointer transition-colors"
+              className="p-2 rounded bg-white hover:bg-stone-100 text-stone-700 border border-stone-300 cursor-pointer transition-colors"
               title="Refresh live metrics"
             >
-              <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-[#34482c] font-bold' : ''}`} />
+              <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-stone-900' : ''}`} />
             </button>
           </div>
         </div>

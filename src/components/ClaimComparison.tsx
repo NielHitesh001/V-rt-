@@ -109,28 +109,28 @@ export const ClaimComparison: React.FC = () => {
   return (
     <div className="space-y-8 font-sans">
       {/* Header Banner */}
-      <div className="bg-stone-900 text-stone-100 p-6 md:p-8 rounded-lg shadow-sm border border-stone-800">
+      <div className="bg-[#fdfcf9] text-stone-900 p-6 md:p-8 rounded-lg shadow-2xs border border-stone-300">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-[#5c4a2c] font-bold mb-2">
-              <Layers className="w-4 h-4" /> Priority 4: Dashboard Improvement
+            <div className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-[#5c4a2c] mb-2">
+              <Layers className="w-4 h-4" /> Feature 4: Neutralization Verification
             </div>
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-100">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-900">
               Claim Comparison & Meaning-Preserving Neutralization
             </h2>
-            <p className="text-stone-300 text-sm mt-1 max-w-2xl">
+            <p className="text-stone-600 text-sm mt-1 max-w-2xl font-serif-prose">
               Inspect original newsroom assertions side-by-side with objective neutralized wording and rigorous
               5-tier confidence classification. Every transformation maintains a 100% reversible audit trail.
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
-            <div className="bg-stone-800 px-4 py-2 rounded border border-stone-700 text-right">
-              <div className="text-xs text-stone-400">Total Corpus Claims</div>
-              <div className="text-xl font-bold font-mono text-[#34482c] font-bold">{claims.length || 92}</div>
+            <div className="bg-white px-4 py-2 rounded border border-stone-300 text-right">
+              <div className="text-xs text-stone-500">Total Corpus Claims</div>
+              <div className="text-xl font-bold font-mono text-[#34482c]">{claims.length || 92}</div>
             </div>
-            <div className="bg-stone-800 px-4 py-2 rounded border border-stone-700 text-right">
-              <div className="text-xs text-stone-400">Reversibility</div>
-              <div className="text-xl font-bold font-mono text-stone-800 font-bold">100.0%</div>
+            <div className="bg-white px-4 py-2 rounded border border-stone-300 text-right">
+              <div className="text-xs text-stone-500">Reversibility</div>
+              <div className="text-xl font-bold font-mono text-stone-900">100.0%</div>
             </div>
           </div>
         </div>

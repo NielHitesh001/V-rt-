@@ -94,12 +94,12 @@ export const JournalistToolsAndAdoption: React.FC = () => {
       {/* 24. Claim Finder */}
       {activeSubTab === 'finder' && (
         <div className="space-y-6">
-          <div className="bg-stone-900 text-stone-100 p-5 rounded shadow-xs space-y-2">
-            <div className="flex items-center space-x-2 text-xs font-mono uppercase text-amber-300">
+          <div className="bg-[#fdfcf9] border border-stone-300 text-stone-900 p-5 rounded-lg shadow-2xs space-y-2">
+            <div className="flex items-center space-x-2 text-xs font-mono uppercase text-[#5c4a2c]">
               <History className="w-4 h-4" />
               <span>Historical Precedent & Fact Retrieval Memory for Journalists</span>
             </div>
-            <p className="text-xs font-serif text-stone-300 leading-relaxed max-w-3xl">
+            <p className="text-xs font-serif text-stone-600 leading-relaxed max-w-3xl">
               Reporting on modern economic sanctions, maritime accidents, or labor disputes? Query historical claims made in prior crises, inspect how predictions resolved retrospectively, and avoid repeating debunked narratives.
             </p>
           </div>
@@ -193,12 +193,12 @@ export const JournalistToolsAndAdoption: React.FC = () => {
       {/* 25. Embed-able Fact Brief Widget */}
       {activeSubTab === 'widget' && (
         <div className="space-y-6">
-          <div className="bg-stone-900 text-stone-100 p-5 rounded shadow-xs space-y-2">
-            <div className="flex items-center space-x-2 text-xs font-mono uppercase text-amber-300">
+          <div className="bg-[#fdfcf9] border border-stone-300 text-stone-900 p-5 rounded-lg shadow-2xs space-y-2">
+            <div className="flex items-center space-x-2 text-xs font-mono uppercase text-[#5c4a2c]">
               <Code2 className="w-4 h-4" />
               <span>Embeddable Verified Claim Widget for External Publishers</span>
             </div>
-            <p className="text-xs font-serif text-stone-300 leading-relaxed max-w-3xl">
+            <p className="text-xs font-serif text-stone-600 leading-relaxed max-w-3xl">
               Embed verifiable claims directly on independent blogs, news articles, and research portals with complete provenance audit chains and live veracity indicators.
             </p>
           </div>
@@ -287,13 +287,13 @@ export const JournalistToolsAndAdoption: React.FC = () => {
       {/* 26. Research & Dataset Exportset Export */}
       {activeSubTab === 'export' && (
         <div className="space-y-6">
-          <div className="bg-stone-900 text-stone-100 p-5 rounded shadow-xs space-y-2">
-            <div className="flex items-center space-x-2 text-xs font-mono uppercase text-amber-300">
+          <div className="bg-[#fdfcf9] border border-stone-300 text-stone-900 p-5 rounded-lg shadow-2xs space-y-2">
+            <div className="flex items-center space-x-2 text-xs font-mono uppercase text-[#5c4a2c]">
               <Database className="w-4 h-4" />
               <span>Research & Evaluation Corpus: Grounded Neutralization & Corroboration</span>
             </div>
-            <p className="text-xs font-serif text-stone-300 leading-relaxed max-w-3xl">
-              Export high-quality atomic claim extraction benchmarks and reversible neutralization datasets to train open-weight language models on non-partisan reporting without hallucinations.
+            <p className="text-xs font-serif text-stone-600 leading-relaxed max-w-3xl">
+              Export high-quality atomic claim extraction benchmarks and reversible neutralization datasets for non-partisan reporting without hallucinations.
             </p>
           </div>
 

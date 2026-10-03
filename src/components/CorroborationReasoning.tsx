@@ -159,28 +159,28 @@ export const CorroborationReasoning: React.FC = () => {
   return (
     <div className="space-y-8 font-sans">
       {/* Banner */}
-      <div className="bg-stone-900 text-stone-100 p-6 md:p-8 rounded-lg shadow-sm border border-stone-800">
+      <div className="bg-[#fdfcf9] text-stone-900 p-6 md:p-8 rounded-lg shadow-2xs border border-stone-300">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-stone-800 font-bold mb-2">
+            <div className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-[#5c4a2c] mb-2">
               <Cpu className="w-4 h-4" /> Priority 1: Embedding-Based Corroboration Engine
             </div>
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-100">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-900">
               Corroboration Reasoning & Semantic Verification Trail
             </h2>
-            <p className="text-stone-300 text-sm mt-1 max-w-2xl">
-              Vārtā pairs cross-outlet claims using deep semantic embeddings (<code className="text-stone-700 font-mono">sentence-transformers</code>).
+            <p className="text-stone-600 text-sm mt-1 max-w-2xl font-serif-prose">
+              Vārtā pairs cross-outlet claims using deep semantic embeddings (<code className="text-stone-800 font-mono bg-stone-100 px-1 py-0.5 rounded">sentence-transformers</code>).
               Claims matching above the 0.75 cosine threshold with independent publisher ownership are elevated to Tier 2 Multi-Source Verified.
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
-            <div className="bg-stone-800 px-4 py-2 rounded border border-stone-700 text-right">
-              <div className="text-xs text-stone-400">Embedding Sensitivity</div>
-              <div className="text-xl font-bold font-mono text-[#34482c] font-bold">100.0%</div>
+            <div className="bg-white px-4 py-2 rounded border border-stone-300 text-right">
+              <div className="text-xs text-stone-500">Embedding Sensitivity</div>
+              <div className="text-xl font-bold font-mono text-[#34482c]">100.0%</div>
             </div>
-            <div className="bg-stone-800 px-4 py-2 rounded border border-stone-700 text-right">
-              <div className="text-xs text-stone-400">False Positive Rate</div>
-              <div className="text-xl font-bold font-mono text-[#34482c] font-bold">0.0%</div>
+            <div className="bg-white px-4 py-2 rounded border border-stone-300 text-right">
+              <div className="text-xs text-stone-500">False Positive Rate</div>
+              <div className="text-xl font-bold font-mono text-[#34482c]">0.0%</div>
             </div>
           </div>
         </div>
