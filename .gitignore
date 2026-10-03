@@ -10,3 +10,7 @@ coverage/
 bun.lock
 /public/export/
 backend/python/src/newsx/__pycache__/
+-e 
+*.db
+*.sqlite
+*.sqlite3
