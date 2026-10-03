@@ -1,7 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import {
   Newspaper,
-  FileText,
+  Globe,
+  TrendingUp,
+  Landmark,
+  Cpu,
   BookOpen,
   Search,
   X,
@@ -24,10 +27,13 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
   const searchContainerRef = useRef<HTMLDivElement>(null);
 
   const navItems = [
-    { id: 'veracity', label: 'Front Page', icon: Newspaper },
-    { id: 'engine', label: 'Verified Reports', icon: FileText },
-    { id: 'ledger', label: 'All Stories', icon: BookOpen },
-    { id: 'readerdesk', label: 'Reader Desk', icon: Mail },
+    { id: 'front-page', label: 'Front Page', icon: Newspaper },
+    { id: 'world', label: 'World', icon: Globe },
+    { id: 'finance', label: 'Finance', icon: TrendingUp },
+    { id: 'politics', label: 'Politics', icon: Landmark },
+    { id: 'technology', label: 'Technology', icon: Cpu },
+    { id: 'all-stories', label: 'All Stories', icon: BookOpen },
+    { id: 'reader-desk', label: 'Reader Desk', icon: Mail },
   ];
 
   // Live quick match results as user types
@@ -78,7 +84,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
           {/* Brand Wordmark */}
           <div className="flex items-center space-x-3 shrink-0">
             <button
-              onClick={() => setActiveTab('veracity')}
+              onClick={() => setActiveTab('front-page')}
               className="font-serif-masthead text-2xl font-black tracking-tight text-stone-900 hover:text-stone-700 transition text-left cursor-pointer"
             >
               VĀRTĀ

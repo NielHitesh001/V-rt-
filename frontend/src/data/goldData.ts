@@ -1489,5 +1489,61 @@ export const EVENTS: EventSummary[] = [
     "claims_count": 4,
     "primary_source_present": false,
     "has_disputes": true
+  },
+  {
+    "id": "event-fed-ratecut-01",
+    "label": "Federal Reserve 50-Basis-Point Benchmark Easing",
+    "kind": "numeric",
+    "neutral_headline": "Federal Reserve Cuts Benchmark Interest Rate by Half-Point to 4.75%–5.00% Range",
+    "sources": [
+      "federalreserve-gov",
+      "reuters"
+    ],
+    "article_count": 1,
+    "claims_count": 4,
+    "primary_source_present": true,
+    "has_disputes": false
+  },
+  {
+    "id": "event-french-election-01",
+    "label": "French National Assembly Snap Legislative Election",
+    "kind": "numeric",
+    "neutral_headline": "French Legislative Elections Yield Divided Parliament with New Popular Front Plurality of 182 Seats",
+    "sources": [
+      "le-monde",
+      "bbc-news"
+    ],
+    "article_count": 1,
+    "claims_count": 4,
+    "primary_source_present": false,
+    "has_disputes": false
+  },
+  {
+    "id": "event-tiktok-divest-01",
+    "label": "US Appellate Challenge to Foreign Adversary Apps Statute",
+    "kind": "contested",
+    "neutral_headline": "Federal Appeals Court Hears Oral Arguments on Constitutionality of TikTok Divestment Statute",
+    "sources": [
+      "ap-news",
+      "reuters"
+    ],
+    "article_count": 1,
+    "claims_count": 4,
+    "primary_source_present": true,
+    "has_disputes": true
+  },
+  {
+    "id": "event-ai-copyright-01",
+    "label": "Federal District Court AI Training Fair Use Decision",
+    "kind": "hard-fact",
+    "neutral_headline": "Federal Judge Dismisses Certain Secondary Infringement Claims in Generative AI Training Lawsuit",
+    "sources": [
+      "reuters",
+      "bloomberg"
+    ],
+    "article_count": 1,
+    "claims_count": 4,
+    "primary_source_present": true,
+    "has_disputes": false
   }
 ];

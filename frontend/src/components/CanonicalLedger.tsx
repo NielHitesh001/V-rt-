@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { EVENTS, RAW_ITEMS } from '../data/goldData';
+import { EVENT_SECTOR_MAP, SectorId } from '../data/categories';
 import { Search, ArrowRight, Calendar, Newspaper } from 'lucide-react';
 
 interface CanonicalLedgerProps {
@@ -11,7 +12,8 @@ export const CanonicalLedger: React.FC<CanonicalLedgerProps> = ({ onSelectEvent 
   const [search, setSearch] = useState<string>('');
 
   const filteredEvents = EVENTS.filter((e) => {
-    const matchesFilter = filter === 'all' || e.kind === filter;
+    const eventSector = EVENT_SECTOR_MAP[e.id] || 'world';
+    const matchesFilter = filter === 'all' || eventSector === filter;
     const matchesSearch =
       e.label.toLowerCase().includes(search.toLowerCase()) ||
       e.neutral_headline.toLowerCase().includes(search.toLowerCase()) ||
@@ -28,7 +30,7 @@ export const CanonicalLedger: React.FC<CanonicalLedgerProps> = ({ onSelectEvent 
             The Veracity Archive · Curated Topics & News Wire
           </div>
           <h1 className="text-2xl sm:text-3xl font-serif-editorial font-bold text-stone-900">
-            Top World News Stories Ledger
+            All Stories
           </h1>
         </div>
         <div className="text-xs font-serif text-stone-600">
@@ -40,17 +42,18 @@ export const CanonicalLedger: React.FC<CanonicalLedgerProps> = ({ onSelectEvent 
       <div className="flex flex-col sm:flex-row gap-3 items-center justify-between">
         <div className="flex items-center space-x-1 p-1 bg-stone-200/70 rounded border border-stone-300 w-full sm:w-auto overflow-x-auto text-xs font-sans">
           {[
-            { id: 'all', label: 'All Stories' },
-            { id: 'hard-fact', label: 'Infrastructure & Safety' },
-            { id: 'numeric', label: 'Economy & Markets' },
-            { id: 'contested', label: 'Labor & Geopolitics' }
+            { id: 'all', label: 'All' },
+            { id: 'world', label: 'World' },
+            { id: 'finance', label: 'Finance' },
+            { id: 'politics', label: 'Politics' },
+            { id: 'technology', label: 'Technology' }
           ].map((f) => (
             <button
               key={f.id}
               onClick={() => setFilter(f.id)}
-              className={`px-3 py-1.5 rounded transition cursor-pointer whitespace-nowrap ${
+              className={`px-3.5 py-1.5 rounded transition cursor-pointer whitespace-nowrap font-serif text-xs ${
                 filter === f.id
-                  ? 'bg-white text-stone-900 shadow-2xs font-semibold'
+                  ? 'bg-stone-900 text-stone-100 shadow-2xs font-semibold'
                   : 'text-stone-600 hover:text-stone-900'
               }`}
             >

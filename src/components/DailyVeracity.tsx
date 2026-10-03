@@ -11,6 +11,7 @@ import {
 interface DailyVeracityProps {
   onNavigateToBrief: (eventId: string) => void;
   onNavigateToLedger: () => void;
+  onNavigateToSection?: (section: 'world' | 'finance' | 'politics' | 'technology') => void;
 }
 
 interface LeadStoryConfig {
@@ -201,6 +202,40 @@ export const DailyVeracity: React.FC<DailyVeracityProps> = ({ onNavigateToBrief,
         </div>
       </div>
 
+      {/* Browse by Section Link Row */}
+      <div className="flex items-center justify-center flex-wrap gap-2 sm:gap-6 py-2.5 px-4 bg-[#f5f2eb] border-y border-stone-300 text-xs sm:text-sm font-serif">
+        <span className="text-stone-500 font-sans uppercase tracking-widest text-[10px] font-bold">
+          Browse by Section:
+        </span>
+        <button
+          onClick={() => onNavigateToSection?.('world')}
+          className="text-stone-900 hover:text-stone-600 font-bold transition cursor-pointer"
+        >
+          World
+        </button>
+        <span className="text-stone-300">·</span>
+        <button
+          onClick={() => onNavigateToSection?.('finance')}
+          className="text-stone-900 hover:text-stone-600 font-bold transition cursor-pointer"
+        >
+          Finance
+        </button>
+        <span className="text-stone-300">·</span>
+        <button
+          onClick={() => onNavigateToSection?.('politics')}
+          className="text-stone-900 hover:text-stone-600 font-bold transition cursor-pointer"
+        >
+          Politics
+        </button>
+        <span className="text-stone-300">·</span>
+        <button
+          onClick={() => onNavigateToSection?.('technology')}
+          className="text-stone-900 hover:text-stone-600 font-bold transition cursor-pointer"
+        >
+          Technology
+        </button>
+      </div>
+
       {/* Lead Story Selectors */}
       <div className="flex items-center gap-2 overflow-x-auto pb-1 text-xs border-b border-stone-200">
         <span className="font-serif font-bold text-stone-500 uppercase tracking-wider shrink-0 mr-1">
@@ -231,7 +266,7 @@ export const DailyVeracity: React.FC<DailyVeracityProps> = ({ onNavigateToBrief,
         <div className="lg:col-span-3 space-y-6 divide-y divide-stone-200">
           <div className="space-y-2.5 cursor-pointer group" onClick={() => onNavigateToBrief('event-ecb-ratecut-01')}>
             <span className="text-[10px] uppercase tracking-widest font-mono text-stone-500 font-semibold block">
-              Global Central Banking
+              Finance & Central Banks
             </span>
             <h3 className="font-serif-editorial text-lg font-bold text-stone-900 leading-snug group-hover:text-stone-700 transition">
               ECB Lowers Key Deposit Rate by 25 Basis Points to 3.50%
@@ -247,7 +282,7 @@ export const DailyVeracity: React.FC<DailyVeracityProps> = ({ onNavigateToBrief,
 
           <div className="pt-6 space-y-2.5 cursor-pointer group" onClick={() => onNavigateToBrief('event-google-eu-fine-01')}>
             <span className="text-[10px] uppercase tracking-widest font-mono text-stone-500 font-semibold block">
-              European Judiciary
+              Technology & Antitrust
             </span>
             <h3 className="font-serif-editorial text-lg font-bold text-stone-900 leading-snug group-hover:text-stone-700 transition">
               EU Top Court Upholds €2.42B Antitrust Penalty Against Google
@@ -263,7 +298,7 @@ export const DailyVeracity: React.FC<DailyVeracityProps> = ({ onNavigateToBrief,
 
           <div className="pt-6 space-y-2.5 cursor-pointer group" onClick={() => onNavigateToBrief('event-taiwan-quake-01')}>
             <span className="text-[10px] uppercase tracking-widest font-mono text-stone-500 font-semibold block">
-              Asia-Pacific News
+              World & Disasters
             </span>
             <h3 className="font-serif-editorial text-lg font-bold text-stone-900 leading-snug group-hover:text-stone-700 transition">
               Magnitude 7.4 Earthquake Strikes Eastern Taiwan Off Coast of Hualien
@@ -273,6 +308,22 @@ export const DailyVeracity: React.FC<DailyVeracityProps> = ({ onNavigateToBrief,
             </p>
             <div className="pt-1 text-[11px] font-mono text-stone-500 flex items-center justify-between">
               <span>Reported by BBC & CWA</span>
+              <span className="text-stone-800 font-medium group-hover:underline">Read →</span>
+            </div>
+          </div>
+
+          <div className="pt-6 space-y-2.5 cursor-pointer group" onClick={() => onNavigateToBrief('event-french-election-01')}>
+            <span className="text-[10px] uppercase tracking-widest font-mono text-stone-500 font-semibold block">
+              Politics & Governance
+            </span>
+            <h3 className="font-serif-editorial text-lg font-bold text-stone-900 leading-snug group-hover:text-stone-700 transition">
+              French National Assembly Elections Result in Divided Legislative Coalition
+            </h3>
+            <p className="text-xs text-stone-700 leading-relaxed font-serif-prose">
+              New Popular Front wins plurality with 182 seats, while presidential coalition and National Rally form tripartite division in parliament.
+            </p>
+            <div className="pt-1 text-[11px] font-mono text-stone-500 flex items-center justify-between">
+              <span>Reported by Le Monde & BBC</span>
               <span className="text-stone-800 font-medium group-hover:underline">Read →</span>
             </div>
           </div>

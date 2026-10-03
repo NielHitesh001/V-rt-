@@ -8,7 +8,8 @@ import {
   UserCheck,
   Clock,
   ChevronRight,
-  Network
+  Network,
+  ArrowLeft
 } from 'lucide-react';
 import { Brief } from '../types';
 import { EVENTS } from '../data/goldData';
@@ -23,13 +24,23 @@ import {
 interface EngineBriefProps {
   initialEventId?: string;
   onNavigateToWorkspace?: () => void;
+  onBack?: () => void;
+  backLabel?: string;
 }
 
-export const EngineBrief: React.FC<EngineBriefProps> = ({ initialEventId = 'event-key-bridge-01' }) => {
+export const EngineBrief: React.FC<EngineBriefProps> = ({
+  initialEventId = 'event-key-bridge-01',
+  onBack,
+  backLabel
+}) => {
   const [selectedEventId, setSelectedEventId] = useState<string>(initialEventId);
   const [brief, setBrief] = useState<Brief | null>(null);
   const [copied, setCopied] = useState(false);
   const [activeTab, setActiveTab] = useState<'report' | 'evolution' | 'syndication' | 'narrative' | 'stakeholders'>('report');
+
+  useEffect(() => {
+    setSelectedEventId(initialEventId);
+  }, [initialEventId]);
 
   useEffect(() => {
     try {
@@ -76,6 +87,16 @@ export const EngineBrief: React.FC<EngineBriefProps> = ({ initialEventId = 'even
 
   return (
     <div className="space-y-6 max-w-5xl mx-auto font-sans">
+      {onBack && (
+        <button
+          onClick={onBack}
+          className="inline-flex items-center space-x-1.5 text-xs font-serif font-bold text-stone-700 hover:text-stone-900 transition py-1 px-2.5 rounded bg-stone-100 hover:bg-stone-200 border border-stone-300 cursor-pointer"
+        >
+          <ArrowLeft className="w-3.5 h-3.5" />
+          <span>← Back to {backLabel || 'Section'}</span>
+        </button>
+      )}
+
       {/* Top Story Selector & Title */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-4 border-b border-stone-300 gap-3">
         <div>
