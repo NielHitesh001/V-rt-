@@ -362,21 +362,62 @@ export const GEOGRAPHIC_LOCATIONS: GeographicLocationData[] = [
 export const INITIAL_DIGESTS: NewsDigest[] = [
   {
     id: 'digest-2026-10-03',
-    edition_date: '2026-10-03',
+    edition_date: 'Saturday, October 3, 2026',
     period: 'Daily Briefing',
     lead_story: 'Containership Dali Investigation & Baltimore Navigation Channel Recovery',
     stories: [
       {
         event_id: 'event-key-bridge-01',
-        headline: 'Baltimore Channel Restored to Commercial Vessels',
+        headline: 'Baltimore Commercial Shipping Channel Fully Restored',
         summary: 'Salvation operations clear 50,000 tons of debris, restoring deep-draft vessel access to the Port of Baltimore.',
-        changes_since_yesterday: ['Salvage tonnage verified by Army Corps of Engineers', 'NTSB VDR analysis logged']
+        changes_since_yesterday: [
+          'Salvage tonnage verified at 50,000 tons by US Army Corps of Engineers',
+          'NTSB voyage data recorder logs confirm 4 total electrical failures prior to impact'
+        ]
       },
       {
         event_id: 'event-ecb-ratecut-01',
         headline: 'ECB Eases Monetary Policy with 25bps Deposit Rate Cut',
-        summary: 'Governing Council lowers benchmark rate to 3.50% following moderation in core inflation indices.',
-        changes_since_yesterday: ['Unanimous Governing Council roll-call documented']
+        summary: 'Governing Council lowers benchmark rate to 3.50% following moderation in headline inflation to 2.2%.',
+        changes_since_yesterday: [
+          'Unanimous Governing Council roll-call documented in Frankfurt',
+          'Eurozone wage growth moderation confirmed in second quarter statistics'
+        ]
+      },
+      {
+        event_id: 'event-google-eu-fine-01',
+        headline: 'EU Top Court Upholds €2.42B Google Antitrust Judgment',
+        summary: 'European Court of Justice delivers final unappealable ruling cementing penalty for search comparison dominance.',
+        changes_since_yesterday: [
+          'Case C-48/22 P formally concluded after 7 years of proceedings',
+          'Fine confirmed deposited into European Union general budget'
+        ]
+      }
+    ]
+  },
+  {
+    id: 'digest-2026-10-01',
+    edition_date: 'Week of September 27 – October 3, 2026',
+    period: 'Weekly Ledger',
+    lead_story: 'Global Maritime Infrastructure, Central Bank Easing Cycles & Antitrust Precedents',
+    stories: [
+      {
+        event_id: 'event-taiwan-quake-01',
+        headline: 'Magnitude 7.4 Offshore Earthquake Strikes Hualien County',
+        summary: 'Central Weather Administration confirms seismic event off eastern coast with emergency response mobilized.',
+        changes_since_yesterday: [
+          '34.8 km focal depth verified by global seismic monitoring networks',
+          'Over 900 injuries treated across eastern regional clinics'
+        ]
+      },
+      {
+        event_id: 'event-us-jobs-01',
+        headline: 'Bureau of Labor Statistics Releases Annual Payrolls Revision',
+        summary: 'Preliminary benchmark revisions adjust total employment baseline downwards following annual state unemployment data review.',
+        changes_since_yesterday: [
+          '818,000 annual benchmark adjustment documented across establishment survey',
+          'State unemployment insurance tax records cross-correlated'
+        ]
       }
     ]
   }

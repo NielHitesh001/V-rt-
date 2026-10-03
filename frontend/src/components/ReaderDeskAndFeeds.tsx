@@ -139,29 +139,77 @@ export const ReaderDeskAndFeeds: React.FC = () => {
           )}
 
           {/* Published Editions Archive */}
-          <div className="space-y-4">
-            <h3 className="font-serif-editorial font-bold text-lg text-stone-900 border-b border-stone-200 pb-2">
-              Recent Published Dispatches
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {INITIAL_DIGESTS.map((digest) => (
-                <div key={digest.id} className="p-4 bg-white border border-stone-300 rounded-lg shadow-2xs space-y-3">
-                  <div className="flex items-center justify-between text-xs text-stone-500 font-mono">
-                    <span className="uppercase">{digest.frequency} Edition</span>
-                    <span className="flex items-center gap-1 font-serif">
-                      <Clock className="w-3 h-3 text-stone-400" />
-                      {digest.delivery_time}
+          <div className="space-y-6">
+            <div className="flex flex-col sm:flex-row sm:items-center justify-between pb-2 border-b border-stone-200 gap-2">
+              <div>
+                <h3 className="font-serif-editorial font-bold text-lg text-stone-900">
+                  Daily & Weekly Editorial Briefings
+                </h3>
+                <p className="text-xs text-stone-600 font-serif">
+                  Curated factual summaries with verified updates since previous editions
+                </p>
+              </div>
+              <div className="flex items-center space-x-1 text-xs">
+                {['all', 'Daily Briefing', 'Weekly Ledger'].map((cat) => (
+                  <button
+                    key={cat}
+                    onClick={() => setSubscribedCategory(cat)}
+                    className={`px-3 py-1 rounded font-serif transition cursor-pointer ${
+                      subscribedCategory === cat
+                        ? 'bg-stone-900 text-white font-semibold'
+                        : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+                    }`}
+                  >
+                    {cat === 'all' ? 'All Editions' : cat}
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              {INITIAL_DIGESTS.filter(
+                (d) => subscribedCategory === 'all' || d.period === subscribedCategory
+              ).map((digest) => (
+                <div key={digest.id} className="bg-white border border-stone-300 rounded-lg p-6 sm:p-8 space-y-6 shadow-2xs">
+                  <div className="flex flex-wrap items-center justify-between pb-3 border-b border-stone-200 text-xs font-serif text-stone-500 gap-2">
+                    <span className="font-bold text-stone-900">{digest.edition_date}</span>
+                    <span className="uppercase tracking-wider px-2 py-0.5 rounded bg-stone-100 text-stone-700 font-mono text-[10px]">
+                      {digest.period}
                     </span>
                   </div>
-                  <h4 className="font-serif-editorial font-bold text-stone-900 text-base">
-                    {digest.title}
-                  </h4>
-                  <p className="text-xs text-stone-700 leading-relaxed font-serif-prose">
-                    {digest.summary}
-                  </p>
-                  <div className="pt-2 border-t border-stone-100 flex items-center justify-between text-xs font-serif text-stone-600">
-                    <span>{digest.events_included.length} Stories Included</span>
-                    <span className="text-stone-800 font-medium">Delivered · Archival Record</span>
+
+                  <div className="space-y-2">
+                    <div className="text-[10px] font-mono uppercase text-stone-500 font-bold tracking-wider">
+                      Lead Editorial Overview
+                    </div>
+                    <h3 className="font-serif-editorial font-bold text-stone-900 text-2xl leading-tight">
+                      {digest.lead_story}
+                    </h3>
+                  </div>
+
+                  <div className="space-y-6 pt-2 divide-y divide-stone-200">
+                    {digest.stories.map((story) => (
+                      <div key={story.event_id} className="pt-5 first:pt-0 space-y-3">
+                        <h4 className="font-serif-editorial font-bold text-stone-900 text-lg leading-snug">
+                          {story.headline}
+                        </h4>
+                        <p className="font-serif-prose text-stone-700 text-sm leading-relaxed">
+                          {story.summary}
+                        </p>
+                        {story.changes_since_yesterday && story.changes_since_yesterday.length > 0 && (
+                          <div className="p-3 bg-[#fdfcf9] border border-stone-200 rounded space-y-1.5 text-xs font-serif">
+                            <span className="font-semibold text-stone-900 block text-[11px] uppercase tracking-wider font-mono">
+                              Verified Updates Since Yesterday:
+                            </span>
+                            <ul className="list-disc list-inside space-y-1 text-stone-700 font-serif-prose">
+                              {story.changes_since_yesterday.map((ch, i) => (
+                                <li key={i}>{ch}</li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
+                      </div>
+                    ))}
                   </div>
                 </div>
               ))}
