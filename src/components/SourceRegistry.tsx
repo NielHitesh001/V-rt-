@@ -26,19 +26,19 @@ export const SourceRegistry: React.FC = () => {
     switch (tier) {
       case 'primary':
         return (
-          <span className="px-2 py-0.5 rounded-full text-xs font-mono font-semibold uppercase bg-blue-950 text-blue-400 border border-blue-800">
+          <span className="px-2 py-0.5 rounded-full text-xs font-mono font-semibold uppercase bg-blue-950 text-stone-800 font-bold border border-blue-800">
             Primary (Official / Filing)
           </span>
         );
       case 'secondary':
         return (
-          <span className="px-2 py-0.5 rounded-full text-xs font-mono font-semibold uppercase bg-emerald-950 text-emerald-400 border border-emerald-800">
+          <span className="px-2 py-0.5 rounded-full text-xs font-mono font-semibold uppercase bg-emerald-950 text-[#34482c] font-bold border border-emerald-800">
             Secondary (Wire / Reporter)
           </span>
         );
       case 'tertiary':
         return (
-          <span className="px-2 py-0.5 rounded-full text-xs font-mono font-semibold uppercase bg-amber-950 text-amber-400 border border-amber-800">
+          <span className="px-2 py-0.5 rounded-full text-xs font-mono font-semibold uppercase bg-amber-950 text-[#5c4a2c] font-bold border border-amber-800">
             Tertiary (Excluded / Aggregator)
           </span>
         );
@@ -48,38 +48,38 @@ export const SourceRegistry: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Registry Title & Stats Grid */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div className="bg-white border border-stone-300 rounded-lg p-6 shadow-2xs">
         <div className="max-w-3xl">
           <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
             Source Transparency Registry
           </h1>
-          <p className="mt-2 text-slate-400 text-sm">
+          <p className="mt-2 text-stone-500 text-sm">
             Public, auditable registry of 18 sources, tiers, ownership structures, funding models, and event diversity quotas. Tertiary sources (aggregators) are strictly isolated from the core fact base.
           </p>
         </div>
 
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mt-6">
-          <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
-            <div className="text-2xl font-black text-cyan-400">{SOURCES.length}</div>
-            <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold mt-1">
+          <div className="p-4 rounded-xl bg-[#f5f2eb] border border-stone-300">
+            <div className="text-2xl font-black text-stone-900 font-bold">{SOURCES.length}</div>
+            <div className="text-xs text-stone-500 uppercase tracking-wider font-semibold mt-1">
               Registered Sources
             </div>
           </div>
-          <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
-            <div className="text-2xl font-black text-blue-400">{primaryCount}</div>
-            <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold mt-1">
+          <div className="p-4 rounded-xl bg-[#f5f2eb] border border-stone-300">
+            <div className="text-2xl font-black text-stone-800 font-bold">{primaryCount}</div>
+            <div className="text-xs text-stone-500 uppercase tracking-wider font-semibold mt-1">
               Primary (Official)
             </div>
           </div>
-          <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
-            <div className="text-2xl font-black text-emerald-400">{secondaryCount}</div>
-            <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold mt-1">
+          <div className="p-4 rounded-xl bg-[#f5f2eb] border border-stone-300">
+            <div className="text-2xl font-black text-[#34482c] font-bold">{secondaryCount}</div>
+            <div className="text-xs text-stone-500 uppercase tracking-wider font-semibold mt-1">
               Secondary (Wires)
             </div>
           </div>
-          <div className="p-4 rounded-xl bg-slate-950 border border-slate-800">
-            <div className="text-2xl font-black text-amber-400">{tertiaryCount}</div>
-            <div className="text-xs text-slate-400 uppercase tracking-wider font-semibold mt-1">
+          <div className="p-4 rounded-xl bg-[#f5f2eb] border border-stone-300">
+            <div className="text-2xl font-black text-[#5c4a2c] font-bold">{tertiaryCount}</div>
+            <div className="text-xs text-stone-500 uppercase tracking-wider font-semibold mt-1">
               Tertiary (Aggregators)
             </div>
           </div>
@@ -87,12 +87,12 @@ export const SourceRegistry: React.FC = () => {
       </div>
 
       {/* Diversity Rules Table */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div className="bg-white border border-stone-300 rounded-lg p-6 shadow-2xs">
         <h2 className="text-lg font-bold text-white mb-3">Event Diversity Quotas (Section 6 & Milestone 1)</h2>
         <div className="overflow-x-auto">
           <table className="w-full text-left text-xs border-collapse">
             <thead>
-              <tr className="border-b border-slate-800 text-slate-400 font-mono">
+              <tr className="border-b border-stone-200 text-stone-500 font-mono">
                 <th className="py-2.5 px-3">Event Type</th>
                 <th className="py-2.5 px-3">Min Primary</th>
                 <th className="py-2.5 px-3">Min Secondary</th>
@@ -102,13 +102,13 @@ export const SourceRegistry: React.FC = () => {
                 <th className="py-2.5 px-3">Tertiary Allowance</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-800/60 text-slate-300">
+            <tbody className="divide-y divide-slate-800/60 text-stone-700">
               {Object.entries(DIVERSITY_RULES).map(([key, rule]) => (
                 <tr key={key} className="hover:bg-slate-800/30">
                   <td className="py-3 px-3 font-semibold text-white uppercase font-mono">{key}</td>
-                  <td className="py-3 px-3 font-mono text-cyan-400">≥ {rule.min_primary_sources}</td>
-                  <td className="py-3 px-3 font-mono text-cyan-400">≥ {rule.min_secondary_sources}</td>
-                  <td className="py-3 px-3 font-mono text-emerald-400">≥ {rule.min_independent_origins}</td>
+                  <td className="py-3 px-3 font-mono text-stone-900 font-bold">≥ {rule.min_primary_sources}</td>
+                  <td className="py-3 px-3 font-mono text-stone-900 font-bold">≥ {rule.min_secondary_sources}</td>
+                  <td className="py-3 px-3 font-mono text-[#34482c] font-bold">≥ {rule.min_independent_origins}</td>
                   <td className="py-3 px-3 font-mono">≥ {rule.min_distinct_ownerships}</td>
                   <td className="py-3 px-3 font-mono">≥ {rule.min_distinct_regions}</td>
                   <td className="py-3 px-3 font-mono text-rose-400">
@@ -124,13 +124,13 @@ export const SourceRegistry: React.FC = () => {
       {/* Filter and Search Bar */}
       <div className="flex flex-col sm:flex-row gap-3">
         <div className="relative flex-1">
-          <Search className="w-4 h-4 text-slate-400 absolute left-3.5 top-3.5" />
+          <Search className="w-4 h-4 text-stone-500 absolute left-3.5 top-3.5" />
           <input
             type="text"
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search by source name, ID, ownership, or region..."
-            className="w-full pl-10 pr-4 py-2.5 bg-slate-900 border border-slate-800 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-500"
+            className="w-full pl-10 pr-4 py-2.5 bg-[#fdfcf9] border border-stone-300 border border-stone-200 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-500"
           />
         </div>
 
@@ -142,7 +142,7 @@ export const SourceRegistry: React.FC = () => {
               className={`px-3.5 py-2 rounded-xl text-xs font-semibold capitalize transition ${
                 selectedTier === tier
                   ? 'bg-cyan-500 text-slate-950 shadow-sm shadow-cyan-500/20'
-                  : 'bg-slate-900 text-slate-400 hover:text-white border border-slate-800'
+                  : 'bg-[#fdfcf9] border border-stone-300 text-stone-500 hover:text-white border border-stone-200'
               }`}
             >
               {tier} {tier !== 'all' && `(${SOURCES.filter((s) => s.tier === tier).length})`}
@@ -156,11 +156,11 @@ export const SourceRegistry: React.FC = () => {
         {filteredSources.map((s) => (
           <div
             key={s.id}
-            className="bg-slate-900 border border-slate-800 rounded-xl p-5 hover:border-slate-700 transition flex flex-col justify-between"
+            className="bg-[#fdfcf9] border border-stone-300 border border-stone-200 rounded-xl p-5 hover:border-slate-700 transition flex flex-col justify-between"
           >
             <div>
               <div className="flex items-start justify-between gap-2 mb-3">
-                <span className="font-mono text-xs text-slate-400 bg-slate-950 px-2 py-0.5 rounded border border-slate-800">
+                <span className="font-mono text-xs text-stone-500 bg-[#f5f2eb] px-2 py-0.5 rounded border border-stone-200">
                   {s.id}
                 </span>
                 {getTierBadge(s.tier)}
@@ -168,34 +168,34 @@ export const SourceRegistry: React.FC = () => {
 
               <h3 className="font-bold text-white text-base leading-snug mb-2">{s.name}</h3>
 
-              <div className="space-y-1.5 text-xs text-slate-300">
+              <div className="space-y-1.5 text-xs text-stone-700">
                 <div className="flex items-center space-x-2">
-                  <Building className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                  <span className="text-slate-400">Ownership:</span>
+                  <Building className="w-3.5 h-3.5 text-stone-500 shrink-0" />
+                  <span className="text-stone-500">Ownership:</span>
                   <span className="truncate">{s.ownership}</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <Globe className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                  <span className="text-slate-400">Region:</span>
+                  <Globe className="w-3.5 h-3.5 text-stone-500 shrink-0" />
+                  <span className="text-stone-500">Region:</span>
                   <span>{s.region}</span>
                 </div>
                 <div className="flex items-center space-x-2">
-                  <FileText className="w-3.5 h-3.5 text-slate-400 shrink-0" />
-                  <span className="text-slate-400">Medium:</span>
+                  <FileText className="w-3.5 h-3.5 text-stone-500 shrink-0" />
+                  <span className="text-stone-500">Medium:</span>
                   <span className="capitalize">{s.medium}</span>
                 </div>
               </div>
 
               {s.leaning_notes && (
-                <div className="mt-3 p-2 rounded bg-slate-950 border border-slate-800/80 text-[11px] text-slate-400">
-                  <span className="text-slate-300 font-medium">Profile:</span> {s.leaning_notes}
+                <div className="mt-3 p-2 rounded bg-[#f5f2eb] border border-stone-300/80 text-[11px] text-stone-500">
+                  <span className="text-stone-700 font-medium">Profile:</span> {s.leaning_notes}
                 </div>
               )}
             </div>
 
-            <div className="mt-4 pt-3 border-t border-slate-800/60 flex items-center justify-between text-[11px] text-slate-400">
+            <div className="mt-4 pt-3 border-t border-stone-200/60 flex items-center justify-between text-[11px] text-stone-500">
               <span>Full-text retrievable:</span>
-              <span className="text-emerald-400 font-semibold flex items-center space-x-1">
+              <span className="text-[#34482c] font-bold font-semibold flex items-center space-x-1">
                 <CheckCircle2 className="w-3 h-3" />
                 <span>Verified</span>
               </span>

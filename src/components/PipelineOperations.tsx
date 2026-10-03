@@ -131,7 +131,7 @@ export const PipelineOperations: React.FC = () => {
                   <td className="py-2.5 px-3 text-stone-700 font-serif">{m.metric}</td>
                   <td className="py-2.5 px-3 font-mono text-stone-500">{m.target}</td>
                   <td className="py-2.5 px-3 text-right">
-                    <span className="inline-flex items-center space-x-1 font-mono text-emerald-800 font-bold bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded text-[10px]">
+                    <span className="inline-flex items-center space-x-1 font-mono text-[#34482c] font-bold bg-emerald-50 border border-emerald-200 px-2 py-0.5 rounded text-[10px]">
                       <CheckCircle2 className="w-3 h-3" />
                       <span>{m.status}</span>
                     </span>
@@ -165,7 +165,7 @@ export const PipelineOperations: React.FC = () => {
           <div className="p-3 bg-stone-50 border border-stone-200 rounded text-xs space-y-1">
             <span className="font-mono text-stone-500 text-[10px] uppercase font-semibold">Neutralized Proposition:</span>
             <p className="font-serif-prose text-stone-900 font-medium">{neutralResult.neutralized}</p>
-            <div className="text-[10px] font-mono text-emerald-800 pt-1">
+            <div className="text-[10px] font-mono text-[#34482c] pt-1">
               Check: {neutralResult.passedCheck ? '✅ Meaning Preserved' : '❌ Check Failed'} ({neutralResult.reason})
             </div>
           </div>
@@ -181,7 +181,7 @@ export const PipelineOperations: React.FC = () => {
           </div>
 
           {statusMsg && (
-            <div className="p-2.5 bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs rounded font-serif">
+            <div className="p-2.5 bg-emerald-50 border border-emerald-200 text-[#34482c] text-xs rounded font-serif">
               {statusMsg}
             </div>
           )}
@@ -316,7 +316,7 @@ export const PipelineOperations: React.FC = () => {
               <span>{bridgeResult ? '200 OK' : 'READY'}</span>
             </div>
             {bridgeResult ? (
-              <pre className="mt-2 text-[11px] leading-relaxed whitespace-pre-wrap text-emerald-400 font-mono">
+              <pre className="mt-2 text-[11px] leading-relaxed whitespace-pre-wrap text-[#34482c] font-bold font-mono">
                 {JSON.stringify(bridgeResult, null, 2)}
               </pre>
             ) : (

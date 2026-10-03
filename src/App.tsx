@@ -132,7 +132,7 @@ export function App() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <div className="space-y-1 text-center sm:text-left">
             <div className="font-serif-masthead font-bold text-stone-900 text-sm">
-              THE DAILY VERACITY · TrueNews Archive
+              THE DAILY VERACITY · Vārtā Archive
             </div>
             <div className="font-serif text-stone-500">
               Clean, Objective News Delivery · All Neutralization & Corroboration Performed in Background

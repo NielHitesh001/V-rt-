@@ -97,6 +97,7 @@ export interface Claim {
   status: ClaimStatus;
   span_start: number;
   span_end: number;
+  tier?: number;
 }
 
 export interface BriefFact {

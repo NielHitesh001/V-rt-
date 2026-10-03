@@ -61,7 +61,7 @@ export const InstitutionalTrust: React.FC = () => {
         unredacted_ownership_register: true,
         rejection_of_anonymous_single_source_claims: true
       },
-      public_audit_url: `https://truenews.org/pledges/${outletNameInput.toLowerCase().replace(/\s+/g, '-')}`
+      public_audit_url: `https://varta.org/pledges/${outletNameInput.toLowerCase().replace(/\s+/g, '-')}`
     };
     setPledges([newPledge, ...pledges]);
     setOutletNameInput('');
@@ -130,7 +130,7 @@ export const InstitutionalTrust: React.FC = () => {
 
           {signedNotice && (
             <div className="p-3 bg-emerald-50 border border-emerald-300 rounded text-emerald-900 text-xs font-serif flex items-center space-x-2">
-              <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
+              <CheckCircle2 className="w-4 h-4 text-[#34482c] shrink-0" />
               <span>Newsroom transparency covenant submitted and verified to Tier 1 Gold Standard!</span>
             </div>
           )}
@@ -153,7 +153,7 @@ export const InstitutionalTrust: React.FC = () => {
                   </div>
                   {p.tier_1_verified_badge ? (
                     <span className="inline-flex items-center px-2 py-1 rounded text-xs font-mono font-bold bg-amber-100 text-amber-900 border border-amber-300">
-                      <Award className="w-3.5 h-3.5 mr-1 text-amber-700" />
+                      <Award className="w-3.5 h-3.5 mr-1 text-[#5c4a2c]" />
                       Tier 1 Certified
                     </span>
                   ) : (
@@ -171,7 +171,7 @@ export const InstitutionalTrust: React.FC = () => {
                     <div className="flex items-center space-x-1.5 text-stone-800">
                       <CheckCircle2
                         className={`w-3.5 h-3.5 ${
-                          p.pledge_commitments.primary_citation_guarantee ? 'text-emerald-600' : 'text-stone-300'
+                          p.pledge_commitments.primary_citation_guarantee ? 'text-[#475e3c]' : 'text-stone-300'
                         }`}
                       />
                       <span>Primary Citation Guarantee</span>
@@ -179,7 +179,7 @@ export const InstitutionalTrust: React.FC = () => {
                     <div className="flex items-center space-x-1.5 text-stone-800">
                       <CheckCircle2
                         className={`w-3.5 h-3.5 ${
-                          p.pledge_commitments.four_hour_retraction_window ? 'text-emerald-600' : 'text-stone-300'
+                          p.pledge_commitments.four_hour_retraction_window ? 'text-[#475e3c]' : 'text-stone-300'
                         }`}
                       />
                       <span>&lt;4h Retraction Window</span>
@@ -187,7 +187,7 @@ export const InstitutionalTrust: React.FC = () => {
                     <div className="flex items-center space-x-1.5 text-stone-800">
                       <CheckCircle2
                         className={`w-3.5 h-3.5 ${
-                          p.pledge_commitments.unredacted_ownership_register ? 'text-emerald-600' : 'text-stone-300'
+                          p.pledge_commitments.unredacted_ownership_register ? 'text-[#475e3c]' : 'text-stone-300'
                         }`}
                       />
                       <span>Ownership Transparency</span>
@@ -196,7 +196,7 @@ export const InstitutionalTrust: React.FC = () => {
                       <CheckCircle2
                         className={`w-3.5 h-3.5 ${
                           p.pledge_commitments.rejection_of_anonymous_single_source_claims
-                            ? 'text-emerald-600'
+                            ? 'text-[#475e3c]'
                             : 'text-stone-300'
                         }`}
                       />
@@ -229,7 +229,7 @@ export const InstitutionalTrust: React.FC = () => {
               Newsroom Verifiability Self-Enrollment
             </h3>
             <p className="text-xs font-serif text-stone-600">
-              Are you an editor, ombudsman, or publisher? Enroll your newsroom to benchmark against the TrueNews Tier 1 protocol.
+              Are you an editor, ombudsman, or publisher? Enroll your newsroom to benchmark against the Vārtā Tier 1 protocol.
             </p>
             <form onSubmit={handleSignPledge} className="flex flex-col sm:flex-row gap-3">
               <input
@@ -311,7 +311,7 @@ export const InstitutionalTrust: React.FC = () => {
               </div>
               <div className="p-3 bg-stone-50 border border-stone-200 rounded">
                 <div className="text-stone-500 text-[10px] uppercase">Topic Anomaly Divergence</div>
-                <div className="text-amber-800 font-bold text-sm mt-1">
+                <div className="text-[#5c4a2c] font-bold text-sm mt-1">
                   {currentBias.topic_anomaly_rate}% vs Peer Benchmark
                 </div>
               </div>
@@ -440,7 +440,7 @@ export const InstitutionalTrust: React.FC = () => {
           {/* Interactive "Find the Primary Source" Mini-Challenge */}
           <div className="bg-[#f2efe9] border border-stone-300 p-6 rounded shadow-xs space-y-3">
             <div className="flex items-center space-x-2 text-xs font-mono uppercase text-stone-700">
-              <Trophy className="w-4 h-4 text-amber-700" />
+              <Trophy className="w-4 h-4 text-[#5c4a2c]" />
               <span>Interactive Verification Challenge: "Spot the Primary Origin"</span>
             </div>
             <p className="text-xs font-serif text-stone-700">
@@ -477,11 +477,11 @@ export const InstitutionalTrust: React.FC = () => {
             {gameAnswered && (
               <div className="text-xs font-serif pt-1 text-stone-800">
                 {gameAnswered === 'b' ? (
-                  <span className="text-emerald-800 font-bold">
+                  <span className="text-[#34482c] font-bold">
                     Correct! The NTSB report is an official federal accident investigation document with subpoena power and physical VDR access.
                   </span>
                 ) : (
-                  <span className="text-rose-800 font-bold">
+                  <span className="text-[#5e3838] font-bold">
                     Incorrect. That source is a secondary reporting or tertiary aggregator outlet that cites the NTSB preliminary investigation.
                   </span>
                 )}

@@ -71,7 +71,7 @@ const dynamicDetectedEvents: AutoDetectedEvent[] = [...AUTO_DETECTED_EVENTS];
 
 // Health Check
 app.get('/api/health', (req, res) => {
-  res.json({ status: 'ok', name: 'TrueNews Unified API', version: '2.0.0', pythonBridge: 'ready' });
+  res.json({ status: 'ok', name: 'Vārtā Unified API', version: '2.0.0', pythonBridge: 'ready' });
 });
 
 // Phase 2 Step 2.3: Python M0-M9 Bridge Endpoint
@@ -189,13 +189,13 @@ app.get('/api/passages', (req, res) => {
 app.get('/api/claims', (req, res) => {
   const { item_id } = req.query;
 
-  // Try querying SQLite truenews.db first
+  // Try querying SQLite varta.db first
   try {
     const candidateDbPaths = [
-      resolve(process.cwd(), 'backend/shared/db/truenews.db'),
-      resolve(__dirname, '../../shared/db/truenews.db'),
-      resolve(__dirname, '../../../backend/shared/db/truenews.db'),
-      '/app/applet/backend/shared/db/truenews.db'
+      resolve(process.cwd(), 'backend/shared/db/varta.db'),
+      resolve(__dirname, '../../shared/db/varta.db'),
+      resolve(__dirname, '../../../backend/shared/db/varta.db'),
+      '/app/applet/backend/shared/db/varta.db'
     ];
     const dbPath = candidateDbPaths.find((p) => fs.existsSync(p));
 
@@ -262,9 +262,9 @@ app.get('/api/metrics', (req, res) => {
 
   try {
     const candidateDbPaths = [
-      path.resolve(process.cwd(), 'backend/shared/db/truenews.db'),
-      path.resolve(__dirname, '../../shared/db/truenews.db'),
-      '/app/applet/backend/shared/db/truenews.db'
+      path.resolve(process.cwd(), 'backend/shared/db/varta.db'),
+      path.resolve(__dirname, '../../shared/db/varta.db'),
+      '/app/applet/backend/shared/db/varta.db'
     ];
     const dbPath = candidateDbPaths.find((p) => fs.existsSync(p));
     if (dbPath) {
@@ -356,9 +356,9 @@ app.get('/api/newspaper/edition', (req, res) => {
   let liveDispatches: any[] = [];
   try {
     const candidateDbPaths = [
-      resolve(process.cwd(), 'backend/shared/db/truenews.db'),
-      resolve(__dirname, '../../shared/db/truenews.db'),
-      '/app/applet/backend/shared/db/truenews.db'
+      resolve(process.cwd(), 'backend/shared/db/varta.db'),
+      resolve(__dirname, '../../shared/db/varta.db'),
+      '/app/applet/backend/shared/db/varta.db'
     ];
     const dbPath = candidateDbPaths.find((p) => fs.existsSync(p));
     if (dbPath) {
@@ -638,6 +638,6 @@ export default app;
 
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
-    console.log(`TrueNews API server running on port ${PORT}`);
+    console.log(`Vārtā API server running on port ${PORT}`);
   });
 }

@@ -129,13 +129,13 @@ export const SystemHealthCard: React.FC = () => {
       <div className="bg-stone-900 text-stone-100 p-6 rounded-lg shadow-sm border border-stone-800">
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-full bg-emerald-500/20 border border-emerald-500/40 flex items-center justify-center text-emerald-400">
+            <div className="w-10 h-10 rounded-full bg-[#54684a]/20 border border-[#cfdec6] flex items-center justify-center text-[#34482c] font-bold">
               <Activity className="w-5 h-5 animate-pulse" />
             </div>
             <div>
               <div className="flex items-center gap-2">
                 <h3 className="text-xl font-serif font-bold text-stone-100">Live System Health & Metrics</h3>
-                <span className="text-[11px] bg-emerald-500/20 text-emerald-300 font-mono px-2 py-0.5 rounded border border-emerald-500/30 uppercase font-semibold">
+                <span className="text-[11px] bg-[#eff3ec] text-[#34482c] font-mono px-2 py-0.5 rounded border border-[#cfdec6] uppercase font-semibold">
                   ALL SYSTEMS NOMINAL
                 </span>
               </div>
@@ -156,7 +156,7 @@ export const SystemHealthCard: React.FC = () => {
               className="p-2 rounded bg-stone-800 hover:bg-stone-700 text-stone-300 border border-stone-700 cursor-pointer transition-colors"
               title="Refresh live metrics"
             >
-              <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-emerald-400' : ''}`} />
+              <RefreshCw className={`w-4 h-4 ${isRefreshing ? 'animate-spin text-[#34482c] font-bold' : ''}`} />
             </button>
           </div>
         </div>
@@ -168,13 +168,13 @@ export const SystemHealthCard: React.FC = () => {
         <div className="bg-white border border-stone-200 rounded-lg p-4 shadow-sm">
           <div className="flex items-center justify-between text-stone-500 text-xs font-semibold uppercase tracking-wider">
             <span>Persisted Claims</span>
-            <Database className="w-4 h-4 text-emerald-600" />
+            <Database className="w-4 h-4 text-[#475e3c]" />
           </div>
           <div className="text-3xl font-serif font-bold text-stone-900 mt-2 font-mono">
             {m.totalClaims}
           </div>
           <div className="text-[11px] text-stone-500 mt-1 flex items-center gap-1">
-            <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Across {m.totalArticles} ingested articles
+            <CheckCircle2 className="w-3 h-3 text-[#475e3c]" /> Across {m.totalArticles} ingested articles
           </div>
         </div>
 
@@ -182,9 +182,9 @@ export const SystemHealthCard: React.FC = () => {
         <div className="bg-white border border-stone-200 rounded-lg p-4 shadow-sm">
           <div className="flex items-center justify-between text-stone-500 text-xs font-semibold uppercase tracking-wider">
             <span>Verified Rate</span>
-            <ShieldCheck className="w-4 h-4 text-blue-600" />
+            <ShieldCheck className="w-4 h-4 text-[#49576c]" />
           </div>
-          <div className="text-3xl font-serif font-bold text-blue-800 mt-2 font-mono">
+          <div className="text-3xl font-serif font-bold text-[#343e4d] mt-2 font-mono">
             {m.verificationRate.toFixed(1)}%
           </div>
           <div className="text-[11px] text-stone-500 mt-1">
@@ -196,12 +196,12 @@ export const SystemHealthCard: React.FC = () => {
         <div className="bg-white border border-stone-200 rounded-lg p-4 shadow-sm">
           <div className="flex items-center justify-between text-stone-500 text-xs font-semibold uppercase tracking-wider">
             <span>Reversibility</span>
-            <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+            <CheckCircle2 className="w-4 h-4 text-[#475e3c]" />
           </div>
-          <div className="text-3xl font-serif font-bold text-emerald-700 mt-2 font-mono">
+          <div className="text-3xl font-serif font-bold text-[#34482c] mt-2 font-mono">
             {m.reversibilityRate.toFixed(1)}%
           </div>
-          <div className="text-[11px] text-emerald-600 mt-1">
+          <div className="text-[11px] text-[#475e3c] mt-1">
             100% Invariant Guarantee
           </div>
         </div>
@@ -210,7 +210,7 @@ export const SystemHealthCard: React.FC = () => {
         <div className="bg-white border border-stone-200 rounded-lg p-4 shadow-sm">
           <div className="flex items-center justify-between text-stone-500 text-xs font-semibold uppercase tracking-wider">
             <span>Extraction F1</span>
-            <Zap className="w-4 h-4 text-amber-600" />
+            <Zap className="w-4 h-4 text-[#735d37]" />
           </div>
           <div className="text-3xl font-serif font-bold text-stone-900 mt-2 font-mono">
             {m.extractionF1.toFixed(1)}%
@@ -237,32 +237,32 @@ export const SystemHealthCard: React.FC = () => {
               {
                 tier: 'Tier 1: Primary Source Grounded',
                 count: m.tierDistribution.tier1,
-                color: 'bg-emerald-500',
-                badge: 'bg-emerald-50 text-emerald-800'
+                color: 'bg-[#54684a]',
+                badge: 'bg-[#eff3ec] text-[#34482c]'
               },
               {
                 tier: 'Tier 2: Multi-Source Verified',
                 count: m.tierDistribution.tier2,
-                color: 'bg-blue-500',
-                badge: 'bg-blue-50 text-blue-800'
+                color: 'bg-[#4e5b6e]',
+                badge: 'bg-[#f0f2f5] text-[#343e4d]'
               },
               {
                 tier: 'Tier 3: Single-Source Attributed',
                 count: m.tierDistribution.tier3,
-                color: 'bg-amber-500',
-                badge: 'bg-amber-50 text-amber-800'
+                color: 'bg-[#94784e]',
+                badge: 'bg-[#faf6ee] text-[#5c4a2c]'
               },
               {
                 tier: 'Tier 4: Contested / Disputed',
                 count: m.tierDistribution.tier4,
-                color: 'bg-orange-500',
-                badge: 'bg-orange-50 text-orange-800'
+                color: 'bg-[#9e5241]',
+                badge: 'bg-[#faf1ec] text-[#6e392a]'
               },
               {
                 tier: 'Tier 5: Retracted / Flagged',
                 count: m.tierDistribution.tier5,
-                color: 'bg-rose-500',
-                badge: 'bg-rose-50 text-rose-800'
+                color: 'bg-[#7c5656]',
+                badge: 'bg-[#f5f1f0] text-[#5e3838]'
               }
             ].map((item) => {
               const pct = m.totalClaims > 0 ? (item.count / m.totalClaims) * 100 : 0;
@@ -293,7 +293,7 @@ export const SystemHealthCard: React.FC = () => {
               <h4 className="font-serif font-bold text-stone-900 text-sm flex items-center gap-2">
                 <BarChart3 className="w-4 h-4 text-stone-600" /> Priority 3: 100+ Benchmark Evaluation
               </h4>
-              <span className="text-[11px] bg-emerald-100 text-emerald-800 font-mono px-2 py-0.5 rounded font-semibold">
+              <span className="text-[11px] bg-[#e8ede4] text-[#34482c] font-mono px-2 py-0.5 rounded font-semibold">
                 VALIDATED
               </span>
             </div>
@@ -309,7 +309,7 @@ export const SystemHealthCard: React.FC = () => {
 
               <div className="p-3 bg-stone-50 border border-stone-200 rounded">
                 <div className="text-[10px] uppercase font-semibold text-stone-500">Tier Accuracy</div>
-                <div className="text-xl font-bold font-mono text-emerald-700">
+                <div className="text-xl font-bold font-mono text-[#34482c]">
                   {m.evaluationSet100.tierAccuracy.toFixed(1)}%
                 </div>
                 <div className="text-[10px] text-stone-500 mt-0.5">Strict multi-source grading</div>
@@ -336,7 +336,7 @@ export const SystemHealthCard: React.FC = () => {
             <span className="flex items-center gap-1 font-mono">
               <Terminal className="w-3.5 h-3.5 text-stone-400" /> evaluation_set_100.csv
             </span>
-            <span className="font-semibold text-emerald-700">Zero Over-Corroboration (FP = 0.0%)</span>
+            <span className="font-semibold text-[#34482c]">Zero Over-Corroboration (FP = 0.0%)</span>
           </div>
         </div>
       </div>
@@ -357,7 +357,7 @@ export const SystemHealthCard: React.FC = () => {
           ].map((s) => (
             <div key={s.name} className="p-2.5 bg-stone-50 border border-stone-200 rounded text-center">
               <div className="text-stone-700 font-semibold mb-1">{s.name}</div>
-              <span className="inline-flex items-center gap-1 text-[10px] text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded border border-emerald-200 uppercase">
+              <span className="inline-flex items-center gap-1 text-[10px] text-[#34482c] font-bold bg-emerald-100 px-2 py-0.5 rounded border border-emerald-200 uppercase">
                 <CheckCircle2 className="w-3 h-3" /> {s.status}
               </span>
             </div>

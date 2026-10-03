@@ -39,7 +39,7 @@ export const TransparencyRegistry: React.FC = () => {
           Corroboration Standards
         </h3>
         <p className="text-xs sm:text-sm font-serif-prose text-stone-700 leading-relaxed">
-          TrueNews only publishes facts verified across primary official bodies (such as investigative boards, courts, and central banks) and vetted global news wire agencies. Partisan spin and loaded adjectives are stripped automatically in the background to present clean, objective reporting.
+          Vārtā only publishes facts verified across primary official bodies (such as investigative boards, courts, and central banks) and vetted global news wire agencies. Partisan spin and loaded adjectives are stripped automatically in the background to present clean, objective reporting.
         </p>
       </div>
 

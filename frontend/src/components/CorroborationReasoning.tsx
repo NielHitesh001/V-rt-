@@ -159,28 +159,28 @@ export const CorroborationReasoning: React.FC = () => {
   return (
     <div className="space-y-8 font-sans">
       {/* Banner */}
-      <div className="bg-stone-900 text-stone-100 p-6 md:p-8 rounded-lg shadow-sm border border-stone-800">
+      <div className="bg-[#fdfcf9] text-stone-900 p-6 md:p-8 rounded-lg shadow-2xs border border-stone-300">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-blue-400 mb-2">
+            <div className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-[#5c4a2c] mb-2">
               <Cpu className="w-4 h-4" /> Priority 1: Embedding-Based Corroboration Engine
             </div>
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-100">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-900">
               Corroboration Reasoning & Semantic Verification Trail
             </h2>
-            <p className="text-stone-300 text-sm mt-1 max-w-2xl">
-              TrueNews pairs cross-outlet claims using deep semantic embeddings (<code className="text-blue-300 font-mono">sentence-transformers</code>).
+            <p className="text-stone-600 text-sm mt-1 max-w-2xl font-serif-prose">
+              Vārtā pairs cross-outlet claims using deep semantic embeddings (<code className="text-stone-800 font-mono bg-stone-100 px-1 py-0.5 rounded">sentence-transformers</code>).
               Claims matching above the 0.75 cosine threshold with independent publisher ownership are elevated to Tier 2 Multi-Source Verified.
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
-            <div className="bg-stone-800 px-4 py-2 rounded border border-stone-700 text-right">
-              <div className="text-xs text-stone-400">Embedding Sensitivity</div>
-              <div className="text-xl font-bold font-mono text-emerald-400">100.0%</div>
+            <div className="bg-white px-4 py-2 rounded border border-stone-300 text-right">
+              <div className="text-xs text-stone-500">Embedding Sensitivity</div>
+              <div className="text-xl font-bold font-mono text-[#34482c]">100.0%</div>
             </div>
-            <div className="bg-stone-800 px-4 py-2 rounded border border-stone-700 text-right">
-              <div className="text-xs text-stone-400">False Positive Rate</div>
-              <div className="text-xl font-bold font-mono text-emerald-400">0.0%</div>
+            <div className="bg-white px-4 py-2 rounded border border-stone-300 text-right">
+              <div className="text-xs text-stone-500">False Positive Rate</div>
+              <div className="text-xl font-bold font-mono text-[#34482c]">0.0%</div>
             </div>
           </div>
         </div>
@@ -190,12 +190,12 @@ export const CorroborationReasoning: React.FC = () => {
       <div className="bg-white border border-stone-200 rounded-lg p-6 shadow-sm">
         <div className="flex items-center justify-between mb-4 pb-3 border-b border-stone-100">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-blue-600" />
+            <Sparkles className="w-5 h-5 text-[#49576c]" />
             <h3 className="font-serif font-bold text-stone-900 text-lg">
               Live Semantic Corroboration Sandbox
             </h3>
           </div>
-          <span className="text-xs bg-blue-50 text-blue-800 font-mono px-2 py-0.5 rounded border border-blue-200">
+          <span className="text-xs bg-[#f0f2f5] text-[#343e4d] font-mono px-2 py-0.5 rounded border border-blue-200">
             Threshold = 0.75
           </span>
         </div>
@@ -244,7 +244,7 @@ export const CorroborationReasoning: React.FC = () => {
               <div className="text-[10px] uppercase font-semibold text-stone-500">Verdict</div>
               <div className="flex items-center gap-1.5 mt-0.5">
                 {sandboxScore.isMatch ? (
-                  <span className="flex items-center gap-1 text-xs font-bold text-emerald-700 bg-emerald-100 px-2 py-0.5 rounded border border-emerald-300">
+                  <span className="flex items-center gap-1 text-xs font-bold text-[#34482c] bg-emerald-100 px-2 py-0.5 rounded border border-emerald-300">
                     <CheckCircle2 className="w-3.5 h-3.5" /> Corroborated
                   </span>
                 ) : (
@@ -282,10 +282,10 @@ export const CorroborationReasoning: React.FC = () => {
             <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4">
               <span className="text-xs font-mono text-stone-500">Record: {activeExample.id}</span>
               <div className="flex items-center gap-2">
-                <span className="text-xs font-mono bg-blue-100 text-blue-800 px-2 py-0.5 rounded font-semibold border border-blue-200">
+                <span className="text-xs font-mono bg-[#e7ebf0] text-[#343e4d] px-2 py-0.5 rounded font-semibold border border-blue-200">
                   Cosine Sim: {(activeExample.semanticSim * 100).toFixed(1)}%
                 </span>
-                <span className="text-xs font-mono bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded font-semibold border border-emerald-200">
+                <span className="text-xs font-mono bg-[#e8ede4] text-[#34482c] px-2 py-0.5 rounded font-semibold border border-emerald-200">
                   Tier {activeExample.assignedTier} Assigned
                 </span>
               </div>
@@ -313,7 +313,7 @@ export const CorroborationReasoning: React.FC = () => {
 
             <div className="mt-4 p-3.5 bg-white border border-stone-200 rounded">
               <div className="text-xs font-bold text-stone-800 uppercase tracking-wider mb-1 flex items-center gap-1.5">
-                <ShieldCheck className="w-4 h-4 text-emerald-600" /> Corroboration Reasoning & Verification Invariant:
+                <ShieldCheck className="w-4 h-4 text-[#475e3c]" /> Corroboration Reasoning & Verification Invariant:
               </div>
               <p className="text-xs text-stone-600 leading-relaxed font-serif-prose">
                 {activeExample.reasoning}
@@ -347,7 +347,7 @@ export const CorroborationReasoning: React.FC = () => {
                     }`}
                   >
                     <td className="py-2.5 px-4">
-                      <span className="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-800 border border-blue-200">
+                      <span className="inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full bg-[#f0f2f5] text-[#343e4d] border border-blue-200">
                         Tier {item.assignedTier}
                       </span>
                     </td>
@@ -358,11 +358,11 @@ export const CorroborationReasoning: React.FC = () => {
                     <td className="py-2.5 px-4 text-stone-500 font-mono text-[11px]">
                       {item.sourceA.split(' ')[0]} / {item.sourceB.split(' ')[0]}
                     </td>
-                    <td className="py-2.5 px-4 text-center font-mono font-bold text-blue-700">
+                    <td className="py-2.5 px-4 text-center font-mono font-bold text-[#343e4d]">
                       {(item.semanticSim * 100).toFixed(1)}%
                     </td>
                     <td className="py-2.5 px-4 text-center">
-                      <span className="inline-flex items-center gap-1 text-[10px] text-emerald-700 font-semibold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
+                      <span className="inline-flex items-center gap-1 text-[10px] text-[#34482c] font-semibold bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">
                         <CheckCircle2 className="w-3 h-3" /> Independent
                       </span>
                     </td>

@@ -410,7 +410,7 @@ export const EngineBrief: React.FC<EngineBriefProps> = ({ initialEventId = 'even
         {/* Footer info */}
         <footer className="px-6 sm:px-8 py-4 bg-[#f5f2eb] border-t border-stone-200 text-xs font-serif text-stone-600 flex flex-wrap items-center justify-between gap-2">
           <span>Objective News Synthesis · Free from editorial bias or partisan spin</span>
-          <span>TrueNews Epistemic Archive</span>
+          <span>Vārtā Epistemic Archive</span>
         </footer>
       </article>
     </div>

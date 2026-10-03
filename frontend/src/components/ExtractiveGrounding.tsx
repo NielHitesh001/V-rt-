@@ -132,9 +132,9 @@ export const ExtractiveGrounding: React.FC = () => {
                     </div>
                     {claim.changes.map((c, ci) => (
                       <div key={ci} className="pt-1">
-                        <span className="line-through text-rose-700 bg-rose-50 px-1 py-0.2 rounded">"{c.original_span}"</span>
+                        <span className="line-through text-[#5e3838] bg-rose-50 px-1 py-0.2 rounded">"{c.original_span}"</span>
                         <span className="mx-1 text-stone-400">→</span>
-                        <span className="text-emerald-800 bg-emerald-50 px-1 py-0.2 rounded font-bold">"{c.replacement}"</span>
+                        <span className="text-[#34482c] bg-emerald-50 px-1 py-0.2 rounded font-bold">"{c.replacement}"</span>
                         <div className="text-stone-500 text-[10px] mt-0.5">Rationale: {c.rationale}</div>
                       </div>
                     ))}

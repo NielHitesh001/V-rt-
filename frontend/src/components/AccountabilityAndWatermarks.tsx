@@ -55,7 +55,7 @@ export const AccountabilityAndWatermarks: React.FC = () => {
             Tier 1: Closure & Accountability · Systems 16 & 17
           </div>
           <h1 className="text-2xl sm:text-3xl font-serif-editorial font-bold text-stone-900">
-            Publisher Accountability & AI Verifiability Watermark
+            Publisher Accountability & Cryptographic Provenance Verification
           </h1>
         </div>
         <div className="flex items-center space-x-2 bg-stone-200/70 p-1 rounded border border-stone-300 text-xs font-sans">
@@ -77,7 +77,7 @@ export const AccountabilityAndWatermarks: React.FC = () => {
                 : 'text-stone-700 hover:text-stone-900'
             }`}
           >
-            17. AI Watermarks & Decay
+            17. Cryptographic Audit & Decay
           </button>
         </div>
       </div>
@@ -95,7 +95,7 @@ export const AccountabilityAndWatermarks: React.FC = () => {
             </div>
             <div className="bg-white border border-stone-300 p-4 rounded shadow-2xs">
               <div className="text-[11px] font-mono uppercase text-stone-500">Fastest Resolution</div>
-              <div className="text-2xl font-serif font-bold text-emerald-800 mt-1">
+              <div className="text-2xl font-serif font-bold text-[#34482c] mt-1">
                 2.4 Hours
               </div>
               <div className="text-xs text-stone-600 mt-1">Reuters Wire Service (Rapid Tier)</div>
@@ -109,7 +109,7 @@ export const AccountabilityAndWatermarks: React.FC = () => {
             </div>
             <div className="bg-white border border-stone-300 p-4 rounded shadow-2xs">
               <div className="text-[11px] font-mono uppercase text-stone-500">Systematic Bias Flags</div>
-              <div className="text-2xl font-serif font-bold text-amber-700 mt-1">
+              <div className="text-2xl font-serif font-bold text-[#5c4a2c] mt-1">
                 1 Flagged Outlier
               </div>
               <div className="text-xs text-stone-600 mt-1">Silent deletion & delayed correction pattern</div>
@@ -165,10 +165,10 @@ export const AccountabilityAndWatermarks: React.FC = () => {
                           <span
                             className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-semibold ${
                               outlet.correction_velocity_rating.startsWith('Rapid')
-                                ? 'bg-emerald-100 text-emerald-800'
+                                ? 'bg-[#e8ede4] text-[#34482c]'
                                 : outlet.correction_velocity_rating.startsWith('Moderate')
-                                ? 'bg-blue-100 text-blue-800'
-                                : 'bg-rose-100 text-rose-800'
+                                ? 'bg-[#e7ebf0] text-[#343e4d]'
+                                : 'bg-[#ecdfdf] text-[#5e3838]'
                             }`}
                           >
                             <Clock className="w-3 h-3 mr-1" />
@@ -180,13 +180,13 @@ export const AccountabilityAndWatermarks: React.FC = () => {
                         </td>
                         <td className="py-3 px-4">
                           {outlet.systematic_bias_flag ? (
-                            <span className="inline-flex items-center text-rose-700 font-semibold text-xs">
+                            <span className="inline-flex items-center text-[#5e3838] font-semibold text-xs">
                               <AlertTriangle className="w-3.5 h-3.5 mr-1 text-rose-600" />
                               Pattern Flagged
                             </span>
                           ) : (
                             <span className="inline-flex items-center text-stone-600 text-xs">
-                              <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-emerald-600" />
+                              <CheckCircle2 className="w-3.5 h-3.5 mr-1 text-[#475e3c]" />
                               Clean Pattern
                             </span>
                           )}
@@ -197,9 +197,9 @@ export const AccountabilityAndWatermarks: React.FC = () => {
                               <div
                                 className={`h-full ${
                                   outlet.rigor_score >= 90
-                                    ? 'bg-emerald-600'
+                                    ? 'bg-[#54684a]'
                                     : outlet.rigor_score >= 80
-                                    ? 'bg-blue-600'
+                                    ? 'bg-[#4e5b6e]'
                                     : 'bg-rose-600'
                                 }`}
                                 style={{ width: `${outlet.rigor_score}%` }}
@@ -298,7 +298,7 @@ export const AccountabilityAndWatermarks: React.FC = () => {
               <span>Feature 17 · Cryptographic Provenance Watermarks</span>
             </div>
             <p className="text-xs font-serif text-stone-300 leading-relaxed max-w-3xl">
-              Every factual proposition in TrueNews is stamped with an immutable cryptographic watermark identifying the extraction engine (Deterministic Regex, LLM Inferred, or Human-Verified Hybrid), the prompt hash, model version, and an automated half-life confidence decay score that prevents outdated inference over-reliance.
+              Every factual proposition in Vārtā is stamped with an immutable cryptographic watermark identifying the extraction engine (Deterministic Regex, Deterministic Extraction, or Human-Verified Hybrid), the prompt hash, model version, and an automated half-life confidence decay score that prevents outdated inference over-reliance.
             </p>
           </div>
 
@@ -328,9 +328,9 @@ export const AccountabilityAndWatermarks: React.FC = () => {
                         <span
                           className={`px-1.5 py-0.5 rounded font-semibold ${
                             wm.extraction_method === 'Deterministic Rule'
-                              ? 'bg-blue-100 text-blue-800'
+                              ? 'bg-[#e7ebf0] text-[#343e4d]'
                               : wm.extraction_method === 'Human Verified Hybrid'
-                              ? 'bg-emerald-100 text-emerald-800'
+                              ? 'bg-[#e8ede4] text-[#34482c]'
                               : 'bg-purple-100 text-purple-800'
                           }`}
                         >
@@ -421,7 +421,7 @@ export const AccountabilityAndWatermarks: React.FC = () => {
                       }}
                       className="text-stone-700 hover:text-stone-900 flex items-center space-x-1 cursor-pointer"
                     >
-                      {copiedSig ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                      {copiedSig ? <Check className="w-3 h-3 text-[#475e3c]" /> : <Copy className="w-3 h-3" />}
                       <span>{copiedSig ? 'Copied' : 'Copy Signature'}</span>
                     </button>
                   </div>
@@ -437,7 +437,7 @@ export const AccountabilityAndWatermarks: React.FC = () => {
                   Interactive Watermark Verifier Sandbox
                 </h4>
                 <p className="text-xs font-serif text-stone-600">
-                  Paste any TrueNews watermark signature or hash to test authenticity against the immutable audit ledger.
+                  Paste any Vārtā watermark signature or hash to test authenticity against the immutable audit ledger.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-2">
                   <input
@@ -465,8 +465,8 @@ export const AccountabilityAndWatermarks: React.FC = () => {
                     }`}
                   >
                     <div className="font-bold flex items-center space-x-1 font-mono">
-                      {verifyResult.valid ? <CheckCircle2 className="w-4 h-4 text-emerald-700" /> : <AlertTriangle className="w-4 h-4 text-rose-700" />}
-                      <span>{verifyResult.valid ? 'VALID TRUENEWS WATERMARK' : 'VERIFICATION FAILED'}</span>
+                      {verifyResult.valid ? <CheckCircle2 className="w-4 h-4 text-[#34482c]" /> : <AlertTriangle className="w-4 h-4 text-[#5e3838]" />}
+                      <span>{verifyResult.valid ? 'VALID VĀRTĀ WATERMARK' : 'VERIFICATION FAILED'}</span>
                     </div>
                     <div className="mt-1">{verifyResult.msg}</div>
                     {verifyResult.record && (

@@ -294,7 +294,7 @@ export const ReaderDeskAndFeeds: React.FC = () => {
                   rel="noopener noreferrer"
                   className="px-3 py-1.5 bg-stone-100 border border-stone-300 hover:bg-stone-200 text-stone-800 rounded font-semibold transition flex items-center space-x-1"
                 >
-                  <Rss className="w-3.5 h-3.5 text-amber-700" />
+                  <Rss className="w-3.5 h-3.5 text-[#5c4a2c]" />
                   <span>RSS</span>
                 </a>
               </div>
@@ -357,7 +357,7 @@ export const ReaderDeskAndFeeds: React.FC = () => {
                 onClick={() => handleCopyCurl(`curl -s http://localhost:3000${apiEndpoint}`)}
                 className="hover:text-stone-200 flex items-center space-x-1 cursor-pointer"
               >
-                {copiedCurl ? <Check className="w-3 h-3 text-emerald-400" /> : <Copy className="w-3 h-3" />}
+                {copiedCurl ? <Check className="w-3 h-3 text-[#34482c] font-bold" /> : <Copy className="w-3 h-3" />}
                 <span>{copiedCurl ? 'Copied cURL' : 'Copy cURL'}</span>
               </button>
             </div>

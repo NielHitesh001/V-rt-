@@ -85,40 +85,40 @@ export const DisputeMatrix: React.FC = () => {
 
   return (
     <div className="space-y-6">
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div className="bg-white border border-stone-300 rounded-lg p-6 shadow-2xs">
         <div className="flex items-center space-x-3 mb-2">
-          <div className="w-9 h-9 rounded-lg bg-amber-500/20 text-amber-400 flex items-center justify-center">
+          <div className="w-9 h-9 rounded-lg bg-[#94784e]/20 text-[#5c4a2c] font-bold flex items-center justify-center">
             <Scale className="w-5 h-5" />
           </div>
           <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
             Visible Uncertainty & Side-by-Side Disputes (Milestone 6)
           </h1>
         </div>
-        <p className="mt-2 text-slate-400 text-sm max-w-3xl">
-          Normative Guarantee #5: When newsrooms or official authorities publish contradictory reporting, TrueNews refuses to synthesize an artificial consensus. Opposing claims are assigned Tier 4 (Disputed) and presented side-by-side with full attribution provenance.
+        <p className="mt-2 text-stone-500 text-sm max-w-3xl">
+          Normative Guarantee #5: When newsrooms or official authorities publish contradictory reporting, Vārtā refuses to synthesize an artificial consensus. Opposing claims are assigned Tier 4 (Disputed) and presented side-by-side with full attribution provenance.
         </p>
       </div>
 
       <div className="space-y-6">
         {disputes.map((d, idx) => (
-          <div key={idx} className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-800">
+          <div key={idx} className="bg-white border border-stone-300 rounded-lg p-6 shadow-2xs space-y-4">
+            <div className="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-stone-200">
               <div>
                 <div className="flex items-center space-x-2">
-                  <span className="text-xs px-2 py-0.5 rounded bg-amber-950 text-amber-400 border border-amber-800 font-mono">
+                  <span className="text-xs px-2 py-0.5 rounded bg-amber-950 text-[#5c4a2c] font-bold border border-amber-800 font-mono">
                     Tier 4: Disputed
                   </span>
-                  <span className="text-xs font-mono text-slate-400">{d.eventId}</span>
+                  <span className="text-xs font-mono text-stone-500">{d.eventId}</span>
                 </div>
                 <h2 className="text-xl font-bold text-white mt-1">{d.eventTitle}</h2>
               </div>
-              <span className="text-xs font-semibold text-slate-400 bg-slate-950 px-3 py-1.5 rounded-lg border border-slate-800">
+              <span className="text-xs font-semibold text-stone-500 bg-[#f5f2eb] px-3 py-1.5 rounded-lg border border-stone-200">
                 {d.category}
               </span>
             </div>
 
             <div className="flex items-center space-x-2 text-amber-300 font-semibold text-sm">
-              <AlertTriangle className="w-4 h-4 text-amber-400 shrink-0" />
+              <AlertTriangle className="w-4 h-4 text-[#5c4a2c] font-bold shrink-0" />
               <span>Contradiction Core: {d.topic}</span>
             </div>
 
@@ -127,38 +127,38 @@ export const DisputeMatrix: React.FC = () => {
               {d.sides.map((side, sIdx) => (
                 <div
                   key={sIdx}
-                  className="bg-slate-950 border border-slate-800 rounded-xl p-4 flex flex-col justify-between space-y-3"
+                  className="bg-[#f5f2eb] border border-stone-300 rounded-xl p-4 flex flex-col justify-between space-y-3"
                 >
                   <div className="space-y-2">
                     <div className="flex items-center justify-between">
-                      <span className="font-bold text-cyan-400 text-sm">{side.entity}</span>
-                      <span className="font-mono text-[10px] text-slate-400 px-2 py-0.5 rounded bg-slate-900">
+                      <span className="font-bold text-stone-900 font-bold text-sm">{side.entity}</span>
+                      <span className="font-mono text-[10px] text-stone-500 px-2 py-0.5 rounded bg-[#fdfcf9] border border-stone-300">
                         {side.source}
                       </span>
                     </div>
 
-                    <div className="text-xs font-mono text-purple-400 bg-purple-950/30 px-2 py-1 rounded border border-purple-900/40">
+                    <div className="text-xs font-mono text-stone-900 font-bold bg-purple-950/30 px-2 py-1 rounded border border-purple-900/40">
                       {side.attributionType}
                     </div>
 
                     <p className="text-slate-200 text-sm leading-relaxed">{side.position}</p>
                   </div>
 
-                  <div className="border-t border-slate-800 pt-2 space-y-1">
+                  <div className="border-t border-stone-200 pt-2 space-y-1">
                     <div className="text-[11px] text-slate-500 font-mono">Original Source Text:</div>
-                    <div className="text-xs text-slate-400 italic">"{side.originalQuote}"</div>
+                    <div className="text-xs text-stone-500 italic">"{side.originalQuote}"</div>
                   </div>
                 </div>
               ))}
             </div>
 
             {/* Analysis & Divergence Diagnosis */}
-            <div className="p-3.5 rounded-xl bg-slate-950/60 border border-slate-800/80 text-xs space-y-1 text-slate-400">
+            <div className="p-3.5 rounded-xl bg-[#f5f2eb] border border-stone-200/80 text-xs space-y-1 text-stone-500">
               <div>
-                <strong className="text-slate-300">Divergence Diagnosis:</strong> {d.divergenceReason}
+                <strong className="text-stone-700">Divergence Diagnosis:</strong> {d.divergenceReason}
               </div>
               <div>
-                <strong className="text-slate-300">Corroborator Classification:</strong> Assigned Tier 4 (Disputed). Retained in separate dispute comparison table; excluded from Tier 1/2 consensus ledger.
+                <strong className="text-stone-700">Corroborator Classification:</strong> Assigned Tier 4 (Disputed). Retained in separate dispute comparison table; excluded from Tier 1/2 consensus ledger.
               </div>
             </div>
           </div>

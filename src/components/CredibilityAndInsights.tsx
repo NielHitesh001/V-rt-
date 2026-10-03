@@ -370,7 +370,7 @@ export const CredibilityAndInsights: React.FC = () => {
           <div className="bg-[#1f2421] text-stone-100 rounded-lg p-6 shadow-md space-y-4">
             <div className="flex flex-wrap items-center justify-between text-xs font-serif text-stone-300 border-b border-stone-700 pb-3 gap-2">
               <div className="flex items-center space-x-2">
-                <Globe className="w-4 h-4 text-emerald-400" />
+                <Globe className="w-4 h-4 text-[#34482c] font-bold" />
                 <span className="font-semibold text-white">Global Event Mapping Projection</span>
               </div>
               <span>Click any marker to inspect regional divergence</span>
@@ -438,7 +438,7 @@ export const CredibilityAndInsights: React.FC = () => {
                   <span className="font-bold text-white text-sm">{selectedGeo.location_name}</span>
                   <span className="text-stone-400">({selectedGeo.latitude.toFixed(2)}°N, {selectedGeo.longitude.toFixed(2)}°W)</span>
                 </div>
-                <span className="text-emerald-400 font-semibold uppercase text-[11px]">Selected Inspection Node</span>
+                <span className="text-[#34482c] font-bold font-semibold uppercase text-[11px]">Selected Inspection Node</span>
               </div>
 
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-stone-200">

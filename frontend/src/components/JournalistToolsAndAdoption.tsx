@@ -86,7 +86,7 @@ export const JournalistToolsAndAdoption: React.FC = () => {
                 : 'text-stone-700 hover:text-stone-900'
             }`}
           >
-            26. LLM Fine-Tuning Data
+            26. Research & Dataset Export
           </button>
         </div>
       </div>
@@ -94,12 +94,12 @@ export const JournalistToolsAndAdoption: React.FC = () => {
       {/* 24. Claim Finder */}
       {activeSubTab === 'finder' && (
         <div className="space-y-6">
-          <div className="bg-stone-900 text-stone-100 p-5 rounded shadow-xs space-y-2">
-            <div className="flex items-center space-x-2 text-xs font-mono uppercase text-amber-300">
+          <div className="bg-[#fdfcf9] border border-stone-300 text-stone-900 p-5 rounded-lg shadow-2xs space-y-2">
+            <div className="flex items-center space-x-2 text-xs font-mono uppercase text-[#5c4a2c]">
               <History className="w-4 h-4" />
               <span>Historical Precedent & Fact Retrieval Memory for Journalists</span>
             </div>
-            <p className="text-xs font-serif text-stone-300 leading-relaxed max-w-3xl">
+            <p className="text-xs font-serif text-stone-600 leading-relaxed max-w-3xl">
               Reporting on modern economic sanctions, maritime accidents, or labor disputes? Query historical claims made in prior crises, inspect how predictions resolved retrospectively, and avoid repeating debunked narratives.
             </p>
           </div>
@@ -152,10 +152,10 @@ export const JournalistToolsAndAdoption: React.FC = () => {
                   <span
                     className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-bold uppercase ${
                       rec.retrospective_verdict === 'Confirmed Accurate'
-                        ? 'bg-emerald-100 text-emerald-800'
+                        ? 'bg-[#e8ede4] text-[#34482c]'
                         : rec.retrospective_verdict === 'Overturned by Investigation'
-                        ? 'bg-rose-100 text-rose-800'
-                        : 'bg-amber-100 text-amber-800'
+                        ? 'bg-[#ecdfdf] text-[#5e3838]'
+                        : 'bg-[#f3edd9] text-[#5c4a2c]'
                     }`}
                   >
                     {rec.retrospective_verdict}
@@ -193,12 +193,12 @@ export const JournalistToolsAndAdoption: React.FC = () => {
       {/* 25. Embed-able Fact Brief Widget */}
       {activeSubTab === 'widget' && (
         <div className="space-y-6">
-          <div className="bg-stone-900 text-stone-100 p-5 rounded shadow-xs space-y-2">
-            <div className="flex items-center space-x-2 text-xs font-mono uppercase text-amber-300">
+          <div className="bg-[#fdfcf9] border border-stone-300 text-stone-900 p-5 rounded-lg shadow-2xs space-y-2">
+            <div className="flex items-center space-x-2 text-xs font-mono uppercase text-[#5c4a2c]">
               <Code2 className="w-4 h-4" />
               <span>Embeddable Verified Claim Widget for External Publishers</span>
             </div>
-            <p className="text-xs font-serif text-stone-300 leading-relaxed max-w-3xl">
+            <p className="text-xs font-serif text-stone-600 leading-relaxed max-w-3xl">
               Embed verifiable claims directly on independent blogs, news articles, and research portals with complete provenance audit chains and live veracity indicators.
             </p>
           </div>
@@ -241,7 +241,7 @@ export const JournalistToolsAndAdoption: React.FC = () => {
                     }}
                     className="text-stone-700 hover:text-stone-900 flex items-center space-x-1 cursor-pointer font-sans"
                   >
-                    {copiedEmbed ? <Check className="w-3 h-3 text-emerald-600" /> : <Copy className="w-3 h-3" />}
+                    {copiedEmbed ? <Check className="w-3 h-3 text-[#475e3c]" /> : <Copy className="w-3 h-3" />}
                     <span>{copiedEmbed ? 'Copied' : 'Copy Code'}</span>
                   </button>
                 </div>
@@ -259,7 +259,7 @@ export const JournalistToolsAndAdoption: React.FC = () => {
               </div>
               <div className="bg-white border border-stone-300 rounded-lg p-5 shadow-sm space-y-3">
                 <div className="flex items-center justify-between border-b border-stone-200 pb-2 text-[11px] font-mono uppercase text-stone-500">
-                  <span className="font-bold text-stone-900">TRUENEWS · VERIFIED CLAIM LEDGER</span>
+                  <span className="font-bold text-stone-900">VĀRTĀ · VERIFIED CLAIM LEDGER</span>
                   <span className="bg-stone-900 text-stone-100 px-2 py-0.5 rounded text-[10px] font-bold">
                     TIER {currentEmbed.tier} PRIMARY CONFIRMED
                   </span>
@@ -284,16 +284,16 @@ export const JournalistToolsAndAdoption: React.FC = () => {
         </div>
       )}
 
-      {/* 26. LLM Fine-Tuning Dataset Export */}
+      {/* 26. Research & Dataset Exportset Export */}
       {activeSubTab === 'export' && (
         <div className="space-y-6">
-          <div className="bg-stone-900 text-stone-100 p-5 rounded shadow-xs space-y-2">
-            <div className="flex items-center space-x-2 text-xs font-mono uppercase text-amber-300">
+          <div className="bg-[#fdfcf9] border border-stone-300 text-stone-900 p-5 rounded-lg shadow-2xs space-y-2">
+            <div className="flex items-center space-x-2 text-xs font-mono uppercase text-[#5c4a2c]">
               <Database className="w-4 h-4" />
-              <span>LLM Fine-Tuning Corpus: Grounded Neutralization & Corroboration</span>
+              <span>Research & Evaluation Corpus: Grounded Neutralization & Corroboration</span>
             </div>
-            <p className="text-xs font-serif text-stone-300 leading-relaxed max-w-3xl">
-              Export high-quality atomic claim extraction benchmarks and reversible neutralization datasets to train open-weight language models on non-partisan reporting without hallucinations.
+            <p className="text-xs font-serif text-stone-600 leading-relaxed max-w-3xl">
+              Export high-quality atomic claim extraction benchmarks and reversible neutralization datasets for non-partisan reporting without hallucinations.
             </p>
           </div>
 
@@ -369,7 +369,7 @@ export const JournalistToolsAndAdoption: React.FC = () => {
                 }}
                 className="text-xs font-sans font-medium text-stone-700 hover:text-stone-900 flex items-center space-x-1 cursor-pointer"
               >
-                {copiedDatasetSample ? <Check className="w-3.5 h-3.5 text-emerald-600" /> : <Copy className="w-3.5 h-3.5" />}
+                {copiedDatasetSample ? <Check className="w-3.5 h-3.5 text-[#475e3c]" /> : <Copy className="w-3.5 h-3.5" />}
                 <span>{copiedDatasetSample ? 'Copied' : 'Copy JSON'}</span>
               </button>
             </div>

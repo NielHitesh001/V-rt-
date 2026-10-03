@@ -125,7 +125,7 @@ export const ScaleAndResilience: React.FC = () => {
 
       {routedSuccessMsg && (
         <div className="p-3 bg-emerald-50 border border-emerald-300 rounded text-emerald-900 text-xs font-serif flex items-center space-x-2">
-          <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0" />
+          <CheckCircle2 className="w-4 h-4 text-[#34482c] shrink-0" />
           <span>{routedSuccessMsg}</span>
         </div>
       )}
@@ -154,9 +154,9 @@ export const ScaleAndResilience: React.FC = () => {
                     <span
                       className={`px-2 py-0.5 rounded text-[11px] font-mono font-bold uppercase ${
                         evt.urgency_tier === 'Breaking Crisis'
-                          ? 'bg-rose-100 text-rose-800'
+                          ? 'bg-[#ecdfdf] text-[#5e3838]'
                           : evt.urgency_tier === 'Rapid Development'
-                          ? 'bg-amber-100 text-amber-800'
+                          ? 'bg-[#f3edd9] text-[#5c4a2c]'
                           : 'bg-stone-100 text-stone-700'
                       }`}
                     >
@@ -261,10 +261,10 @@ export const ScaleAndResilience: React.FC = () => {
                   <span
                     className={`inline-flex items-center px-2 py-0.5 rounded text-[11px] font-mono font-bold uppercase ${
                       sh.current_status === 'operational'
-                        ? 'bg-emerald-100 text-emerald-800'
+                        ? 'bg-[#e8ede4] text-[#34482c]'
                         : sh.current_status === 'degraded'
-                        ? 'bg-amber-100 text-amber-800'
-                        : 'bg-rose-100 text-rose-800'
+                        ? 'bg-[#f3edd9] text-[#5c4a2c]'
+                        : 'bg-[#ecdfdf] text-[#5e3838]'
                     }`}
                   >
                     {sh.current_status.replace('_', ' ')}
@@ -335,10 +335,10 @@ export const ScaleAndResilience: React.FC = () => {
                   <span
                     className={`inline-flex items-center px-2 py-0.5 rounded text-xs font-mono font-bold uppercase ${
                       ver.consensus_votes.gate_status === 'Approved & Merged'
-                        ? 'bg-emerald-100 text-emerald-800'
+                        ? 'bg-[#e8ede4] text-[#34482c]'
                         : ver.consensus_votes.gate_status === 'Pending Review'
-                        ? 'bg-amber-100 text-amber-800'
-                        : 'bg-rose-100 text-rose-800'
+                        ? 'bg-[#f3edd9] text-[#5c4a2c]'
+                        : 'bg-[#ecdfdf] text-[#5e3838]'
                     }`}
                   >
                     {ver.consensus_votes.gate_status}
@@ -358,9 +358,9 @@ export const ScaleAndResilience: React.FC = () => {
                 <div className="p-3 bg-stone-50 rounded border border-stone-200 text-xs font-mono space-y-1">
                   <div className="text-stone-600 font-bold uppercase text-[10px]">Commit Diff:</div>
                   <div className="flex space-x-4 text-stone-700">
-                    <span className="text-emerald-700">+{ver.diff.added_claims} claims added</span>
-                    <span className="text-amber-700">~{ver.diff.modified_claims} modified</span>
-                    <span className="text-rose-700">-{ver.diff.removed_claims} removed</span>
+                    <span className="text-[#34482c]">+{ver.diff.added_claims} claims added</span>
+                    <span className="text-[#5c4a2c]">~{ver.diff.modified_claims} modified</span>
+                    <span className="text-[#5e3838]">-{ver.diff.removed_claims} removed</span>
                   </div>
                   {ver.diff.tier_promotions.length > 0 && (
                     <div className="text-stone-900 pt-1 border-t border-stone-200 text-[11px]">
@@ -372,8 +372,8 @@ export const ScaleAndResilience: React.FC = () => {
                 {/* Consensus Votes Row */}
                 <div className="flex flex-col sm:flex-row sm:items-center justify-between pt-2 border-t border-stone-100 gap-3">
                   <div className="text-xs font-serif text-stone-600">
-                    Peer Reviews: <strong className="text-emerald-700 font-mono">{ver.consensus_votes.approvals} Approved</strong> /{' '}
-                    <strong className="text-rose-700 font-mono">{ver.consensus_votes.rejections} Rejected</strong>{' '}
+                    Peer Reviews: <strong className="text-[#34482c] font-mono">{ver.consensus_votes.approvals} Approved</strong> /{' '}
+                    <strong className="text-[#5e3838] font-mono">{ver.consensus_votes.rejections} Rejected</strong>{' '}
                     (Threshold: {ver.consensus_votes.required_threshold})
                   </div>
                   <div className="flex items-center space-x-2">

@@ -28,27 +28,27 @@ export interface ComparisonClaimItem {
 const TIER_BADGES: Record<number, { label: string; color: string; desc: string }> = {
   1: {
     label: 'Tier 1: Primary Source Grounded',
-    color: 'bg-emerald-50 text-emerald-800 border-emerald-300',
+    color: 'bg-[#eff3ec] text-[#34482c] border-[#cfdec6]',
     desc: 'Anchored directly in an official primary registry or government investigation log.'
   },
   2: {
     label: 'Tier 2: Multi-Source Verified',
-    color: 'bg-blue-50 text-blue-800 border-blue-300',
+    color: 'bg-[#f0f2f5] text-[#343e4d] border-[#cad2de]',
     desc: 'Corroborated across 2+ independent newsrooms with semantic embedding match.'
   },
   3: {
     label: 'Tier 3: Single-Source Attributed',
-    color: 'bg-amber-50 text-amber-800 border-amber-300',
+    color: 'bg-[#faf6ee] text-[#5c4a2c] border-[#e7dac1]',
     desc: 'Reported by one secondary outlet; clear attribution preserved.'
   },
   4: {
     label: 'Tier 4: Contested / Disputed',
-    color: 'bg-orange-50 text-orange-800 border-orange-300',
+    color: 'bg-[#faf1ec] text-[#6e392a] border-[#e8cebe]',
     desc: 'Direct factual contradiction or disputed timeline across outlets.'
   },
   5: {
     label: 'Tier 5: Retracted / Uncorroborated',
-    color: 'bg-rose-50 text-rose-800 border-rose-300',
+    color: 'bg-[#f5f1f0] text-[#5e3838] border-[#dfcccc]',
     desc: 'Formally retracted by publisher or flagged ungrounded.'
   }
 };
@@ -109,28 +109,28 @@ export const ClaimComparison: React.FC = () => {
   return (
     <div className="space-y-8 font-sans">
       {/* Header Banner */}
-      <div className="bg-stone-900 text-stone-100 p-6 md:p-8 rounded-lg shadow-sm border border-stone-800">
+      <div className="bg-[#fdfcf9] text-stone-900 p-6 md:p-8 rounded-lg shadow-2xs border border-stone-300">
         <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
           <div>
-            <div className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-amber-400 mb-2">
-              <Layers className="w-4 h-4" /> Priority 4: Dashboard Improvement
+            <div className="flex items-center gap-2 text-xs uppercase tracking-wider font-semibold text-[#5c4a2c] mb-2">
+              <Layers className="w-4 h-4" /> Feature 4: Neutralization Verification
             </div>
-            <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-100">
+            <h2 className="text-2xl md:text-3xl font-serif font-bold text-stone-900">
               Claim Comparison & Meaning-Preserving Neutralization
             </h2>
-            <p className="text-stone-300 text-sm mt-1 max-w-2xl">
+            <p className="text-stone-600 text-sm mt-1 max-w-2xl font-serif-prose">
               Inspect original newsroom assertions side-by-side with objective neutralized wording and rigorous
               5-tier confidence classification. Every transformation maintains a 100% reversible audit trail.
             </p>
           </div>
           <div className="flex items-center gap-3 shrink-0">
-            <div className="bg-stone-800 px-4 py-2 rounded border border-stone-700 text-right">
-              <div className="text-xs text-stone-400">Total Corpus Claims</div>
-              <div className="text-xl font-bold font-mono text-emerald-400">{claims.length || 92}</div>
+            <div className="bg-white px-4 py-2 rounded border border-stone-300 text-right">
+              <div className="text-xs text-stone-500">Total Corpus Claims</div>
+              <div className="text-xl font-bold font-mono text-[#34482c]">{claims.length || 92}</div>
             </div>
-            <div className="bg-stone-800 px-4 py-2 rounded border border-stone-700 text-right">
-              <div className="text-xs text-stone-400">Reversibility</div>
-              <div className="text-xl font-bold font-mono text-blue-400">100.0%</div>
+            <div className="bg-white px-4 py-2 rounded border border-stone-300 text-right">
+              <div className="text-xs text-stone-500">Reversibility</div>
+              <div className="text-xl font-bold font-mono text-stone-900">100.0%</div>
             </div>
           </div>
         </div>
@@ -140,12 +140,12 @@ export const ClaimComparison: React.FC = () => {
       <div className="bg-white border border-stone-200 rounded-lg p-6 shadow-sm">
         <div className="flex items-center justify-between mb-4 pb-3 border-b border-stone-100">
           <div className="flex items-center gap-2">
-            <Sparkles className="w-5 h-5 text-amber-600" />
+            <Sparkles className="w-5 h-5 text-[#735d37]" />
             <h3 className="font-serif font-bold text-stone-900 text-lg">
               Live Neutralization Sandbox
             </h3>
           </div>
-          <span className="text-xs bg-amber-50 text-amber-800 font-mono px-2 py-0.5 rounded border border-amber-200">
+          <span className="text-xs bg-[#faf6ee] text-[#5c4a2c] font-mono px-2 py-0.5 rounded border border-amber-200">
             Interactive Test
           </span>
         </div>
@@ -170,7 +170,7 @@ export const ClaimComparison: React.FC = () => {
                     'French riot police unleashed toxic tear gas after rebellious students allegedly sparked sheer havoc.'
                   )
                 }
-                className="text-amber-700 hover:text-amber-900 underline cursor-pointer"
+                className="text-[#5c4a2c] hover:text-amber-900 underline cursor-pointer"
               >
                 Load Sample Protest Claim
               </button>
@@ -180,10 +180,10 @@ export const ClaimComparison: React.FC = () => {
           <div className="bg-stone-50 border border-stone-200 rounded p-4 flex flex-col justify-between">
             <div>
               <div className="flex items-center justify-between mb-2">
-                <span className="text-xs font-semibold uppercase tracking-wider text-emerald-800">
+                <span className="text-xs font-semibold uppercase tracking-wider text-[#34482c]">
                   Neutralized Output
                 </span>
-                <span className="text-xs font-mono bg-emerald-100 text-emerald-800 px-2 py-0.5 rounded">
+                <span className="text-xs font-mono bg-[#e8ede4] text-[#34482c] px-2 py-0.5 rounded">
                   {customNeutralized.changes.length} Change(s) Applied
                 </span>
               </div>
@@ -200,7 +200,7 @@ export const ClaimComparison: React.FC = () => {
                     <div key={idx} className="flex items-center gap-2 bg-white px-2 py-1 rounded border border-stone-200">
                       <span className="line-through text-rose-600 font-mono text-[11px]">{ch.original_span}</span>
                       <ArrowRight className="w-3 h-3 text-stone-400 shrink-0" />
-                      <span className="text-emerald-700 font-mono text-[11px] font-semibold">
+                      <span className="text-[#34482c] font-mono text-[11px] font-semibold">
                         {ch.replacement ? `"${ch.replacement}"` : '[removed]'}
                       </span>
                       <span className="text-[10px] bg-stone-100 text-stone-600 px-1.5 py-0.5 rounded ml-auto">
@@ -272,7 +272,7 @@ export const ClaimComparison: React.FC = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               {/* Raw Extracted */}
               <div className="bg-white p-4 rounded border border-stone-300 space-y-2">
-                <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-rose-700">
+                <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#5e3838]">
                   <span>1. Original Raw Text</span>
                   <span className="font-mono text-stone-400 font-normal">Pre-Neutralization</span>
                 </div>
@@ -283,9 +283,9 @@ export const ClaimComparison: React.FC = () => {
 
               {/* Neutralized Clean */}
               <div className="bg-white p-4 rounded border border-stone-300 space-y-2">
-                <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-emerald-700">
+                <div className="flex items-center justify-between text-xs font-semibold uppercase tracking-wider text-[#34482c]">
                   <span>2. Meaning-Preserved Neutralized Text</span>
-                  <span className="font-mono text-emerald-600 font-normal">Factual Invariant Preserved</span>
+                  <span className="font-mono text-[#475e3c] font-normal">Factual Invariant Preserved</span>
                 </div>
                 <div className="font-serif-prose text-stone-900 text-sm leading-relaxed p-2.5 bg-emerald-50/40 rounded border border-emerald-100">
                   {activeClaim.neutralized}
@@ -304,8 +304,8 @@ export const ClaimComparison: React.FC = () => {
                   {activeNeutralizedResult.changes.map((ch, idx) => (
                     <div key={idx} className="bg-white p-2.5 rounded border border-stone-200 text-xs">
                       <div className="flex items-center justify-between mb-1">
-                        <span className="font-mono font-semibold text-rose-700 line-through">"{ch.original_span}"</span>
-                        <span className="font-mono font-semibold text-emerald-700">
+                        <span className="font-mono font-semibold text-[#5e3838] line-through">"{ch.original_span}"</span>
+                        <span className="font-mono font-semibold text-[#34482c]">
                           {ch.replacement ? `"${ch.replacement}"` : '[removed]'}
                         </span>
                       </div>

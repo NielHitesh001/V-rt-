@@ -184,7 +184,7 @@ export const AccessibleNarrative: React.FC = () => {
               <div className="space-y-1.5">
                 {currentBrief.key_takeaways_bullets.map((bullet, idx) => (
                   <div key={idx} className="flex items-start space-x-2 text-xs font-serif text-stone-800">
-                    <CheckCircle2 className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+                    <CheckCircle2 className="w-4 h-4 text-[#34482c] shrink-0 mt-0.5" />
                     <span>{bullet}</span>
                   </div>
                 ))}

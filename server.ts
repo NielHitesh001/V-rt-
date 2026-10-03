@@ -71,7 +71,7 @@ async function startServer() {
 
   // API Routes
   app.get('/api/health', (req, res) => {
-    res.json({ status: 'ok', name: 'TrueNews API', version: '1.0.0' });
+    res.json({ status: 'ok', name: 'Vārtā API', version: '1.0.0' });
   });
 
   // Fast, deterministic archival query endpoint
@@ -183,9 +183,9 @@ async function startServer() {
 
     try {
       const candidateDbPaths = [
-        path.resolve(process.cwd(), 'backend/shared/db/truenews.db'),
-        path.resolve(__dirname, 'backend/shared/db/truenews.db'),
-        '/app/applet/backend/shared/db/truenews.db'
+        path.resolve(process.cwd(), 'backend/shared/db/varta.db'),
+        path.resolve(__dirname, 'backend/shared/db/varta.db'),
+        '/app/applet/backend/shared/db/varta.db'
       ];
       const dbPath = candidateDbPaths.find((p) => fs.existsSync(p));
 
@@ -251,9 +251,9 @@ async function startServer() {
 
     try {
       const candidateDbPaths = [
-        path.resolve(process.cwd(), 'backend/shared/db/truenews.db'),
-        path.resolve(__dirname, 'backend/shared/db/truenews.db'),
-        '/app/applet/backend/shared/db/truenews.db'
+        path.resolve(process.cwd(), 'backend/shared/db/varta.db'),
+        path.resolve(__dirname, 'backend/shared/db/varta.db'),
+        '/app/applet/backend/shared/db/varta.db'
       ];
       const dbPath = candidateDbPaths.find((p) => fs.existsSync(p));
       if (dbPath) {
@@ -349,9 +349,9 @@ async function startServer() {
     let liveDispatches: any[] = [];
     try {
       const candidateDbPaths = [
-        path.resolve(process.cwd(), 'backend/shared/db/truenews.db'),
-        path.resolve(__dirname, 'backend/shared/db/truenews.db'),
-        '/app/applet/backend/shared/db/truenews.db'
+        path.resolve(process.cwd(), 'backend/shared/db/varta.db'),
+        path.resolve(__dirname, 'backend/shared/db/varta.db'),
+        '/app/applet/backend/shared/db/varta.db'
       ];
       const dbPath = candidateDbPaths.find((p) => fs.existsSync(p));
       if (dbPath) {
@@ -640,7 +640,7 @@ async function startServer() {
     const xml = `<?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0">
   <channel>
-    <title>TrueNews Factual Feed - ${evt.label}</title>
+    <title>Vārtā Factual Feed - ${evt.label}</title>
     <link>http://localhost:3000</link>
     <description>${evt.neutral_headline}</description>
     <language>en-us</language>
@@ -650,7 +650,7 @@ async function startServer() {
       <link>http://localhost:3000/events/${evt.id}</link>
       <guid>${evt.id}</guid>
       <pubDate>${new Date().toUTCString()}</pubDate>
-      <description>Extractive verified news brief from TrueNews canonical ledger.</description>
+      <description>Extractive verified news brief from Vārtā canonical ledger.</description>
     </item>
   </channel>
 </rss>`;
@@ -668,7 +668,7 @@ async function startServer() {
     res.json(PUBLISHER_ACCOUNTABILITY_RECORDS);
   });
 
-  // 17. AI Verifiability Watermark & Model Attribution
+  // 17. Cryptographic Provenance Verification & Model Attribution
   app.get('/api/watermarks', (req, res) => {
     res.json(AI_WATERMARK_RECORDS);
   });
@@ -763,7 +763,7 @@ async function startServer() {
         unredacted_ownership_register: Boolean(unredacted_ownership_register),
         rejection_of_anonymous_single_source_claims: Boolean(rejection_of_anonymous_single_source_claims)
       },
-      public_audit_url: `https://truenews.org/pledges/${outlet_name.toLowerCase().replace(/\s+/g, '-')}`
+      public_audit_url: `https://varta.org/pledges/${outlet_name.toLowerCase().replace(/\s+/g, '-')}`
     };
     dynamicPledges.unshift(newPledge);
     res.json(newPledge);
@@ -814,7 +814,7 @@ async function startServer() {
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>TrueNews Fact Embed - ${item.headline}</title>
+  <title>Vārtā Fact Embed - ${item.headline}</title>
   <style>
     body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; margin: 0; padding: 16px; background: #fbf9f5; color: #1c1917; }
     .card { border: 1px solid #d6d1c4; border-radius: 8px; background: #ffffff; padding: 14px 18px; box-shadow: 0 1px 3px rgba(0,0,0,0.06); }
@@ -830,7 +830,7 @@ async function startServer() {
 <body>
   <div class="card">
     <div class="header">
-      <span class="brand">TRUENEWS · VERIFIED CLAIM LEDGER</span>
+      <span class="brand">VĀRTĀ · VERIFIED CLAIM LEDGER</span>
       <span class="tier-badge">TIER ${item.tier} PRIMARY CONFIRMED</span>
     </div>
     <div class="headline">${item.headline}</div>
@@ -846,7 +846,7 @@ async function startServer() {
     res.send(html);
   });
 
-  // 26. LLM Fine-Tuning Dataset Export
+  // 26. Research & Dataset Exportset Export
   app.get('/api/dataset/exports', (req, res) => {
     res.json(DATASET_EXPORT_CONFIGS);
   });
@@ -1003,7 +1003,7 @@ async function startServer() {
   }
 
   app.listen(PORT, '0.0.0.0', () => {
-    console.log(`TrueNews server running on http://0.0.0.0:${PORT}`);
+    console.log(`Vārtā server running on http://0.0.0.0:${PORT}`);
   });
 }
 

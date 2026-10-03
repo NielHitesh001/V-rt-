@@ -144,7 +144,7 @@ export const ForensicsAndDisinfo: React.FC = () => {
                     }`}
                   >
                     <div className="flex items-center justify-between text-[11px] font-mono">
-                      <span className="bg-rose-100 text-rose-800 font-bold px-1.5 py-0.5 rounded">
+                      <span className="bg-[#ecdfdf] text-[#5e3838] font-bold px-1.5 py-0.5 rounded">
                         {camp.amplification_vector}
                       </span>
                       <span className="text-stone-500">{camp.coordinated_outlets_count} outlets</span>
@@ -170,7 +170,7 @@ export const ForensicsAndDisinfo: React.FC = () => {
                     </h3>
                   </div>
                   <div className="text-xs font-mono text-stone-600">
-                    Similarity: <strong className="text-rose-700">{currentCampaign.verbatim_similarity_score}%</strong>
+                    Similarity: <strong className="text-[#5e3838]">{currentCampaign.verbatim_similarity_score}%</strong>
                   </div>
                 </div>
 
@@ -185,7 +185,7 @@ export const ForensicsAndDisinfo: React.FC = () => {
                   </div>
                   <div className="p-3 bg-stone-50 border border-stone-200 rounded">
                     <div className="text-stone-500 text-[10px] uppercase">Syndicated Ring Size</div>
-                    <div className="font-bold text-rose-800 mt-1">{currentCampaign.coordinated_outlets_count} Amplifiers</div>
+                    <div className="font-bold text-[#5e3838] mt-1">{currentCampaign.coordinated_outlets_count} Amplifiers</div>
                   </div>
                 </div>
 

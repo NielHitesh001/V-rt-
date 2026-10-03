@@ -103,7 +103,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
               onClick={() => setActiveTab('veracity')}
               className="font-serif-masthead text-2xl font-black tracking-tight text-stone-900 hover:text-stone-700 transition text-left cursor-pointer"
             >
-              TrueNews
+              Vārtā
             </button>
             <span className="text-stone-300">|</span>
             <span className="text-xs font-serif italic text-stone-600 hidden md:inline">
@@ -241,7 +241,7 @@ export const Header: React.FC<HeaderProps> = ({ activeTab, setActiveTab, onSearc
           {/* Quick Date Stamp */}
           <div className="hidden lg:flex items-center space-x-2 text-xs font-serif text-stone-600 shrink-0">
             <span className="flex items-center gap-1.5 font-medium text-stone-800">
-              <span className="w-2 h-2 rounded-full bg-emerald-600 animate-pulse"></span>
+              <span className="w-2 h-2 rounded-full bg-[#54684a] animate-pulse"></span>
               Saturday, October 3, 2026
             </span>
             <span>·</span>

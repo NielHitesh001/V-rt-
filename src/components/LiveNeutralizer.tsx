@@ -60,17 +60,17 @@ export const LiveNeutralizer: React.FC = () => {
   return (
     <div className="space-y-6">
       {/* Playground Header */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl">
+      <div className="bg-white border border-stone-300 rounded-lg p-6 shadow-2xs">
         <h1 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
           Reversible Neutralizer & Meaning-Preservation Engine (Milestone 5)
         </h1>
-        <p className="mt-2 text-slate-400 text-sm max-w-3xl">
+        <p className="mt-2 text-stone-500 text-sm max-w-3xl">
           Loaded adjectives, partisan spin, and scare quotes are stripped with 100% reversible ChangeRecord annotations while strictly preserving checkable numbers, currency symbols, and factual consequence predicates.
         </p>
 
         {/* Sample Presets */}
         <div className="mt-4">
-          <span className="text-xs font-semibold uppercase text-slate-400 block mb-2">
+          <span className="text-xs font-semibold uppercase text-stone-500 block mb-2">
             Load Loaded Sentence Sample:
           </span>
           <div className="flex flex-wrap gap-2">
@@ -78,7 +78,7 @@ export const LiveNeutralizer: React.FC = () => {
               <button
                 key={i}
                 onClick={() => handleNeutralize(st)}
-                className="text-xs px-3 py-1.5 rounded-lg bg-slate-950 hover:bg-slate-800 border border-slate-800 text-slate-300 transition"
+                className="text-xs px-3 py-1.5 rounded-lg bg-[#f5f2eb] hover:bg-slate-800 border border-stone-200 text-stone-700 transition"
               >
                 Sample {i + 1}
               </button>
@@ -90,10 +90,10 @@ export const LiveNeutralizer: React.FC = () => {
       {/* Live Text Area & Results */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Left: Input Text Box */}
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-          <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+        <div className="bg-white border border-stone-300 rounded-lg p-6 shadow-2xs space-y-4">
+          <div className="flex items-center justify-between pb-2 border-b border-stone-200">
             <h2 className="text-base font-bold text-white">Source Input Text (With Loaded Language)</h2>
-            <span className="text-xs font-mono text-slate-400">{inputText.length} chars</span>
+            <span className="text-xs font-mono text-stone-500">{inputText.length} chars</span>
           </div>
 
           <textarea
@@ -101,14 +101,14 @@ export const LiveNeutralizer: React.FC = () => {
             onChange={(e) => handleNeutralize(e.target.value)}
             rows={5}
             placeholder="Type or paste any news text containing emotional adjectives, intensifiers, or spin..."
-            className="w-full p-4 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-500 font-sans leading-relaxed"
+            className="w-full p-4 bg-[#f5f2eb] border border-stone-300 rounded-xl text-sm text-slate-100 placeholder-slate-500 focus:outline-none focus:border-cyan-500 font-sans leading-relaxed"
           />
 
-          <div className="flex items-center justify-between text-xs text-slate-400">
+          <div className="flex items-center justify-between text-xs text-stone-500">
             <span>Rules: Intensifiers • Emotive Adjectives • Charged Verbs • Scare Quotes</span>
             <button
               onClick={() => handleNeutralize(inputText)}
-              className="flex items-center space-x-1.5 text-cyan-400 hover:text-cyan-300 font-medium"
+              className="flex items-center space-x-1.5 text-stone-900 font-bold hover:text-stone-800 font-medium"
             >
               <RefreshCw className="w-3.5 h-3.5" />
               <span>Re-run Neutralizer</span>
@@ -117,16 +117,16 @@ export const LiveNeutralizer: React.FC = () => {
         </div>
 
         {/* Right: Neutralized Output & Checks */}
-        <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-          <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+        <div className="bg-white border border-stone-300 rounded-lg p-6 shadow-2xs space-y-4">
+          <div className="flex items-center justify-between pb-2 border-b border-stone-200">
             <div className="flex items-center space-x-2">
-              <SlidersHorizontal className="w-4 h-4 text-cyan-400" />
+              <SlidersHorizontal className="w-4 h-4 text-stone-900 font-bold" />
               <h2 className="text-base font-bold text-white">Neutralized Proposition</h2>
             </div>
             <span
               className={`text-xs px-2.5 py-0.5 rounded-full font-mono flex items-center space-x-1 border ${
                 neutralResult.passedCheck
-                  ? 'bg-emerald-950 text-emerald-400 border-emerald-800'
+                  ? 'bg-emerald-950 text-[#34482c] font-bold border-emerald-800'
                   : 'bg-rose-950 text-rose-400 border-rose-800'
               }`}
             >
@@ -144,33 +144,33 @@ export const LiveNeutralizer: React.FC = () => {
             </span>
           </div>
 
-          <div className="p-4 bg-slate-950 border border-slate-800 rounded-xl text-sm text-slate-100 leading-relaxed min-h-[120px]">
+          <div className="p-4 bg-[#f5f2eb] border border-stone-300 rounded-xl text-sm text-slate-100 leading-relaxed min-h-[120px]">
             {neutralResult.neutralized}
           </div>
 
-          <div className="text-xs text-slate-400 font-mono">
+          <div className="text-xs text-stone-500 font-mono">
             Meaning Checker Audit: <span className="text-slate-200">{neutralResult.reason}</span>
           </div>
         </div>
       </div>
 
       {/* Change Records Detailed Audit Log */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-        <div className="flex items-center justify-between pb-2 border-b border-slate-800">
+      <div className="bg-white border border-stone-300 rounded-lg p-6 shadow-2xs space-y-4">
+        <div className="flex items-center justify-between pb-2 border-b border-stone-200">
           <h2 className="text-base font-bold text-white">
             Audit Trail: ChangeRecords Generated ({neutralResult.changes.length})
           </h2>
-          <span className="text-xs text-slate-400 font-mono">Reversible Invariant: 100%</span>
+          <span className="text-xs text-stone-500 font-mono">Reversible Invariant: 100%</span>
         </div>
 
         {neutralResult.changes.length === 0 ? (
-          <p className="text-sm text-slate-400 italic">No loaded wording detected in the input text.</p>
+          <p className="text-sm text-stone-500 italic">No loaded wording detected in the input text.</p>
         ) : (
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             {neutralResult.changes.map((c, idx) => (
-              <div key={idx} className="p-3.5 rounded-xl bg-slate-950 border border-slate-800 text-xs space-y-2">
+              <div key={idx} className="p-3.5 rounded-xl bg-[#f5f2eb] border border-stone-300 text-xs space-y-2">
                 <div className="flex items-center justify-between">
-                  <span className="px-2 py-0.5 rounded bg-slate-800 font-mono uppercase text-[10px] text-cyan-300">
+                  <span className="px-2 py-0.5 rounded bg-slate-800 font-mono uppercase text-[10px] text-stone-800">
                     {c.category}
                   </span>
                   <span className="text-[10px] text-slate-500 font-mono">Trace #{idx + 1}</span>
@@ -179,10 +179,10 @@ export const LiveNeutralizer: React.FC = () => {
                 <div className="flex items-center space-x-2 text-sm font-mono">
                   <span className="line-through text-rose-400 font-medium">"{c.original_span}"</span>
                   <ArrowRight className="w-3.5 h-3.5 text-slate-500 shrink-0" />
-                  <span className="text-emerald-400 font-medium">"{c.replacement}"</span>
+                  <span className="text-[#34482c] font-bold font-medium">"{c.replacement}"</span>
                 </div>
 
-                <p className="text-slate-400 text-xs pt-1 border-t border-slate-800/60">{c.rationale}</p>
+                <p className="text-stone-500 text-xs pt-1 border-t border-stone-200/60">{c.rationale}</p>
               </div>
             ))}
           </div>
@@ -190,12 +190,12 @@ export const LiveNeutralizer: React.FC = () => {
       </div>
 
       {/* Ingest Custom Article into Pipeline */}
-      <div className="bg-slate-900 border border-slate-800 rounded-2xl p-6 shadow-xl space-y-4">
-        <div className="flex items-center space-x-2 pb-2 border-b border-slate-800">
-          <PlusCircle className="w-5 h-5 text-cyan-400" />
+      <div className="bg-white border border-stone-300 rounded-lg p-6 shadow-2xs space-y-4">
+        <div className="flex items-center space-x-2 pb-2 border-b border-stone-200">
+          <PlusCircle className="w-5 h-5 text-stone-900 font-bold" />
           <h2 className="text-lg font-bold text-white">Live Pipeline Ingestion</h2>
         </div>
-        <p className="text-xs text-slate-400">
+        <p className="text-xs text-stone-500">
           Feed a raw news dispatch directly into the deterministic pipeline: automated triage, quote-preserving sentence segmentation, exact character span claim extraction, and neutralization.
         </p>
 
@@ -209,11 +209,11 @@ export const LiveNeutralizer: React.FC = () => {
         <form onSubmit={handleIngestSubmit} className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase mb-1">Source Outlet</label>
+              <label className="block text-xs font-semibold text-stone-500 uppercase mb-1">Source Outlet</label>
               <select
                 value={ingestSource}
                 onChange={(e) => setIngestSource(e.target.value)}
-                className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:border-cyan-500"
+                className="w-full px-3 py-2 bg-[#f5f2eb] border border-stone-300 rounded-xl text-xs text-slate-200 focus:outline-none focus:border-cyan-500"
               >
                 {SOURCES.map((s) => (
                   <option key={s.id} value={s.id}>
@@ -223,27 +223,27 @@ export const LiveNeutralizer: React.FC = () => {
               </select>
             </div>
             <div>
-              <label className="block text-xs font-semibold text-slate-400 uppercase mb-1">Headline / Title</label>
+              <label className="block text-xs font-semibold text-stone-500 uppercase mb-1">Headline / Title</label>
               <input
                 type="text"
                 required
                 value={ingestTitle}
                 onChange={(e) => setIngestTitle(e.target.value)}
                 placeholder="e.g. Maritime Agency Releases Updated Telemetry on Cargo Vessel Collision"
-                className="w-full px-3 py-2 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:border-cyan-500"
+                className="w-full px-3 py-2 bg-[#f5f2eb] border border-stone-300 rounded-xl text-xs text-slate-200 focus:outline-none focus:border-cyan-500"
               />
             </div>
           </div>
 
           <div>
-            <label className="block text-xs font-semibold text-slate-400 uppercase mb-1">Article Body Text</label>
+            <label className="block text-xs font-semibold text-stone-500 uppercase mb-1">Article Body Text</label>
             <textarea
               required
               rows={4}
               value={ingestBody}
               onChange={(e) => setIngestBody(e.target.value)}
               placeholder="Paste article paragraphs here. Each line will be segmented into passages and extracted into atomic claims..."
-              className="w-full p-3 bg-slate-950 border border-slate-800 rounded-xl text-xs text-slate-200 focus:outline-none focus:border-cyan-500 font-sans"
+              className="w-full p-3 bg-[#f5f2eb] border border-stone-300 rounded-xl text-xs text-slate-200 focus:outline-none focus:border-cyan-500 font-sans"
             />
           </div>
 

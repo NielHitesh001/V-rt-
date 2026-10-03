@@ -50,19 +50,19 @@ export const SourceCredibilityCard: React.FC = () => {
           <div className="text-[11px] text-stone-500 mt-0.5">Strict registry quotas</div>
         </div>
         <div className="bg-white border border-stone-200 rounded-lg p-4 shadow-sm">
-          <div className="text-xs font-semibold uppercase tracking-wider text-emerald-700">Tier 1 Primary</div>
-          <div className="text-2xl font-bold font-serif text-emerald-800 mt-1">{primaryCount}</div>
-          <div className="text-[11px] text-emerald-600 mt-0.5">Official investigative logs</div>
+          <div className="text-xs font-semibold uppercase tracking-wider text-[#34482c]">Tier 1 Primary</div>
+          <div className="text-2xl font-bold font-serif text-[#34482c] mt-1">{primaryCount}</div>
+          <div className="text-[11px] text-[#475e3c] mt-0.5">Official investigative logs</div>
         </div>
         <div className="bg-white border border-stone-200 rounded-lg p-4 shadow-sm">
-          <div className="text-xs font-semibold uppercase tracking-wider text-blue-700">Tier 2 Secondary</div>
-          <div className="text-2xl font-bold font-serif text-blue-800 mt-1">{secondaryCount}</div>
-          <div className="text-[11px] text-blue-600 mt-0.5">Global major newsrooms</div>
+          <div className="text-xs font-semibold uppercase tracking-wider text-[#343e4d]">Tier 2 Secondary</div>
+          <div className="text-2xl font-bold font-serif text-[#343e4d] mt-1">{secondaryCount}</div>
+          <div className="text-[11px] text-[#49576c] mt-0.5">Global major newsrooms</div>
         </div>
         <div className="bg-white border border-stone-200 rounded-lg p-4 shadow-sm">
-          <div className="text-xs font-semibold uppercase tracking-wider text-amber-700">Tier 3 Tertiary</div>
-          <div className="text-2xl font-bold font-serif text-amber-800 mt-1">{tertiaryCount}</div>
-          <div className="text-[11px] text-amber-600 mt-0.5">Specialized & independent</div>
+          <div className="text-xs font-semibold uppercase tracking-wider text-[#5c4a2c]">Tier 3 Tertiary</div>
+          <div className="text-2xl font-bold font-serif text-[#5c4a2c] mt-1">{tertiaryCount}</div>
+          <div className="text-[11px] text-[#735d37] mt-0.5">Specialized & independent</div>
         </div>
       </div>
 
@@ -110,10 +110,10 @@ export const SourceCredibilityCard: React.FC = () => {
                   <span
                     className={`text-xs font-semibold px-2.5 py-0.5 rounded-full border uppercase ${
                       activeSource.tier === 'primary'
-                        ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
+                        ? 'bg-[#eff3ec] text-[#34482c] border-[#cfdec6]'
                         : activeSource.tier === 'secondary'
-                        ? 'bg-blue-50 text-blue-800 border-blue-300'
-                        : 'bg-amber-50 text-amber-800 border-amber-300'
+                        ? 'bg-[#f0f2f5] text-[#343e4d] border-[#cad2de]'
+                        : 'bg-[#faf6ee] text-[#5c4a2c] border-[#e7dac1]'
                     }`}
                   >
                     {activeSource.tier} Source
@@ -135,7 +135,7 @@ export const SourceCredibilityCard: React.FC = () => {
               <div className="grid grid-cols-3 gap-3 shrink-0">
                 <div className="bg-white p-3 rounded border border-stone-200 text-center">
                   <div className="text-[10px] uppercase font-semibold text-stone-500">Reliability Score</div>
-                  <div className="text-lg font-bold text-emerald-700 font-mono">
+                  <div className="text-lg font-bold text-[#34482c] font-mono">
                     {activeSource.tier === 'primary' ? '99.4%' : activeSource.tier === 'secondary' ? '96.8%' : '91.2%'}
                   </div>
                 </div>
@@ -147,7 +147,7 @@ export const SourceCredibilityCard: React.FC = () => {
                 </div>
                 <div className="bg-white p-3 rounded border border-stone-200 text-center">
                   <div className="text-[10px] uppercase font-semibold text-stone-500">Syndication</div>
-                  <div className="text-xs font-semibold text-blue-700 mt-1 font-mono">ORIGINAL FEED</div>
+                  <div className="text-xs font-semibold text-[#343e4d] mt-1 font-mono">ORIGINAL FEED</div>
                 </div>
               </div>
             </div>
@@ -156,7 +156,7 @@ export const SourceCredibilityCard: React.FC = () => {
             <div className="mt-4 pt-4 border-t border-stone-200 grid grid-cols-1 md:grid-cols-2 gap-4 text-xs text-stone-600">
               <div className="bg-white p-3 rounded border border-stone-200">
                 <div className="font-semibold text-stone-800 mb-1 flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-emerald-600" /> Anti-Concentration Quota
+                  <ShieldCheck className="w-4 h-4 text-[#475e3c]" /> Anti-Concentration Quota
                 </div>
                 <p className="text-stone-500 leading-relaxed">
                   Ownership group is capped at a maximum of 35% of event claims to prevent wire monopolization or single-conglomerate bias.
@@ -164,7 +164,7 @@ export const SourceCredibilityCard: React.FC = () => {
               </div>
               <div className="bg-white p-3 rounded border border-stone-200">
                 <div className="font-semibold text-stone-800 mb-1 flex items-center gap-1.5">
-                  <Scale className="w-4 h-4 text-blue-600" /> Cross-Border Corroboration Requirement
+                  <Scale className="w-4 h-4 text-[#49576c]" /> Cross-Border Corroboration Requirement
                 </div>
                 <p className="text-stone-500 leading-relaxed">
                   Claims must be confirmed across distinct geographic jurisdictions ({activeSource.region}) before tier promotion to Tier 2.
@@ -202,10 +202,10 @@ export const SourceCredibilityCard: React.FC = () => {
                       <span
                         className={`inline-block text-[11px] font-semibold px-2 py-0.5 rounded-full border uppercase ${
                           source.tier === 'primary'
-                            ? 'bg-emerald-50 text-emerald-800 border-emerald-300'
+                            ? 'bg-[#eff3ec] text-[#34482c] border-[#cfdec6]'
                             : source.tier === 'secondary'
-                            ? 'bg-blue-50 text-blue-800 border-blue-300'
-                            : 'bg-amber-50 text-amber-800 border-amber-300'
+                            ? 'bg-[#f0f2f5] text-[#343e4d] border-[#cad2de]'
+                            : 'bg-[#faf6ee] text-[#5c4a2c] border-[#e7dac1]'
                         }`}
                       >
                         {source.tier}
@@ -220,7 +220,7 @@ export const SourceCredibilityCard: React.FC = () => {
                     <td className="py-2.5 px-4 text-stone-500 font-mono text-[11px]">
                       {source.region}
                     </td>
-                    <td className="py-2.5 px-4 text-center font-mono font-bold text-emerald-700">
+                    <td className="py-2.5 px-4 text-center font-mono font-bold text-[#34482c]">
                       {source.tier === 'primary' ? '99.4%' : source.tier === 'secondary' ? '96.8%' : '91.2%'}
                     </td>
                     <td className="py-2.5 px-4 text-center">

@@ -74,13 +74,13 @@ export const FactChecksAndVelocity: React.FC = () => {
         <div className="bg-[#1c221e] text-stone-100 rounded-lg p-6 shadow-md space-y-4">
           <div className="flex flex-wrap items-center justify-between border-b border-stone-700 pb-3 gap-2 text-xs font-serif">
             <div className="flex items-center space-x-2">
-              <Radio className="w-4 h-4 text-emerald-400 animate-pulse" />
+              <Radio className="w-4 h-4 text-[#34482c] font-bold animate-pulse" />
               <span className="font-bold text-white text-sm">{selectedVelocity.headline}</span>
             </div>
             <div className="flex items-center space-x-2 font-mono text-[11px] text-stone-400">
               <span>RATE: {selectedVelocity.velocity_rate} articles/hr</span>
               <span>·</span>
-              <span className="uppercase text-emerald-400">{selectedVelocity.consensus_stage} stage</span>
+              <span className="uppercase text-[#34482c] font-bold">{selectedVelocity.consensus_stage} stage</span>
             </div>
           </div>
 
@@ -142,7 +142,7 @@ export const FactChecksAndVelocity: React.FC = () => {
             </div>
             <div className="p-3 bg-[#242b26] rounded border border-stone-800">
               <span className="text-[10px] font-mono text-stone-400 uppercase block">Consensus State</span>
-              <span className="font-serif font-bold text-emerald-400 text-sm capitalize">{selectedVelocity.consensus_stage}</span>
+              <span className="font-serif font-bold text-[#34482c] font-bold text-sm capitalize">{selectedVelocity.consensus_stage}</span>
             </div>
           </div>
         </div>

@@ -90,7 +90,7 @@ export const DisputeResolution: React.FC = () => {
 
       <div className="p-4 bg-[#f8f6f0] border border-stone-300 rounded text-xs font-serif text-stone-700 leading-relaxed">
         <p>
-          When reporting parties or governments issue contradictory accounts of an event, TrueNews delivers both perspectives with exact source attribution rather than imposing an artificial consensus.
+          When reporting parties or governments issue contradictory accounts of an event, Vārtā delivers both perspectives with exact source attribution rather than imposing an artificial consensus.
         </p>
       </div>
 

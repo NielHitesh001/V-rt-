@@ -212,8 +212,8 @@ export const DailyVeracity: React.FC<DailyVeracityProps> = ({ onNavigateToBrief,
         {/* Refresh Newspaper Button & Status */}
         <div className="flex items-center gap-3">
           <div className="text-right text-[11px] text-stone-500 hidden md:block">
-            <span className="inline-flex items-center gap-1 text-emerald-700 font-medium">
-              <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse"></span>
+            <span className="inline-flex items-center gap-1 text-[#34482c] font-medium">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#54684a] animate-pulse"></span>
               Live Wire
             </span>
             <span className="mx-1">·</span>
@@ -236,12 +236,12 @@ export const DailyVeracity: React.FC<DailyVeracityProps> = ({ onNavigateToBrief,
       {refreshNotice && (
         <div className="p-3 bg-emerald-50 border border-emerald-300 rounded-lg text-emerald-900 text-xs flex items-center justify-between animate-fadeIn">
           <div className="flex items-center gap-2">
-            <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
+            <CheckCircle2 className="w-4 h-4 text-[#475e3c] shrink-0" />
             <span className="font-serif">{refreshNotice}</span>
           </div>
           <button
             onClick={() => setRefreshNotice(null)}
-            className="text-emerald-700 hover:text-emerald-900 font-bold text-xs"
+            className="text-[#34482c] hover:text-emerald-900 font-bold text-xs"
           >
             Dismiss
           </button>
@@ -370,8 +370,8 @@ export const DailyVeracity: React.FC<DailyVeracityProps> = ({ onNavigateToBrief,
           {/* Live Ingested Dispatches from Wire */}
           {liveDispatches.length > 0 && (
             <div className="pt-6 space-y-3">
-              <span className="text-[10px] uppercase tracking-widest font-mono text-emerald-700 font-bold block flex items-center gap-1">
-                <Radio className="w-3 h-3 text-emerald-600 animate-pulse" /> Live Ingested Wire Dispatches
+              <span className="text-[10px] uppercase tracking-widest font-mono text-[#34482c] font-bold block flex items-center gap-1">
+                <Radio className="w-3 h-3 text-[#475e3c] animate-pulse" /> Live Ingested Wire Dispatches
               </span>
               {liveDispatches.slice(0, 3).map((dispatch) => (
                 <div key={dispatch.id} className="p-2.5 bg-stone-50 rounded border border-stone-200 space-y-1">
